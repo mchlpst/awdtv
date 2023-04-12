@@ -1,0 +1,58 @@
+{
+  "collectionName": "components_layout_grid_images",
+  "info": {
+    "displayName": "Grid images"
+  },
+  "options": {},
+  "attributes": {
+    "Image1": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "Image2": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Image3": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Title1": {
+      "type": "string"
+    },
+    "Title2": {
+      "type": "string"
+    },
+    "Title3": {
+      "type": "string"
+    },
+    "ButtonLabel1": {
+      "type": "string"
+    },
+    "ButtonLabel2": {
+      "type": "string"
+    },
+    "ButtonLabel3": {
+      "type": "string"
+    },
+    "ButtonLink1": {
+      "type": "string"
+    },
+    "ButtonLink2": {
+      "type": "string"
+    },
+    "ButtonLink3": {
+      "type": "string"
+    }
+  }
+}
