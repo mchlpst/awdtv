@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_elements_players",
+  "info": {
+    "displayName": "Player"
+  },
+  "options": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "Photo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "Number": {
+      "type": "integer"
+    },
+    "Staff": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}
