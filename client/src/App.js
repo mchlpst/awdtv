@@ -20,13 +20,10 @@ const App = () => {
 
   useEffect(() => {
     if (!loading && !error) {
+      console.log(data);
       setContent({
-        mainMenu: data.menusMenus.data.find(
-          (item) => item.attributes.title === "MainMenu"
-        ).attributes,
-        topMenu: data.menusMenus.data.find(
-          (item) => item.attributes.title === "TopMenu"
-        ).attributes,
+        mainMenu: data.mainMenu.data.attributes,
+        topMenu: data.topMenu.data.attributes,
       });
     }
     // eslint-disable-next-line

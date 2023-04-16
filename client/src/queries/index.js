@@ -1,5 +1,9 @@
-const getMenus = require("./getMenus");
+const getMainMenu = require("./getMainMenu");
+const getTopMenu = require("./getTopMenu");
 
 module.exports = `
-${getMenus}
+query getMenus {
+  ${getMainMenu}
+  ${getTopMenu}
+}
 `;

@@ -1,0 +1,41 @@
+@import '../../scss/index.scss';
+
+$component: 'main-navigation';
+
+.#{$component} {
+  background-color: $color-red-dark;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  height: 80px;
+  &__link {
+    color: $color-white;
+    text-decoration: none;
+    display: block;
+  }
+  &__dropdown-section {
+    position: absolute;
+    width: 100%;
+    left:0;
+    top: 80px;
+    background-color: $color-red;
+    &__label-container {
+      display: flex;
+      gap: 10px;
+    }
+    &__label {
+      color: $color-white;
+    }
+    &__icon {
+      display: block;
+      width: 15px;
+    }
+  
+    &__container {
+      display: flex;
+      gap: 140px;
+    }
+  }
+}

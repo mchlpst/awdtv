@@ -1,0 +1,18 @@
+@import '../../scss/index.scss';
+
+$component: 'top-menu';
+
+.#{$component} {
+  background-color: $color-red;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+
+  &__link {
+    color: $color-white;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 50px;
+    font-family: $font-thin;
+  }
+}
