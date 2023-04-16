@@ -19,7 +19,6 @@ const App = () => {
 
   useEffect(() => {
     if (!loading && !error) {
-      console.log(data.menusMenus);
       setContent({
         mainMenu: data.menusMenus.data.find(
           (item) => item.attributes.title === "MainMenu"
