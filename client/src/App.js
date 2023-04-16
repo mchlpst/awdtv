@@ -1,31 +1,48 @@
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import React, { useEffect, useState } from "react";
+import { useQuery, gql } from "@apollo/client";
+
 import "./App.scss";
 
-const client = new ApolloClient({
-  uri: "http://localhost:1337/graphql",
-  cache: new InMemoryCache(),
-});
+import MainNavigation from "./components/MainNavigation/MainNavigation";
+import TopMenu from "./components/TopMenu/Topmenu";
 
-function App() {
+const rawQuery = require("./queries/index");
+
+const query = gql`
+  ${rawQuery}
+`;
+
+const App = () => {
+  const [content, setContent] = useState(null);
+
+  const { loading, error, data } = useQuery(query);
+
+  useEffect(() => {
+    if (!loading && !error) {
+      console.log(data.menusMenus);
+      setContent({
+        mainMenu: data.menusMenus.data.find(
+          (item) => item.attributes.title === "MainMenu"
+        ).attributes,
+        topMenu: data.menusMenus.data.find(
+          (item) => item.attributes.title === "TopMenu"
+        ).attributes,
+      });
+    }
+    // eslint-disable-next-line
+  }, [loading]);
+
   return (
-    <ApolloProvider client={client}>
-      <div className="App">
+    <div className="App">
+      {loading && <div>Loading</div>}
+      {content && (
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer">
-            Learn React
-          </a>
+          <TopMenu data={content.topMenu} />
+          <MainNavigation data={content.mainMenu} />
         </header>
-      </div>
-    </ApolloProvider>
+      )}
+    </div>
   );
-}
+};
 
 export default App;
