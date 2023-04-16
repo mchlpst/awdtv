@@ -49,6 +49,9 @@ const DropdownSection = (props) => {
             );
           })}
         </div>
+        <span className="main-navigation__dropdown-section__background-text">
+          {props.title}
+        </span>
       </div>
     </>
   );

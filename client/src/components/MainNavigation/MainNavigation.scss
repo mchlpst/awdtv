@@ -14,19 +14,42 @@ $component: 'main-navigation';
     color: $color-white;
     text-decoration: none;
     display: block;
+    &--secondair {
+      font-family: $font-thin;
+      color: $color-white-dark;
+      line-height: 24px;
+      margin: 2.5px 0;
+    }
   }
   &__dropdown-section {
     position: absolute;
+    overflow: hidden;
     width: 100%;
     left:0;
     top: 80px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+    padding: 40px 0;
+    border-top: 1px solid $color-white;
     background-color: $color-red;
+    &:hover {
+      opacity: 1;
+      z-index: 20;
+      visibility: visible;
+    }
     &__label-container {
       display: flex;
       gap: 10px;
+      &:hover ~ .#{$component}__dropdown-section {
+        opacity: 1;
+        z-index: 20;
+        visibility: visible;
+      }
     }
     &__label {
       color: $color-white;
+      height: 100%;
     }
     &__icon {
       display: block;
@@ -36,6 +59,25 @@ $component: 'main-navigation';
     &__container {
       display: flex;
       gap: 140px;
+    }
+    &__background-text {
+      position: absolute;
+      bottom: -50px;
+      right:30px;
+      color: $color-red-dark;
+      font-size: 220px;
+      line-height: 1;
+      font-family: $font-bold;
+      z-index: 1;
+    }
+  }
+  &__dropdown {
+    position: relative;
+    z-index: 2;
+    &__label {
+      font-family: $font-medium;
+      color: $color-white;
+      margin-bottom: 25px;
     }
   }
 }
