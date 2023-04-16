@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 
+import "./scss/index.scss";
 import "./App.scss";
 
 import MainNavigation from "./components/MainNavigation/MainNavigation";
