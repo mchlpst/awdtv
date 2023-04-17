@@ -6,8 +6,16 @@ import "./MainNavigation.scss";
 
 const MainNavigation = (props) => {
   let data = props.data;
+  let globals = props.globals;
   return (
     <nav className="main-navigation">
+      <a href="/" className="main-navigation__logo-link">
+        <img
+          src={`http://localhost:1337${globals.Logo.data.attributes.url}`}
+          alt={globals.Logo.data.attributes.alternativetext}
+          className="main-navigation__logo"
+        />
+      </a>
       {data.body.map((item, index) => {
         return item.url ? (
           <NavLink
