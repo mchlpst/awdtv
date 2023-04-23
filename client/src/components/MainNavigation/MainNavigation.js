@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import { ReactComponent as Chevron } from "../../assets/svg/Chevron.svg";
+import { ReactComponent as Magnifyglass } from "../../assets/svg/Magnifyglass.svg";
 import "./MainNavigation.scss";
 
 const MainNavigation = (props) => {
@@ -9,13 +10,15 @@ const MainNavigation = (props) => {
   let globals = props.globals;
   return (
     <nav className="main-navigation">
-      <a href="/" className="main-navigation__logo-link">
-        <img
-          src={`http://localhost:1337${globals.Logo.data.attributes.url}`}
-          alt={globals.Logo.data.attributes.alternativetext}
-          className="main-navigation__logo"
-        />
-      </a>
+      {globals.Logo && (
+        <a href="/" className="main-navigation__logo-link">
+          <img
+            src={`http://localhost:1337${globals.Logo.data.attributes.url}`}
+            alt={globals.Logo.data.attributes.alternativetext}
+            className="main-navigation__logo"
+          />
+        </a>
+      )}
       {data.body.map((item, index) => {
         return item.url ? (
           <NavLink
@@ -32,6 +35,16 @@ const MainNavigation = (props) => {
           />
         );
       })}
+      <div className="main-navigation__search-container">
+        <div className="main-navigation__search">
+          <input
+            type="text"
+            className="main-navigation__search-input"
+            placeholder="Op zoek naar..."
+          />
+          <Magnifyglass className="main-navigation__search-icon" />
+        </div>
+      </div>
     </nav>
   );
 };
