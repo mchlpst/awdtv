@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_layout_competition_infos",
+  "info": {
+    "displayName": "Competition Info"
+  },
+  "options": {},
+  "attributes": {
+    "From": {
+      "required": true,
+      "type": "date"
+    },
+    "To": {
+      "type": "date"
+    }
+  }
+}

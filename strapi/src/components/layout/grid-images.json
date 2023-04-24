@@ -1,31 +1,34 @@
 {
   "collectionName": "components_layout_grid_images",
   "info": {
-    "displayName": "Grid images"
+    "displayName": "Grid images",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "Image1": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "Image2": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "Image3": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "Title1": {
       "type": "string"
@@ -53,6 +56,11 @@
     },
     "ButtonLink3": {
       "type": "string"
+    },
+    "Articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
     }
   }
 }
