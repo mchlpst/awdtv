@@ -24,7 +24,7 @@ const MainNavigation = (props) => {
           <NavLink
             key={index}
             to={item.url}
-            className="main-navigation__link main-navigation__link--primair-level">
+            className="main-navigation__link main-navigation__link--primair">
             {item.label}
           </NavLink>
         ) : (
