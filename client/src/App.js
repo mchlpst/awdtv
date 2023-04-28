@@ -1,24 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
+import { Routes, Route } from "react-router-dom";
 
 import "./scss/index.scss";
 import "./App.scss";
 
 import MainNavigation from "./components/MainNavigation/MainNavigation";
 import TopMenu from "./components/TopMenu/Topmenu";
+import HomePage from "./pages/HomePage/HomePage";
 
 import { menuQuery, globalQuery } from "./queries";
 
 const App = () => {
   const [menus, setMenus] = useState(null);
   const [globals, setGlobals] = useState(null);
-  const [content, setContent] = useState({
-    global: null,
-    menus: {
-      topMenu: null,
-      mainMenu: null,
-    },
-  });
 
   const {
     loading: menuQueryLoading,
@@ -34,7 +29,6 @@ const App = () => {
   useEffect(() => {
     if (!globalQueryLoading && !globalQueryError) {
       setGlobals(global.global.data.attributes);
-      setContent({ ...content, global: global.global.data.attributes });
     }
     if (!menuQueryLoading && !menuQueryError) {
       setMenus({
@@ -47,12 +41,15 @@ const App = () => {
 
   return (
     <div className="App">
-      {menus && (
+      {menus && globals && (
         <header className="App-header">
           <TopMenu data={menus.topMenu} />
           <MainNavigation data={menus.mainMenu} globals={globals} />
         </header>
       )}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
     </div>
   );
 };
