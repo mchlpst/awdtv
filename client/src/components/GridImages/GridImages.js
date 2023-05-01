@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import "./GridImages.scss";
+import Button from "../Button/Button";
 
 const GridImages = (props) => {
   const content = props.data;
@@ -31,6 +32,20 @@ const GridImages = (props) => {
               <h4 className="grid-images__tile-title">
                 {content.Articles.data[0].attributes.Title}
               </h4>
+            )}
+            {content.ButtonLink1 && !content.Articles.data[0] && (
+              <Button
+                to={content.ButtonLink1}
+                text={content.ButtonLabel1}
+                type={"solid"}
+              />
+            )}
+            {!content.ButtonLink1 && content.Articles.data[0] && (
+              <Button
+                to={content.Articles.data[0].attributes.slug}
+                text={"Bekijk artikel"}
+                type={"solid"}
+              />
             )}
           </div>
         </div>

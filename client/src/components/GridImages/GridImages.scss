@@ -4,7 +4,7 @@ $component: 'grid-images';
 
 .#{$component} {
   width: 100%;
-  height: 525px;
+  max-height: 525px;
   display: grid;
   grid-template-columns: [first] 60% [line2] auto [end];
   grid-template-rows: [start] 50% [middle] 50% [end];
@@ -37,6 +37,9 @@ $component: 'grid-images';
     position: absolute;
     bottom:40px;
     left:40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
   &__tile-title {
     color: $color-white;
@@ -44,5 +47,6 @@ $component: 'grid-images';
     line-height: 1.2;
     font-family: $font-medium;
     text-shadow: 0px 0px 40px black;
+
   }
 }

@@ -6,6 +6,9 @@ module.exports = `
   ButtonLink1
   ButtonLink2
   ButtonLink3
+  ButtonLabel1
+  ButtonLabel2
+  ButtonLabel3
   Title1
   Title2
   Title3
