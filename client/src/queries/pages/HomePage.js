@@ -1,12 +1,9 @@
-const GridImages = require("../components/GridImages");
+const GridImage = require("../models/GridImage");
+
 module.exports = `
-homePage {
-  data {
-    attributes {
-      content {
-        ${GridImages}
-      }
-    }
+home {
+  content {
+    ${GridImage}
   }
 }
 `;

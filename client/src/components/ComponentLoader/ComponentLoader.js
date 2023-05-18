@@ -7,7 +7,7 @@ const ComponentLoader = (props) => {
   return (
     <>
       {content.map((comp, index) => {
-        if (comp.__typename === "ComponentLayoutGridImages") {
+        if (comp._modelApiKey === "image_grid") {
           return <GridImages key={index} data={comp} />;
         }
       })}

@@ -1,40 +1,47 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { DatoContext } from "../../hooks/datoCMS";
 
 import { ReactComponent as Chevron } from "../../assets/svg/Chevron.svg";
 import { ReactComponent as Magnifyglass } from "../../assets/svg/Magnifyglass.svg";
 import "./MainNavigation.scss";
 
 const MainNavigation = (props) => {
-  let data = props.data;
-  let globals = props.globals;
+  const [data, setData] = useState(null);
+  const context = useContext(DatoContext);
+
+  useEffect(() => {
+    if (context) {
+      setData(context.allMainNavigations);
+    }
+  }, [context]);
+
   return (
     <nav className="main-navigation">
-      {globals.Logo && (
-        <a href="/" className="main-navigation__logo-link">
-          <img
-            src={`http://localhost:1337${globals.Logo.data.attributes.url}`}
-            alt={globals.Logo.data.attributes.alternativetext}
-            className="main-navigation__logo"
-          />
-        </a>
-      )}
-      {data.body.map((item, index) => {
-        return item.url ? (
-          <NavLink
-            key={index}
-            to={item.url}
-            className="main-navigation__link main-navigation__link--primair">
-            {item.label}
-          </NavLink>
-        ) : (
-          <DropdownSection
-            key={index}
-            title={item.Title}
-            body={item.menu_sections}
-          />
-        );
-      })}
+      <a href="/" className="main-navigation__logo-link">
+        <img
+          src="/Logo.webp"
+          alt="Logo AW.DTV"
+          className="main-navigation__logo"
+        />
+      </a>
+      {data &&
+        data.map((item, index) => {
+          return item.children.length === 0 ? (
+            <NavLink
+              key={index}
+              to={item.link}
+              className="main-navigation__link main-navigation__link--primair">
+              {item.label}
+            </NavLink>
+          ) : (
+            <DropdownSection
+              key={index}
+              label={item.label}
+              body={item.children}
+            />
+          );
+        })}
       <div className="main-navigation__search-container">
         <div className="main-navigation__search">
           <input
@@ -54,24 +61,20 @@ const DropdownSection = (props) => {
     <>
       <div className="main-navigation__dropdown-section__label-container">
         <p className="main-navigation__dropdown-section__label">
-          {props.title}
+          {props.label}
         </p>
         <Chevron className="main-navigation__dropdown-section__icon" />
       </div>
       <div className="main-navigation__dropdown-section">
         <div className="main-navigation__dropdown-section__container">
-          {props.body.data.map((item, index) => {
+          {props.body.map((item, index) => {
             return (
-              <DropDown
-                key={index}
-                body={item.attributes.Body}
-                label={item.attributes.Label}
-              />
+              <DropDown key={index} body={item.children} label={item.label} />
             );
           })}
         </div>
         <span className="main-navigation__dropdown-section__background-text">
-          {props.title}
+          {props.label}
         </span>
       </div>
     </>
@@ -87,7 +90,7 @@ const DropDown = (props) => {
           return (
             <NavLink
               key={index}
-              to={item.url}
+              to={item.link}
               className="main-navigation__link main-navigation__link--secondair">
               {item.label}
             </NavLink>

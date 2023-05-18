@@ -4,79 +4,119 @@ import "./GridImages.scss";
 import Button from "../Button/Button";
 
 const GridImages = (props) => {
+  const [mainBlock, setMainBlock] = useState(null);
+  const [secondairBlock, setSecondairBlock] = useState(null);
   const content = props.data;
-  console.log(content);
+
+  useEffect(() => {
+    if (content.articles.length !== 0) {
+      setMainBlock({
+        title: content.articles[0].title,
+        slug: content.articles[0].slug,
+        label: "Bekijk artikel",
+        src: content.articles[0].visual.responsiveImage.src,
+        alt: content.articles[0].visual.responsiveImage.alt,
+        srcSet: content.articles[0].visual.responsiveImage.srcSet,
+      });
+      if (content.articles.length > 1) {
+        setSecondairBlock({
+          title: content.articles[1].title,
+          slug: content.articles[1].slug,
+          label: "Bekijk artikel",
+          src: content.articles[1].visual.responsiveImage.src,
+          alt: content.articles[1].visual.responsiveImage.alt,
+          srcSet: content.articles[1].visual.responsiveImage.srcSet,
+        });
+      } else {
+        setSecondairBlock({
+          title: content.secondairBlockTitle,
+          slug: content.secondairBlockLink,
+          label: content.secondairBlockLinkLabel,
+          src: content.secondairBlockImage
+            ? content.secondairBlockImage.responsiveImage.src
+            : null,
+          alt: content.secondairBlockImage
+            ? content.secondairBlockImage.responsiveImage.alt
+            : null,
+          srcSet: content.secondairBlockImage
+            ? content.secondairBlockImage.responsiveImage.srcSet
+            : null,
+        });
+      }
+    } else {
+      setMainBlock({
+        title: content.mainBlockTitle,
+        slug: content.mainBlockLink,
+        label: content.mainBlockLinkLabel,
+        src: content.mainBlockImage
+          ? content.mainBlockImage.responsiveImage.src
+          : null,
+        alt: content.mainBlockImage
+          ? content.mainBlockImage.responsiveImage.alt
+          : null,
+        srcSet: content.mainBlockImage
+          ? content.mainBlockImage.responsiveImage.srcSet
+          : null,
+      });
+      setSecondairBlock({
+        title: content.secondairBlockTitle,
+        slug: content.secondairBlockLink,
+        label: content.secondairBlockLinkLabel,
+        src: content.secondairBlockImage
+          ? content.secondairBlockImage.responsiveImage.src
+          : null,
+        alt: content.secondairBlockImage
+          ? content.secondairBlockImage.responsiveImage.alt
+          : null,
+        srcSet: content.secondairBlockImage
+          ? content.secondairBlockImage.responsiveImage.srcSet
+          : null,
+      });
+    }
+  }, [content]);
 
   return (
     <section className="grid-images">
-      <div className="grid-images__tile-container grid-images__tile-container--main">
-        <div className="grid-images__tile-image">
-          <img
-            src={
-              content.Image1.data
-                ? `http://localhost:1337${content.Image1.data.attributes.url}`
-                : `http://localhost:1337${content.Articles.data[0].attributes.Image.data.attributes.url}`
-            }
-            alt={
-              content.Image1.data
-                ? content.Image1.data.attributes.alternativeText
-                : content.Articles.data[0].attributes.Image.data.attributes
-                    .alternativeText
-            }
-          />
+      {mainBlock && (
+        <div className="grid-images__tile-container grid-images__tile-container--main">
+          <div className="grid-images__tile-image">
+            <img srcSet={mainBlock.srcSet} alt={mainBlock.alt} />
+            <div className="grid-images__tile-context-container">
+              {mainBlock.title && (
+                <h4 className="grid-images__tile-title">{mainBlock.title}</h4>
+              )}
+              {mainBlock.slug && (
+                <Button
+                  to={mainBlock.slug}
+                  text={mainBlock.label}
+                  type={"solid"}
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+      {secondairBlock && (
+        <div className="grid-images__tile-container grid-images__tile-container--second">
+          <div className="grid-images__tile-image">
+            <img srcSet={secondairBlock.srcSet} alt={secondairBlock.alt} />
+          </div>
           <div className="grid-images__tile-context-container">
-            {content.Title1 && !content.Articles.data[0] && (
-              <h4 className="grid-images__tile-title">{content.Title1}</h4>
-            )}
-            {!content.Title1 && content.Articles.data[0] && (
+            {secondairBlock.title && (
               <h4 className="grid-images__tile-title">
-                {content.Articles.data[0].attributes.Title}
+                {secondairBlock.title}
               </h4>
             )}
-            {content.ButtonLink1 && !content.Articles.data[0] && (
+            {secondairBlock.slug && (
               <Button
-                to={content.ButtonLink1}
-                text={content.ButtonLabel1}
-                type={"solid"}
-              />
-            )}
-            {!content.ButtonLink1 && content.Articles.data[0] && (
-              <Button
-                to={content.Articles.data[0].attributes.slug}
-                text={"Bekijk artikel"}
+                to={secondairBlock.slug}
+                text={secondairBlock.label}
                 type={"solid"}
               />
             )}
           </div>
         </div>
-      </div>
-      <div className="grid-images__tile-container grid-images__tile-container--second">
-        <div className="grid-images__tile-image">
-          <img
-            src={
-              content.Image2.data
-                ? `http://localhost:1337${content.Image2.data.attributes.url}`
-                : `http://localhost:1337${content.Articles.data[1].attributes.Image.data.attributes.url}`
-            }
-            alt={
-              content.Image2.data
-                ? content.Image2.data.attributes.alternativeText
-                : content.Articles.data[1].attributes.Image.data.attributes
-                    .alternativeText
-            }
-          />
-        </div>
-        <div className="grid-images__tile-context-container">
-          {content.Title2 && !content.Articles.data[1] && (
-            <h4 className="grid-images__tile-title">{content.Title2}</h4>
-          )}
-          {!content.Title2 && content.Articles.data[1] && (
-            <h4 className="grid-images__tile-title">
-              {content.Articles.data[1].attributes.Title}
-            </h4>
-          )}
-        </div>
-      </div>
+      )}
       <div className="grid-images__tile-container grid-images__tile-container--third"></div>
     </section>
   );
