@@ -1,12 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import "./GridImages.scss";
 import Button from "../Button/Button";
+import { ClubDataContext } from "../../hooks/ClubData";
 
 const GridImages = (props) => {
   const [mainBlock, setMainBlock] = useState(null);
   const [secondairBlock, setSecondairBlock] = useState(null);
+  const [nextMatchDate, setNextMatchDate] = useState(null);
+  const [nextMatch, setNextMatch] = useState({
+    day: null,
+    month: null,
+    hours: null,
+    minutes: null,
+    home: null,
+    away: null,
+  });
   const content = props.data;
+  const clubData = useContext(ClubDataContext);
 
   useEffect(() => {
     if (content.articles.length !== 0) {
@@ -75,6 +86,48 @@ const GridImages = (props) => {
     }
   }, [content]);
 
+  useEffect(() => {
+    if (clubData && clubData.program && clubData.program.res) {
+      const program = clubData.program.res;
+      let dateArray = [];
+
+      program.map((item) => {
+        item.matches.forEach((match) => {
+          if (
+            match.teams.home.name === "AW/DTV 1" ||
+            match.teams.away.name === "AW/DTV 1"
+          ) {
+            setNextMatch((prevState) => ({
+              ...prevState,
+              home: match.teams.home.name,
+              away: match.teams.away.name,
+            }));
+            dateArray.push(match.date);
+          } else {
+            return;
+          }
+        });
+      });
+      setNextMatchDate(dateArray[0] || null);
+      if (nextMatchDate !== null) {
+        const rawDate = new Date(nextMatchDate);
+        const day = String(rawDate.getDate()).padStart(2, "0");
+        const month = String(
+          rawDate.toLocaleString("nl-NL", { month: "long" })
+        );
+        const hours = String(rawDate.getHours()).padStart(2, "0");
+        const minutes = String(rawDate.getMinutes()).padStart(2, "0");
+        setNextMatch((prevState) => ({
+          ...prevState,
+          day: day,
+          month: month,
+          hours: hours,
+          minutes: minutes,
+        }));
+      }
+    }
+  }, [clubData, nextMatchDate]);
+
   return (
     <section className="grid-images">
       {mainBlock && (
@@ -117,7 +170,20 @@ const GridImages = (props) => {
           </div>
         </div>
       )}
-      <div className="grid-images__tile-container grid-images__tile-container--third"></div>
+      <div className="grid-images__tile-container grid-images__tile-container--third">
+        <div className="grid-images__date-container">
+          <h5 className="grid-images__day">{nextMatch.day}</h5>
+          <p className="grid-images__month">{nextMatch.month}</p>
+          <p className="grid-images__time">
+            {nextMatch.hours}:{nextMatch.minutes} uur
+          </p>
+        </div>
+        <div className="grid-images__game-container">
+          <p className="grid-images__game">
+            {nextMatch.home} - {nextMatch.away}
+          </p>
+        </div>
+      </div>
     </section>
   );
 };
