@@ -96,8 +96,8 @@ const GridImages = (props) => {
       program.map((item) => {
         item.matches.forEach((match) => {
           if (
-            match.teams.home.name === "AW/DTV 5" ||
-            match.teams.away.name === "AW/DTV 5"
+            match.teams.home.name === "AW/DTV 1" ||
+            match.teams.away.name === "AW/DTV 1"
           ) {
             setNextMatch((prevState) => ({
               ...prevState,
