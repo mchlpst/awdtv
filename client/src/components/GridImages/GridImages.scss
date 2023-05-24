@@ -29,7 +29,7 @@ $component: 'grid-images';
       grid-column-end: end;
       grid-row-start: middle;
       grid-row-end: end;
-      background-color: $color-grey-dark;
+      background-color: $color-red-dark;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -62,7 +62,7 @@ $component: 'grid-images';
 
   }
   &__date-container {
-    background: $color-red;
+    background: $color-black-dark;
     position: absolute;
     top:0;
     left:0;
