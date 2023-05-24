@@ -3,11 +3,13 @@ import React, { useState, useEffect, useContext } from "react";
 import "./GridImages.scss";
 import Button from "../Button/Button";
 import { ClubDataContext } from "../../hooks/ClubData";
+import { useTimer } from "../../hooks/countDown";
 
 const GridImages = (props) => {
   const [mainBlock, setMainBlock] = useState(null);
   const [secondairBlock, setSecondairBlock] = useState(null);
   const [nextMatchDate, setNextMatchDate] = useState(null);
+  const [countDown, setCountDown] = useState(null);
   const [nextMatch, setNextMatch] = useState({
     day: null,
     month: null,
@@ -94,8 +96,8 @@ const GridImages = (props) => {
       program.map((item) => {
         item.matches.forEach((match) => {
           if (
-            match.teams.home.name === "AW/DTV 1" ||
-            match.teams.away.name === "AW/DTV 1"
+            match.teams.home.name === "AW/DTV 5" ||
+            match.teams.away.name === "AW/DTV 5"
           ) {
             setNextMatch((prevState) => ({
               ...prevState,
@@ -128,24 +130,30 @@ const GridImages = (props) => {
     }
   }, [clubData, nextMatchDate]);
 
+  const time = useTimer(nextMatchDate);
+
+  useEffect(() => {
+    setCountDown(time);
+  }, [time]);
+
   return (
     <section className="grid-images">
       {mainBlock && (
         <div className="grid-images__tile-container grid-images__tile-container--main">
           <div className="grid-images__tile-image">
             <img srcSet={mainBlock.srcSet} alt={mainBlock.alt} />
-            <div className="grid-images__tile-context-container">
-              {mainBlock.title && (
-                <h4 className="grid-images__tile-title">{mainBlock.title}</h4>
-              )}
-              {mainBlock.slug && (
-                <Button
-                  to={mainBlock.slug}
-                  text={mainBlock.label}
-                  type={"solid"}
-                />
-              )}
-            </div>
+          </div>
+          <div className="grid-images__tile-context-container">
+            {mainBlock.title && (
+              <h4 className="grid-images__tile-title">{mainBlock.title}</h4>
+            )}
+            {mainBlock.slug && (
+              <Button
+                to={mainBlock.slug}
+                text={mainBlock.label}
+                type={"solid"}
+              />
+            )}
           </div>
         </div>
       )}
@@ -171,18 +179,49 @@ const GridImages = (props) => {
         </div>
       )}
       <div className="grid-images__tile-container grid-images__tile-container--third">
-        <div className="grid-images__date-container">
-          <h5 className="grid-images__day">{nextMatch.day}</h5>
-          <p className="grid-images__month">{nextMatch.month}</p>
-          <p className="grid-images__time">
-            {nextMatch.hours}:{nextMatch.minutes} uur
-          </p>
-        </div>
-        <div className="grid-images__game-container">
-          <p className="grid-images__game">
-            {nextMatch.home} - {nextMatch.away}
-          </p>
-        </div>
+        {nextMatchDate && (
+          <>
+            <div className="grid-images__date-container">
+              <h5 className="grid-images__date-day">{nextMatch.day}</h5>
+              <p className="grid-images__date-month">{nextMatch.month}</p>
+              <p className="grid-images__date-time">
+                {nextMatch.hours}:{nextMatch.minutes} uur
+              </p>
+            </div>
+            <div className="grid-images__game-container">
+              <p className="grid-images__game">
+                {nextMatch.home} - {nextMatch.away}
+              </p>
+            </div>
+            <div className="grid-images__countdown-container">
+              <div className="grid-images__days grid-images__countdown-block">
+                <p>{countDown.days}</p>
+                <span>Dagen</span>
+              </div>
+              <div className="grid-images__hours grid-images__countdown-block">
+                <p>{countDown.hours}</p>
+                <span>Uren</span>
+              </div>
+              <div className="grid-images__minutes grid-images__countdown-block">
+                <p>{countDown.minutes}</p>
+                <span>Minuten</span>
+              </div>
+              <div className="grid-images__seconds grid-images__countdown-block">
+                <p>{countDown.seconds}</p>
+                <span>Seconden</span>
+              </div>
+            </div>
+          </>
+        )}
+        {!nextMatchDate && (
+          <div className="grid-images__no-match-container">
+            <div className="grid-images__no-match-title-container">
+              <h5 className="grid-images__no-match-title">
+                Geen geplande wedstrijd
+              </h5>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
