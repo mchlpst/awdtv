@@ -8,14 +8,7 @@ allArticles {
   content(markdown: false)
   position
   visual {
-    responsiveImage(imgixParams: {auto: compress}) {
-      srcSet
-      src
-      height
-      alt
-      aspectRatio
-      width
-    }
+    ${Image}
   }
   _modelApiKey
 }
