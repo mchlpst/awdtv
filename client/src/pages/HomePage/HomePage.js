@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { DatoContext } from "../../hooks/datoCMS";
 
 import ComponentLoader from "../../components/ComponentLoader/ComponentLoader";
+import AllArticles from "../../components/AllArticles/AllArticles";
 
 const HomePage = () => {
   const [data, setData] = useState(null);
@@ -13,6 +14,15 @@ const HomePage = () => {
     }
   }, [context]);
 
-  return <main>{data && <ComponentLoader data={data} />}</main>;
+  return (
+    <main>
+      {data && (
+        <>
+          <ComponentLoader data={data} />
+          <AllArticles />
+        </>
+      )}
+    </main>
+  );
 };
 export default HomePage;
