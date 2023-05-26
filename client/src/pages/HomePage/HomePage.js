@@ -4,6 +4,11 @@ import { DatoContext } from "../../hooks/datoCMS";
 import ComponentLoader from "../../components/ComponentLoader/ComponentLoader";
 import AllArticles from "../../components/AllArticles/AllArticles";
 
+import Grid from "../../layout/Grid/Grid";
+import Column from "../../layout/Column/Column";
+
+import "./HomePage.scss";
+
 const HomePage = () => {
   const [data, setData] = useState(null);
   const context = useContext(DatoContext);
@@ -15,13 +20,17 @@ const HomePage = () => {
   }, [context]);
 
   return (
-    <main>
-      {data && (
-        <>
-          <ComponentLoader data={data} />
-          <AllArticles />
-        </>
-      )}
+    <main className="homepage">
+      <Grid>
+        {data && (
+          <>
+            <ComponentLoader data={data} />
+            <Column col={8} noMargin>
+              <AllArticles />
+            </Column>
+          </>
+        )}
+      </Grid>
     </main>
   );
 };

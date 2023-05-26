@@ -5,6 +5,7 @@ allArticles {
   slug
   title
   date
+  tag
   content(markdown: false)
   position
   visual {

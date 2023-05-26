@@ -92,6 +92,8 @@ const GridImages = (props) => {
     if (clubData && clubData.program && clubData.program.res) {
       const program = clubData.program.res;
       let dateArray = [];
+      let homeArray = [];
+      let awayArray = [];
 
       program.map((item) => {
         item.matches.forEach((match) => {
@@ -99,11 +101,8 @@ const GridImages = (props) => {
             match.teams.home.name === "AW/DTV 1" ||
             match.teams.away.name === "AW/DTV 1"
           ) {
-            setNextMatch((prevState) => ({
-              ...prevState,
-              home: match.teams.home.name,
-              away: match.teams.away.name,
-            }));
+            homeArray.push(match.teams.home.name);
+            awayArray.push(match.teams.away.name);
             dateArray.push(match.date);
           } else {
             return;
@@ -125,6 +124,8 @@ const GridImages = (props) => {
           month: month,
           hours: hours,
           minutes: minutes,
+          home: homeArray[0],
+          away: awayArray[0],
         }));
       }
     }

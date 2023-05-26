@@ -10,6 +10,7 @@ $component: 'main-navigation';
   gap: 40px;
   position: relative;
   height: 80px;
+  padding: 0 30px;
   &::before {
     background: url('../../assets/svg/AndreasCrossesHorizontal.svg');
     background-repeat: no-repeat;

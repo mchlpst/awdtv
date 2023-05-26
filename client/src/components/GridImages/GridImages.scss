@@ -8,6 +8,7 @@ $component: 'grid-images';
   display: grid;
   grid-template-columns: [first] 60% [line2] auto [end];
   grid-template-rows: [start] 50% [middle] 50% [end];
+  margin-bottom: 30px;
 
   &__tile-container {
     position: relative;    
