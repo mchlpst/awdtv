@@ -3,6 +3,7 @@ import { DatoContext } from "../../hooks/datoCMS";
 
 import ComponentLoader from "../../components/ComponentLoader/ComponentLoader";
 import AllArticles from "../../components/AllArticles/AllArticles";
+import CompetitionTable from "../../components/CompetitionTable/CompetitionTable";
 
 import Grid from "../../layout/Grid/Grid";
 import Column from "../../layout/Column/Column";
@@ -21,16 +22,23 @@ const HomePage = () => {
 
   return (
     <main className="homepage">
-      <Grid>
-        {data && (
-          <>
-            <ComponentLoader data={data} />
-            <Column col={8} noMargin>
+      {data && (
+        <>
+          <Grid>
+            <Column col={12}>
+              <ComponentLoader data={data} />
+            </Column>
+          </Grid>
+          <Grid>
+            <Column col={8}>
               <AllArticles />
             </Column>
-          </>
-        )}
-      </Grid>
+            <Column col={4}>
+              <CompetitionTable />
+            </Column>
+          </Grid>
+        </>
+      )}
     </main>
   );
 };

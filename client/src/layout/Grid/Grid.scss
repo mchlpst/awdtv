@@ -4,5 +4,6 @@ $component: 'grid';
 
 .#{$component} {
   padding: 0 30px;
-
+  margin: 0 -30px;
+  display: flex;
 }
