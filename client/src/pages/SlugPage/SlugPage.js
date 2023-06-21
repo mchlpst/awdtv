@@ -25,9 +25,7 @@ const SlugPage = () => {
 
   console.log();
   return (
-    <main className="slug-page">
-      {/* <Grid>{data && <ComponentLoader data={data} />}</Grid> */}
-    </main>
+    <main className="slug-page">{data && <ComponentLoader data={data} />}</main>
   );
 };
 export default SlugPage;
