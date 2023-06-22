@@ -26,6 +26,9 @@ const CompetitionTable = () => {
       case "standings":
         translation = "Stand";
         break;
+      default:
+        translation = null;
+        break;
     }
     return translation;
   };
@@ -86,7 +89,7 @@ const CompetitionTable = () => {
               if (res.ok) {
                 return res.json();
               } else {
-                throw `error with status ${res.status}`;
+                throw new Error(`error with status ${res.status}`);
               }
             })
             .then((res) => {
@@ -98,7 +101,7 @@ const CompetitionTable = () => {
         let res = clubData.program;
         let matches = [];
         if (res) {
-          let filteredObject = res.res.map((item) => {
+          res.res.map((item) => {
             item.matches.forEach((match) => {
               if (
                 match.teams.home.name === selectedTeam ||
@@ -116,7 +119,7 @@ const CompetitionTable = () => {
         let res = clubData.results;
         let matches = [];
         if (res) {
-          let filteredObject = res.res.map((item) => {
+          res.res.map((item) => {
             item.matches.forEach((match) => {
               if (
                 match.teams.home.name === selectedTeam ||
@@ -129,10 +132,10 @@ const CompetitionTable = () => {
             return false;
           });
           setTeamResults(matches);
-          console.log(matches);
         }
       }
     }
+    // eslint-disable-next-line
   }, [selectedTeam, selectedStats]);
   return (
     <section className="competition-table">
