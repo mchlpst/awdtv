@@ -3,5 +3,102 @@
 $component: 'competition-table';
 
 .#{$component} {
-  
+  &__tab-container {
+    display: flex;
+    justify-content: space-between;
+    // border-bottom: 1px solid $color-red;
+  }
+
+  &__tab {
+    width: 33%;
+    text-align: center;
+    padding: 17.5px 15px;
+    font-size: 15px;
+    line-height: 15px;
+    cursor: pointer;
+    &--active {
+      background-color: $color-red;
+      color: white;
+    }
+  }
+  &__dropdown-wrapper {
+    position: relative;
+  }
+  &__selected-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    padding: 43px 0;
+    cursor: pointer;
+  }
+  &__selected-title {
+    font-size: 25px;
+    line-height: 25px;
+    text-align: center;
+  }
+  &__selected-icon {
+    width: 15px;
+    transition: transform 0.2s;
+    path {
+      fill: $color-black-light !important;
+    }
+    &--expand {
+      transform: rotate(180deg);
+    }
+  }
+  &__dropdown {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 80px;
+    background-color: white;
+    padding: 20px;
+    transform: translateX(-50%);
+    border: 1px solid $color-red;
+  }
+  &__dropdown-item {
+    cursor: pointer;
+    padding: 5px 10px;
+    &:hover {
+      background-color: $color-red;
+      color: white;
+    }
+  }
+  &__table-row {
+    font-size: 14px;
+    display: grid;
+    grid-template-columns: 30px 1fr 30px 40px 30px;
+
+    &--red {
+      color: $color-red
+    }
+  }
+  &__table-head-item {
+    font-weight: bold;
+    border-bottom: 1px solid $color-red;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+  }
+  &__table-body-item {
+    padding: 5px 0;
+  }
+  &__program-item {
+    font-size: 14px;
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr;
+    padding: 10px 0;
+    border-bottom: 1px solid $color-grey-light;
+  }
+  &__results-item {
+    padding: 10px 0;
+    font-size: 14px;
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: 70px 1fr 1fr 80px;
+    border-bottom: 1px solid $color-grey-light;
+    & > :last-child {
+      text-align: center;
+    }
+  }
 }

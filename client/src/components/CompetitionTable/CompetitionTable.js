@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 
 import { ClubDataContext } from "../../hooks/ClubData";
+import { ReactComponent as Chevron } from "../../assets/svg/Chevron.svg";
 
 import "./CompetitionTable.scss";
 
@@ -8,6 +9,7 @@ const CompetitionTable = () => {
   const clubData = useContext(ClubDataContext);
 
   const [teamsArr, setTeamsArr] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [selectedStats, setSelectedStats] = useState(null);
   const [teamStanding, setTeamStanding] = useState(null);
@@ -179,61 +181,97 @@ const CompetitionTable = () => {
               </div>
             )}
           </div>
-          <div className="competition-table__selected-container">
-            {selectedTeam}
-          </div>
-          <div className="competition-table__dropdown">
-            {teamsArr.map((team) => {
-              return (
-                <div
-                  className="competition-table__dropdown-item"
-                  data-value={team}
-                  onClick={() => setSelectedTeam(team)}
-                  key={team}>
-                  {team}
-                </div>
-              );
-            })}
+          <div className="competition-table__dropdown-wrapper">
+            <div
+              className="competition-table__selected-container"
+              onClick={() => setShowDropdown(!showDropdown)}>
+              <h3 className="competition-table__selected-title">
+                {selectedTeam}
+              </h3>
+              <Chevron
+                className={
+                  "competition-table__selected-icon" +
+                  (showDropdown
+                    ? " competition-table__selected-icon--expand"
+                    : "")
+                }
+              />
+            </div>
+            {showDropdown && (
+              <div className="competition-table__dropdown">
+                {teamsArr.map((team) => {
+                  return (
+                    <div
+                      className="competition-table__dropdown-item"
+                      data-value={team}
+                      onClick={() => {
+                        setSelectedTeam(team);
+                        setShowDropdown(false);
+                      }}
+                      key={team}>
+                      {team}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </>
       )}
       <div className="competition-table__content-wrapper">
-        {selectedStats === "standings" && (
+        {selectedStats === "standings" && teamStanding && (
           <div className="competition-table__content-table">
-            <table>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Team</th>
-                  <th>G</th>
-                  <th>Pts</th>
-                  <th>+/-</th>
-                </tr>
-              </thead>
-              <tbody>
-                {teamStanding &&
-                  teamStanding[0].standings.map((item, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>{item.stats.position}</td>
-                        <td>{item.team.name}</td>
-                        <td>{item.stats.played}</td>
-                        <td>{item.stats.points}</td>
-                        <td>{item.stats.goals.difference}</td>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-            </table>
+            <div className="competition-table__table-head">
+              <div className="competition-table__table-row">
+                <div className="competition-table__table-head-item">#</div>
+                <div className="competition-table__table-head-item">Team</div>
+                <div className="competition-table__table-head-item">G</div>
+                <div className="competition-table__table-head-item">Ptn</div>
+                <div className="competition-table__table-head-item">+/-</div>
+              </div>
+            </div>
+            <div className="competition-table__table-body">
+              {teamStanding &&
+                teamStanding[0].standings.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={
+                        "competition-table__table-row" +
+                        (item.team.name.includes("AW/DTV")
+                          ? " competition-table__table-row--red"
+                          : "")
+                      }>
+                      <div className="competition-table__table-body-item">
+                        {item.stats.position}
+                      </div>
+                      <div className="competition-table__table-body-item">
+                        {item.team.name}
+                      </div>
+                      <div className="competition-table__table-body-item">
+                        {item.stats.played}
+                      </div>
+                      <div className="competition-table__table-body-item">
+                        {item.stats.points}
+                      </div>
+                      <div className="competition-table__table-body-item">
+                        {item.stats.goals.difference}
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         )}
-        {selectedStats === "program" && (
+        {selectedStats === "program" && teamProgram && (
           <div className="competition-table__content-table">
             {teamProgram.length > 0 ? (
-              <div>
+              <div className="competition-table__program-container">
                 {teamProgram.map((match) => {
                   return (
-                    <div key={match.date}>
+                    <div
+                      key={match.date}
+                      className="competition-table__program-item">
                       <div>
                         {new Date(match.date).toLocaleString("nl-NL", {
                           weekday: "short",
@@ -257,10 +295,12 @@ const CompetitionTable = () => {
         {selectedStats === "results" && (
           <div className="competition-table__content-table">
             {teamResults && (
-              <div>
+              <div className="competition-table__results-container">
                 {teamResults.map((match) => {
                   return (
-                    <div key={match.date}>
+                    <div
+                      key={match.date}
+                      className="competition-table__results-item">
                       <div>
                         {new Date(match.date).toLocaleString("nl-NL", {
                           weekday: "short",
