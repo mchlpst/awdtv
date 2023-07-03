@@ -133,7 +133,7 @@ const CompetitionTable = () => {
             });
             return false;
           });
-          setTeamResults(matches);
+          setTeamResults(matches.reverse());
         }
       }
     }
@@ -294,7 +294,7 @@ const CompetitionTable = () => {
         )}
         {selectedStats === "results" && (
           <div className="competition-table__content-table">
-            {teamResults && (
+            {teamResults.length > 0 ? (
               <div className="competition-table__results-container">
                 {teamResults.map((match) => {
                   return (
@@ -321,6 +321,8 @@ const CompetitionTable = () => {
                   );
                 })}
               </div>
+            ) : (
+              <div>Geen uitslagen</div>
             )}
           </div>
         )}
