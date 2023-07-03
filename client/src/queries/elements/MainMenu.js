@@ -12,9 +12,11 @@ allMainNavigations(filter: {parent: {exists: "*"}}, orderBy: position_ASC) {
     children {
       id
       label
+      link
       children {
         id
         label
+        link
       }
     }
   }
