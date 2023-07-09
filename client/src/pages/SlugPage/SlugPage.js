@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 
 import { DatoContext } from "../../hooks/datoCMS";
 
-import Grid from "../../layout/Grid/Grid";
 import ComponentLoader from "../../components/ComponentLoader/ComponentLoader";
 
 const SlugPage = () => {
@@ -21,6 +20,7 @@ const SlugPage = () => {
         setData({ pageItem });
       }
     }
+    // eslint-disable-next-line
   }, [context]);
 
   console.log();

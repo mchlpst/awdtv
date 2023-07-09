@@ -73,7 +73,7 @@ const Post = (props) => {
 
   return (
     <article className="instagram-block__post" key={item.post.media.id}>
-      {item.post.media.media_type == "IMAGE" ? (
+      {item.post.media.media_type === "IMAGE" ? (
         <img
           className="instagram-block__media"
           src={item.post.media.media_url}
@@ -99,7 +99,7 @@ const Post = (props) => {
         <div
           className={
             "instagram-block__caption-container" +
-            (item.post.media.media_type == "IMAGE" ? " image" : "")
+            (item.post.media.media_type === "IMAGE" ? " image" : "")
           }
           onClick={() => playVideo()}>
           <div className="instagram-block__caption">{item.post.caption}</div>

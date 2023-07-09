@@ -12,6 +12,4 @@ allArticles {
     ${Image}
   }
   _modelApiKey
-}
-
-`;
+}`;
