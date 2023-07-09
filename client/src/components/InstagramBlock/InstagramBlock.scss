@@ -1,0 +1,100 @@
+@import '../../scss/index.scss';
+
+$component: 'instagram-block';
+
+.#{$component} {
+  margin: 100px 0;
+  &__media{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    transition: all 0.3s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  }
+  &__wrapper {
+    &--table {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+    &--slider {
+      display: flex;
+      overflow-X: scroll;
+      flex-wrap: nowrap;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar{
+        width: 0 !important
+      }
+      .#{$component} {
+        &__post {
+          flex: 1 0 250px;
+        }
+      }
+    }
+  }
+  &__button-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  &__caption-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left:0;
+    display: flex;
+    align-items: flex-end;
+    background: rgba(0,0,0, 0.4);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+    &:not(.image) {
+      align-items: flex-start;
+      .#{$component} {
+        &__caption {
+          transform: translateY(-100%);
+        }
+      }
+    }
+  }
+  &__caption {
+    font-size: 11px;
+    padding: 10px;
+    color: white;
+    transform: translateY(100%);
+    transition: all 0.3s ease-out;
+  }
+  &__post {
+    position: relative;
+    overflow: hidden;
+    &:hover {
+      .#{$component} {
+        &__media:not(video) {
+          transform: scale(1.05);
+        }
+        &__caption {
+          transform: translate(0);
+        }
+        &__caption-container {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &__icon-container {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+  }
+  &__account-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  &__account {
+    color: $color-black-dark;
+    text-decoration: none;
+    font-size: 20px;
+  }
+}

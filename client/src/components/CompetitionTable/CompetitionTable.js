@@ -48,7 +48,6 @@ const CompetitionTable = () => {
 
         setSelectedStats(Object.keys(clubData)[0]);
       }
-      console.log(clubData);
     }
   }, [clubData]);
   useEffect(() => {

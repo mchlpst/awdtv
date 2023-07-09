@@ -1,6 +1,7 @@
 import React from "react";
 
 import GridImages from "../GridImages/GridImages";
+import InstagramBlock from "../InstagramBlock/InstagramBlock";
 import Article from "../Article/Article";
 
 const ComponentLoader = (props) => {
@@ -14,9 +15,10 @@ const ComponentLoader = (props) => {
           if (comp._modelApiKey === "image_grid") {
             return <GridImages key={index} data={comp} />;
           }
-          // if (comp._modelApiKey === "article") {
-          //   return <Article key={index} data={comp} />;
-          // }
+          if (comp._modelApiKey === "instagram_block") {
+            return <InstagramBlock key={index} data={comp} />;
+          }
+          return null;
         })}
       {pageItem && pageItem._modelApiKey === "article" && (
         <Article data={pageItem} />
