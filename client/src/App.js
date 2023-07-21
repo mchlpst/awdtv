@@ -9,6 +9,7 @@ import TopMenu from "./components/TopMenu/Topmenu";
 import HomePage from "./pages/HomePage/HomePage";
 import SlugPage from "./pages/SlugPage/SlugPage";
 import TeamPage from "./pages/TeamPage/TeamPage";
+import BecomeMember from "./pages/BecomeMember/BecomeMember";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
       <Routes>
         <Route path="/" exact element={<HomePage />} />
         <Route path="/teams/:team" exact element={<TeamPage />} />
+        <Route path="/lid-worden" exact element={<BecomeMember />} />
         <Route path="/:slug" element={<SlugPage />} />
       </Routes>
     </div>

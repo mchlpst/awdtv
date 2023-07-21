@@ -1,0 +1,33 @@
+@import '../../scss/index.scss';
+
+$component: "become-member";
+
+.#{$component} {
+  position: relative;
+  background-color: $color-red-dark;
+  &__title {
+    text-align: center;
+    padding-top: 80px;
+    margin-bottom: 20px;
+    font-size: 40px;
+    color: white;
+    text-shadow: 0px 0px 20px black;
+  }
+  &__background {
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &__content {
+    position: relative;
+    z-index: 2;
+  }
+}

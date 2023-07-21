@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./Button.scss";
 
 const Button = (props) => {
-  const { text, to, href, type, clickAction } = props;
+  const { text, to, href, type, clickAction, extraClass } = props;
 
   return (
     <>
@@ -19,7 +19,9 @@ const Button = (props) => {
         </Link>
       )}
       {!href && !to && (
-        <button className={"btn" + ` btn--${type}`} onClick={clickAction}>
+        <button
+          className={"btn" + ` btn--${type} ${extraClass}`}
+          onClick={clickAction}>
           {text}
         </button>
       )}
