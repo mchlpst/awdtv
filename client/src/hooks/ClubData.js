@@ -43,7 +43,7 @@ export const ClubProvider = ({ children }) => {
         if (res.ok) {
           return res.json();
         } else {
-          throw `error with status ${res.status}`;
+          throw new Error(`error with status ${res.status}`);
         }
       })
       .then((res) => {
@@ -71,7 +71,7 @@ export const ClubProvider = ({ children }) => {
         if (res.ok) {
           return res.json();
         } else {
-          throw `error with status ${res.status}`;
+          throw new Error(`error with status ${res.status}`);
         }
       })
       .then((res) => {
@@ -99,7 +99,7 @@ export const ClubProvider = ({ children }) => {
         if (res.ok) {
           return res.json();
         } else {
-          throw `error with status ${res.status}`;
+          throw new Error(`error with status ${res.status}`);
         }
       })
       .then((res) => {
