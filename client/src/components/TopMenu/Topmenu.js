@@ -19,7 +19,10 @@ const TopMenu = () => {
       {data &&
         data.content.map((item, index) => {
           return (
-            <Link key={index} to={item.link} className="top-menu__link">
+            <Link
+              key={index}
+              to={item.url || item.link.slug}
+              className="top-menu__link">
               {item.linkLabel}
             </Link>
           );

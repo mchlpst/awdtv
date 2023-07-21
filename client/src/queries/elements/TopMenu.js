@@ -1,9 +1,16 @@
 module.exports = `
 topNavigation {
   content {
-    link
+    url
     linkLabel
-    
+    link {
+      ... on ArticleRecord {
+        slug
+      }
+      ... on ContactRecord {
+        slug
+      }
+    }
   }
 }
 `;
