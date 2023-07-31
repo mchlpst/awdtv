@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import SlugPage from "./pages/SlugPage/SlugPage";
 import TeamPage from "./pages/TeamPage/TeamPage";
 import BecomeMember from "./pages/BecomeMember/BecomeMember";
+import ContactPage from "./pages/ContactPage/ContactPage";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/" exact element={<HomePage />} />
         <Route path="/teams/:team" exact element={<TeamPage />} />
         <Route path="/lid-worden" exact element={<BecomeMember />} />
+        <Route path="/contact" exact element={<ContactPage />} />
         <Route path="/:slug" element={<SlugPage />} />
       </Routes>
     </div>

@@ -2,6 +2,7 @@ import TopMenu from "./elements/TopMenu";
 import MainMenu from "./elements/MainMenu";
 import HomePage from "./pages/HomePage";
 import LidWorden from "./pages/LidWorden";
+import Contact from "./pages/ContactPage";
 import AllArticles from "./models/AllArticles";
 import AllTeams from "./models/AllTeams";
 
@@ -12,4 +13,5 @@ export const query = `{
   ${LidWorden}
   ${AllArticles}
   ${AllTeams}
+  ${Contact}
 }`;

@@ -35,7 +35,7 @@ const SubscribeForm = () => {
     //   custodyPhone: "0611223456",
     //   custodyEmail: "Ouder@gmail.com",
     // };
-    fetch("/sendEmail", {
+    fetch("/new-member", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),
