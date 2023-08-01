@@ -11,6 +11,7 @@ import SlugPage from "./pages/SlugPage/SlugPage";
 import TeamPage from "./pages/TeamPage/TeamPage";
 import BecomeMember from "./pages/BecomeMember/BecomeMember";
 import ContactPage from "./pages/ContactPage/ContactPage";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/contact" exact element={<ContactPage />} />
         <Route path="/:slug" element={<SlugPage />} />
       </Routes>
+      <Footer />
     </div>
   );
 };

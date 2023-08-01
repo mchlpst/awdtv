@@ -15,7 +15,6 @@ const ContactPage = () => {
   useEffect(() => {
     if (context) {
       setData(context.contact);
-      console.log(data);
     }
   }, [context]);
 

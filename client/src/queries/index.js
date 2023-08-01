@@ -5,6 +5,7 @@ import LidWorden from "./pages/LidWorden";
 import Contact from "./pages/ContactPage";
 import AllArticles from "./models/AllArticles";
 import AllTeams from "./models/AllTeams";
+import Footer from "./elements/Footer";
 
 export const query = `{
   ${MainMenu}
@@ -14,4 +15,5 @@ export const query = `{
   ${AllArticles}
   ${AllTeams}
   ${Contact}
+  ${Footer}
 }`;
