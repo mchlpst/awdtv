@@ -23,11 +23,17 @@ footer {
   sponsoren {
    ${Image}
     url
+    alt
   }
+  facebookLink
+  twitterLink
+  instagramLink
+  tiktokLink
+  youtubeLink
   hoofdsponser {
-    responsiveImage {
-      src
-    }
+    ${Image}
+    url
+    alt
   }
 }
 `;
