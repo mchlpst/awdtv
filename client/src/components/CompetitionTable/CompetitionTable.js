@@ -138,6 +138,16 @@ const CompetitionTable = () => {
     }
     // eslint-disable-next-line
   }, [selectedTeam, selectedStats]);
+
+  const wordBreak = (word) => {
+    let index = word.indexOf("/");
+    if (index !== -1) {
+      let wrappedWord = word.slice(0, index) + " " + word.slice(index);
+      return wrappedWord;
+    } else {
+      return word;
+    }
+  };
   return (
     <section className="competition-table">
       {teamsArr.length > 0 && (
@@ -280,8 +290,8 @@ const CompetitionTable = () => {
                           minute: "numeric",
                         })}
                       </div>
-                      <div>{match.teams.home.name}</div>
-                      <div>{match.teams.away.name}</div>
+                      <div>{wordBreak(match.teams.home.name)}</div>
+                      <div>{wordBreak(match.teams.away.name)}</div>
                     </div>
                   );
                 })}

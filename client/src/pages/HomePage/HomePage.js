@@ -9,6 +9,7 @@ import Grid from "../../layout/Grid/Grid";
 import Column from "../../layout/Column/Column";
 
 import "./HomePage.scss";
+import InstagramBlock from "../../components/InstagramBlock/InstagramBlock";
 
 const HomePage = () => {
   const [data, setData] = useState(null);
@@ -35,6 +36,11 @@ const HomePage = () => {
             </Column>
             <Column col={4}>
               <CompetitionTable />
+            </Column>
+          </Grid>
+          <Grid>
+            <Column col={12}>
+              <InstagramBlock />
             </Column>
           </Grid>
         </>

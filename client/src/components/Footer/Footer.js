@@ -145,14 +145,19 @@ const Footer = () => {
               </div>
             </div>
           </section>
-          <section>
-            <div>&copy; {year()} Copyright AWDTV • Korfbal Amsterdam</div>
-            <div>
+          <section className="footer__bottom">
+            <div className="footer__copyright">
+              &copy; {year()} Copyright AWDTV • Korfbal Amsterdam
+            </div>
+            <div className="footer__nix-logo">
               <Nix18Logo />
             </div>
-            <div>
+            <div className="footer__credits">
               Website door{" "}
-              <a target="_blank" href="https://mediabirds.nl">
+              <a
+                target="_blank"
+                href="https://mediabirds.nl"
+                className="footer__credits-link">
                 Mediabirds
               </a>
             </div>

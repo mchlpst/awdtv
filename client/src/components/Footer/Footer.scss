@@ -3,9 +3,11 @@
 $component: 'footer';
 
 .#{$component} {
+  margin-top: 100px;
+  background-color: $color-grey-dark;
+  color: white;
   &__row {
     padding: 120px 30px;
-
     &--red {
       position: relative;
       background-color: $color-red-dark;
@@ -25,7 +27,6 @@ $component: 'footer';
       }
     }
     &--black {
-      background-color: $color-grey-dark;
       padding-top: 0;
     }
   }
@@ -130,5 +131,24 @@ $component: 'footer';
     font-size: 24px;
     margin-bottom: 130px;
     text-align: center;
+  }
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 30px;
+    position: relative;
+    height: 24px;
+    border-top: 1px solid #707070;
+    font-size: 12px;
+    align-items: center;
+  }
+  &__nix-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &__credits-link {
+    color: white;
+    text-decoration: none;
   }
 }

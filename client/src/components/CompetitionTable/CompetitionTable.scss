@@ -55,12 +55,13 @@ $component: 'competition-table';
     background-color: white;
     padding: 20px;
     transform: translateX(-50%);
-    width: 140px;
     border: 1px solid $color-red;
   }
   &__dropdown-item {
     cursor: pointer;
     padding: 5px 10px;
+    width: max-content;
+    transition: all 0.2s ease;
     &:hover {
       background-color: $color-red;
       color: white;

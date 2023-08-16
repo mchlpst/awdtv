@@ -8,6 +8,7 @@ import "./InstagramBlock.scss";
 import Button from "../Button/Button";
 
 const InstagramBlock = (props) => {
+  let layout = props.data ? props.data.layout : true;
   const { posts } = useInstagramData();
 
   return (
@@ -32,7 +33,7 @@ const InstagramBlock = (props) => {
         <div
           className={[
             "instagram-block__wrapper",
-            props.data.layout
+            layout
               ? " instagram-block__wrapper--table"
               : " instagram-block__wrapper--slider",
           ]}>

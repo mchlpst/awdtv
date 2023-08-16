@@ -90,6 +90,7 @@ const GridImages = (props) => {
 
   useEffect(() => {
     if (clubData && clubData.program && clubData.program.res) {
+      console.log(clubData);
       const program = clubData.program.res;
       let dateArray = [];
       let homeArray = [];
@@ -98,8 +99,8 @@ const GridImages = (props) => {
       program.map((item) => {
         item.matches.forEach((match) => {
           if (
-            match.teams.home.name === "AW/DTV 1" ||
-            match.teams.away.name === "AW/DTV 1"
+            match.teams.home.name === "AWDTV/Ijskouddebeste 1" ||
+            match.teams.away.name === "AWDTV/Ijskouddebeste 1"
           ) {
             homeArray.push(match.teams.home.name);
             awayArray.push(match.teams.away.name);
@@ -183,11 +184,15 @@ const GridImages = (props) => {
         {nextMatchDate && (
           <>
             <div className="grid-images__date-container">
-              <h5 className="grid-images__date-day">{nextMatch.day}</h5>
-              <p className="grid-images__date-month">{nextMatch.month}</p>
-              <p className="grid-images__date-time">
-                {nextMatch.hours}:{nextMatch.minutes} uur
-              </p>
+              <div className="grid-images__date-big-column">
+                <h5 className="grid-images__date-day">{nextMatch.day}</h5>
+              </div>
+              <div className="grid-images__date-small-column">
+                <p className="grid-images__date-month">{nextMatch.month}</p>
+                <p className="grid-images__date-time">
+                  {nextMatch.hours}:{nextMatch.minutes} uur
+                </p>
+              </div>
             </div>
             <div className="grid-images__game-container">
               <p className="grid-images__game">

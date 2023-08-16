@@ -69,10 +69,12 @@ $component: 'grid-images';
     left:0;
     padding: 10px;
     text-align: center;
+    display: flex;
+    gap: 10px;
   }
   &__date-day {
-    font-size: 48px;
-    line-height: 48px;
+    font-size: 40px;
+    line-height: 40px;
     color: $color-white;
     font-family: $font-variable;
     font-weight: 700;;
@@ -80,12 +82,12 @@ $component: 'grid-images';
   &__date-month {
     color: $color-white;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 20px;
   }
   &__date-time {
     color: white;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 20px;
   }
   &__countdown-container {
     display: flex;
