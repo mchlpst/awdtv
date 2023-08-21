@@ -12,9 +12,9 @@ const CompetitionTable = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [selectedStats, setSelectedStats] = useState(null);
-  const [teamStanding, setTeamStanding] = useState(null);
-  const [teamProgram, setTeamProgram] = useState(null);
-  const [teamResults, setTeamResults] = useState(null);
+  const [teamStanding, setTeamStanding] = useState([]);
+  const [teamProgram, setTeamProgram] = useState([]);
+  const [teamResults, setTeamResults] = useState([]);
 
   const translateText = (source) => {
     let translation;
@@ -150,7 +150,7 @@ const CompetitionTable = () => {
   };
   return (
     <section className="competition-table">
-      {teamsArr.length > 0 && (
+      {teamsArr && teamsArr.length > 0 && (
         <>
           <div className="competition-table__tab-container">
             {clubData.standings && (
@@ -240,7 +240,7 @@ const CompetitionTable = () => {
               </div>
             </div>
             <div className="competition-table__table-body">
-              {teamStanding &&
+              {teamStanding.length !== 0 &&
                 teamStanding[0].standings.map((item, index) => {
                   return (
                     <div
