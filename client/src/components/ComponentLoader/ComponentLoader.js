@@ -3,9 +3,11 @@ import React from "react";
 import GridImages from "../GridImages/GridImages";
 import InstagramBlock from "../InstagramBlock/InstagramBlock";
 import Article from "../Article/Article";
+import Page from "../Page/Page";
 
 const ComponentLoader = (props) => {
   const content = props.data.content;
+  const articleItem = props.data.articleItem;
   const pageItem = props.data.pageItem;
 
   return (
@@ -20,9 +22,10 @@ const ComponentLoader = (props) => {
           }
           return null;
         })}
-      {pageItem && pageItem._modelApiKey === "article" && (
-        <Article data={pageItem} />
+      {articleItem && articleItem._modelApiKey === "article" && (
+        <Article data={articleItem} />
       )}
+      {pageItem && pageItem._modelApiKey === "page" && <Page data={pageItem} />}
     </>
   );
 };

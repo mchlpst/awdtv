@@ -54,7 +54,7 @@ $component: 'main-navigation';
     opacity: 0;
     visibility: hidden;
     z-index: -1;
-    padding: 40px 0;
+    padding: 40px 30px;
     border-top: 1px solid $color-white;
     background-color: $color-red;
     transition: all 0.1s ease-in-out;
@@ -67,7 +67,7 @@ $component: 'main-navigation';
       display: flex;
       gap: 10px;
       z-index: 20;
-      &:hover ~ .#{$component}__dropdown-section {
+      &:hover + .#{$component}__dropdown-section {
         opacity: 1;
         z-index: 20;
         visibility: visible;

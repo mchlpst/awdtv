@@ -13,17 +13,17 @@ const SlugPage = () => {
 
   useEffect(() => {
     if (context) {
-      if (context.allArticles) {
-        let pageItem = context.allArticles.find((item) => {
-          return item.slug === slug;
-        });
-        setData({ pageItem });
+      if (context.allArticles || context.allPages) {
+        let articleItem = context.allArticles.find(
+          (article) => article.slug === slug
+        );
+        let pageItem = context.allPages.find((page) => page.slug === slug);
+        setData({ articleItem, pageItem });
       }
     }
     // eslint-disable-next-line
-  }, [context]);
+  }, [context, slug]);
 
-  console.log();
   return (
     <main className="slug-page">{data && <ComponentLoader data={data} />}</main>
   );

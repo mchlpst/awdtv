@@ -5,6 +5,7 @@ import LidWorden from "./pages/LidWorden";
 import Contact from "./pages/ContactPage";
 import AllArticles from "./models/AllArticles";
 import AllTeams from "./models/AllTeams";
+import AllPages from "./models/AllPages";
 import Footer from "./elements/Footer";
 
 export const query = `{
@@ -14,6 +15,7 @@ export const query = `{
   ${LidWorden}
   ${AllArticles}
   ${AllTeams}
+  ${AllPages}
   ${Contact}
   ${Footer}
 }`;

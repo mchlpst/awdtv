@@ -17,7 +17,6 @@ const Footer = () => {
   useEffect(() => {
     if (context) {
       setData(context.footer);
-      console.log(data);
     }
   }, [context]);
   const year = () => {

@@ -90,7 +90,6 @@ const GridImages = (props) => {
 
   useEffect(() => {
     if (clubData && clubData.program && clubData.program.res) {
-      console.log(clubData);
       const program = clubData.program.res;
       let dateArray = [];
       let homeArray = [];
