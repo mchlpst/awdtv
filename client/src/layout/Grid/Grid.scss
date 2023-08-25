@@ -6,4 +6,9 @@ $component: 'grid';
   padding: 0 30px;
   margin: 0 -30px;
   display: flex;
+  justify-content: center;
+  &__container {
+    max-width: $max-container-width;
+    display: flex;
+  }
 }

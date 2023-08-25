@@ -16,17 +16,19 @@ const TopMenu = () => {
 
   return (
     <nav className="top-menu">
-      {data &&
-        data.content.map((item, index) => {
-          return (
-            <Link
-              key={index}
-              to={item.url || item.link.slug}
-              className="top-menu__link">
-              {item.linkLabel}
-            </Link>
-          );
-        })}
+      <div className="top-menu__grid">
+        {data &&
+          data.content.map((item, index) => {
+            return (
+              <Link
+                key={index}
+                to={item.url || item.link.slug}
+                className="top-menu__link">
+                {item.linkLabel}
+              </Link>
+            );
+          })}
+      </div>
     </nav>
   );
 };

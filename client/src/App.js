@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.scss";
@@ -11,13 +11,27 @@ import TeamPage from "./pages/TeamPage/TeamPage";
 import BecomeMember from "./pages/BecomeMember/BecomeMember";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import Footer from "./components/Footer/Footer";
+import { useViewport } from "./hooks/useViewport";
+import MobileNavigation from "./components/MobileNavigation/MobileNavigation";
 
 const App = () => {
+  const { isMobile, isTablet } = useViewport({
+    mobile: 480,
+    tablet: 768,
+    laptop: 1024,
+    desktop: 1200,
+  });
+  console.log(!isTablet || !isMobile);
   return (
     <div className="App">
       <header className="App-header">
-        <TopMenu />
-        <MainNavigation />
+        {!isTablet && !isMobile && (
+          <>
+            <TopMenu />
+            <MainNavigation />
+          </>
+        )}
+        {(isTablet || isMobile) && <MobileNavigation />}
       </header>
       <Routes>
         <Route path="/" exact element={<HomePage />} />

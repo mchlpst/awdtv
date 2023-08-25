@@ -4,10 +4,14 @@ $component: 'top-menu';
 
 .#{$component} {
   background-color: $color-red;
-  display: flex;
+  &__grid {
+    display: flex;
   gap: 20px;
   justify-content: flex-end;
   padding: 0 30px;
+  margin: 0 auto;
+  max-width: $max-container-width;
+  }
 
   &__link {
     color: $color-white;

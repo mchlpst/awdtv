@@ -4,7 +4,7 @@ import "./Grid.scss";
 const Grid = (props) => {
   return (
     <div className={`grid ${props.noMargin ? "grid--noMargin" : ""}`}>
-      {props.children}
+      <div className="grid__container">{props.children}</div>
     </div>
   );
 };

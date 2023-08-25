@@ -4,13 +4,35 @@ $component: 'main-navigation';
 
 .#{$component} {
   background-color: $color-red-dark;
-  display: flex;
+margin: 0 auto;
+position: absolute;
+width: 100%;
+z-index: 30;
+  &--fixed {
+  position: fixed;
+  top:0;
+  .#{$component} {
+    &__logo-link {
+      position: absolute;
+      left:30px;
+      top:20px;
+      z-index: 25;
+    }
+    &__logo {
+      width: 80px;
+    }
+  }
+  }
+  &__grid {
+    display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 40px;
   position: relative;
   height: 80px;
   padding: 0 30px;
+  margin: 0 auto;
+  max-width: $max-container-width;
   &::before {
     background: url('../../assets/svg/AndreasCrossesHorizontal.svg');
     background-repeat: no-repeat;
@@ -21,14 +43,17 @@ $component: 'main-navigation';
     position: absolute;
     content: '';
   }
+  }
   &__logo-link {
     position: absolute;
     left:30px;
     top:-40px;
     z-index: 25;
+    transition: top 0.2s;
   }
   &__logo {
     width: 110px;
+    transition: width 0.2s;
   }
   &__link {
     color: $color-white;
@@ -144,10 +169,19 @@ $component: 'main-navigation';
     width: 25px;
     height: 25px;
   }
-  @media screen and (max-width: 1024px) {
-    &__logo {
-      height: 100px;
-      width: auto;
+  @include md {
+    &__search-input {
+      width:0;
+      transition: width 0.2s;
+    }
+    &__search-container {
+      &--focus {
+        .#{$component} {
+          &__search-input {
+            width: 145px;
+          }
+        }
+      }
     }
   }
 }
