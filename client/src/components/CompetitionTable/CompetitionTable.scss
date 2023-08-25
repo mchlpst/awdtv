@@ -103,4 +103,13 @@ $component: 'competition-table';
       text-align: center;
     }
   }
+  @media screen and (min-width: 1023px) and (max-width: 1200px) {
+    &__selected-title {
+      font-size: 18px;
+    line-height: 18px;
+    }
+    &__tab {
+      font-size: 12px;
+    }
+  }
 }
