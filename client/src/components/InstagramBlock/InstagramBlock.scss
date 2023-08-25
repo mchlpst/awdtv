@@ -97,4 +97,11 @@ $component: 'instagram-block';
     text-decoration: none;
     font-size: 20px;
   }
+  @include sm-md {
+    &__wrapper {
+      &--table {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
 }
