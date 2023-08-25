@@ -25,7 +25,7 @@ const GridImages = (props) => {
     home: null,
     away: null,
   });
-  const { isMobile, isTablet } = useViewport({
+  const { isMobile, isTablet, isLaptop } = useViewport({
     mobile: 480,
     tablet: 768,
     laptop: 1024,
@@ -152,7 +152,7 @@ const GridImages = (props) => {
 
   return (
     <>
-      {isMobile || isTablet ? (
+      {isMobile || isTablet || isLaptop ? (
         <section className="grid-images">
           <Swiper modules={[Pagination]} pagination={{ clickable: true }}>
             <SwiperSlide>
