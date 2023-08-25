@@ -9,6 +9,7 @@ $component: 'grid';
   justify-content: center;
   &__container {
     max-width: $max-container-width;
+    width: 100%;
     display: flex;
   }
 }

@@ -21,7 +21,7 @@ const App = () => {
     laptop: 1024,
     desktop: 1200,
   });
-  console.log(!isTablet || !isMobile);
+
   return (
     <div className="App">
       <header className="App-header">

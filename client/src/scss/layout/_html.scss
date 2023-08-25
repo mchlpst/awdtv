@@ -109,3 +109,8 @@ input[type="date"] {
 header {
   height: 120px;
 }
+@media (max-width: 1023px) {
+  header {
+    height: 75px;
+  }
+}

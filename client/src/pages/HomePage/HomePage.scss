@@ -4,4 +4,7 @@ $component: 'homepage';
 
 .#{$component} {
   margin-top: 30px;
+  @include sm-md {
+    margin-top: 15px;
+  }
 }

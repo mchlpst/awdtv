@@ -43,4 +43,8 @@ $component: 'col';
   &--12 {
     width: calc( 12 / 12 * 100%);
   }
+  @include sm-md {
+    padding: 0 15px;
+
+  }
 }
