@@ -112,4 +112,10 @@ $component: 'competition-table';
       font-size: 12px;
     }
   }
+  @include sm {
+    &__selected-title {
+      font-size: 20px;
+    line-height: 20px;
+    }
+  }
 }

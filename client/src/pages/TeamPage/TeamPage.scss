@@ -99,4 +99,25 @@ $component: 'team-page';
   &__staff-function {
     font-size: 12px;
   }
+  @include sm {
+    position: relative;
+    top: -25px;
+    &__content-container {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+    }
+    &__header-background {
+      height: auto;
+      width: 100%;
+    }
+    &__filter-container {
+      margin: 10px 0;
+    }
+  }
+  @include xs {
+    &__content-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
 }

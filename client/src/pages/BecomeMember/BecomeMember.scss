@@ -33,4 +33,7 @@ $component: "become-member";
     position: relative;
     z-index: 2;
   }
+  @include sm-md {
+margin-top: -25px;
+  }
 }
