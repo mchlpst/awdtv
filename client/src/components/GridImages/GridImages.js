@@ -108,6 +108,7 @@ const GridImages = (props) => {
       let homeArray = [];
       let awayArray = [];
 
+      // eslint-disable-next-line
       program.map((item) => {
         item.matches.forEach((match) => {
           if (
