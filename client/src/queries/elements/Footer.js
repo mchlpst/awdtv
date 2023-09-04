@@ -12,7 +12,7 @@ footer {
           ... on ArticleRecord {
             slug
           }
-          ... on LidWordenRecord {
+          ... on BecomeMemberRecord {
             slug
           }
         }

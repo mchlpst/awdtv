@@ -8,6 +8,7 @@ import TopMenu from "./components/TopMenu/Topmenu";
 import HomePage from "./pages/HomePage/HomePage";
 import SlugPage from "./pages/SlugPage/SlugPage";
 import TeamPage from "./pages/TeamPage/TeamPage";
+import TeamsStats from "./pages/TeamsStats/TeamsStats";
 import BecomeMember from "./pages/BecomeMember/BecomeMember";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import Footer from "./components/Footer/Footer";
@@ -38,6 +39,8 @@ const App = () => {
         <Route path="/teams/:team" exact element={<TeamPage />} />
         <Route path="/lid-worden" exact element={<BecomeMember />} />
         <Route path="/contact" exact element={<ContactPage />} />
+        <Route path="/overzicht" exact element={<TeamsStats />} />
+
         <Route path="/:slug" element={<SlugPage />} />
       </Routes>
       <Footer />

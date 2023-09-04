@@ -1,7 +1,7 @@
 const Image = require("../elements/Image");
 
 module.exports = `
-lidWorden {
+becomeMember {
   background {
     ${Image}
   }

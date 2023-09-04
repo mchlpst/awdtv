@@ -126,7 +126,6 @@ const CompetitionTable = () => {
                 match.teams.home.name === selectedTeam ||
                 match.teams.away.name === selectedTeam
               ) {
-                console.log(match);
                 matches.push(match);
               }
             });
