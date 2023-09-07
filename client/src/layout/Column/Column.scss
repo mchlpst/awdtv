@@ -1,0 +1,23 @@
+@import '../../scss/_index.scss';
+
+$component: 'col';
+
+.#{$component} {
+  padding: 0 30px;
+  &--noMargin {
+    padding:0;
+  }
+  @for $i from 1 through 12 {
+    &--#{$i} {
+      width: calc( #{$i} / 12 * 100%);
+    }
+  }
+  @include sm-md {
+    padding: 0 15px;
+    @for $i from 1 through 12 {
+      &--#{$i} {
+        width: 100%;
+      }
+    }
+  }
+}

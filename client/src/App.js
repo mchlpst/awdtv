@@ -1,44 +1,49 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 
-import "./App.css";
+import "./App.scss";
+
+import MainNavigation from "./components/MainNavigation/MainNavigation";
+import TopMenu from "./components/TopMenu/Topmenu";
+import HomePage from "./pages/HomePage/HomePage";
+import SlugPage from "./pages/SlugPage/SlugPage";
+import TeamPage from "./pages/TeamPage/TeamPage";
+import TeamsStats from "./pages/TeamsStats/TeamsStats";
+import BecomeMember from "./pages/BecomeMember/BecomeMember";
+import ContactPage from "./pages/ContactPage/ContactPage";
+import Footer from "./components/Footer/Footer";
+import { useViewport } from "./hooks/useViewport";
+import MobileNavigation from "./components/MobileNavigation/MobileNavigation";
 
 const App = () => {
-  const [posts, setPosts] = useState({});
-  const [pages, setPages] = useState({});
-
-  useEffect(() => {
-    async function fetchData() {
-      const axiosConfig = {
-        headers: {
-          "Content-Type": "application/json;charset=UTF-8",
-          "Access-Control-Allow-Origin": "*",
-        },
-      };
-      const posts = await axios("/posts", axiosConfig);
-      setPosts(posts);
-      const pages = await axios("/pages", axiosConfig);
-      setPages(pages);
-    }
-    fetchData();
-  }, []);
-  console.log(posts, pages);
+  const { isMobile, isTablet } = useViewport({
+    mobile: 480,
+    tablet: 768,
+    laptop: 1024,
+    desktop: 1200,
+  });
 
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {!isTablet && !isMobile && (
+          <>
+            <TopMenu />
+            <MainNavigation />
+          </>
+        )}
+        {(isTablet || isMobile) && <MobileNavigation />}
       </header>
+      <Routes>
+        <Route path="/" exact element={<HomePage />} />
+        <Route path="/teams/:team" exact element={<TeamPage />} />
+        <Route path="/lid-worden" exact element={<BecomeMember />} />
+        <Route path="/contact" exact element={<ContactPage />} />
+        <Route path="/overzicht" exact element={<TeamsStats />} />
+
+        <Route path="/:slug" element={<SlugPage />} />
+      </Routes>
+      <Footer />
     </div>
   );
 };

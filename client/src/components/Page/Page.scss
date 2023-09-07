@@ -1,0 +1,91 @@
+@import '../../scss/_index.scss';
+
+$component: 'page';
+
+.#{$component} {
+  &__header {
+    position: relative;
+  }
+  &__visual-container {
+    height: 400px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &__header-text-container {
+    position: absolute;
+    bottom:0;
+    left:30px;
+    color: $color-white;
+    text-shadow: 0px 0px 20px black;
+    margin-bottom: 60px;
+  }
+  &__title {
+    font-size: 40px;
+    line-height: 1.3;
+    font-family: $font-variable;
+    font-weight: 500;
+  }
+  &__content {
+    margin: 100px auto;
+    max-width: 880px;
+    padding: 0 30px;
+    h1, h2, h3, h4, h5, h6 {
+      margin-bottom: 20px;
+    }
+    & + & {
+      margin-top: -70px;
+    }
+    table {
+      border: 1px solid black;
+    }
+    table + * {
+      margin-top: 20px;
+    }
+    table th{
+      background-color: $color-red;
+      color: white;
+    }
+    table td, table th {
+      padding: 10px;
+    }
+    p {
+      line-height: 1.6;
+    }
+    p + p, ul + p, p + ul {
+      margin-top: 1.6em;
+    }
+    ul {
+      margin-left: 16px;
+    }
+    ul li + li {
+      margin-top: 6px;
+    }
+    a {
+      color: $color-red;
+      text-underline-offset: 2px;
+    }
+    img {
+      width: 100%;
+      margin: 24px 0;
+    }
+    object {
+      width: 100%;
+      height: 600px;
+    }
+  }
+  @include sm-md {
+    margin-top: -25px;
+
+    &__content {
+      table {
+        overflow-x: auto;
+      }
+      object {
+        width: 100%; /* for responsiveness */
+      }
+    }
+  }
+}

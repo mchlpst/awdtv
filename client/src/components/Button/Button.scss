@@ -1,0 +1,20 @@
+@import '../../scss/_index.scss';
+
+$component: 'btn';
+
+.#{$component} {
+  text-decoration: none;
+  padding: 10px 15px;
+  width: fit-content;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border:0;
+  &:hover {
+    filter: brightness(1.13);
+  }
+  
+  &--solid {
+    background-color: $color-red;
+    color: $color-white;
+  }
+}

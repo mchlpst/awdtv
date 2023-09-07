@@ -2,26 +2,30 @@
   "name": "awdtv",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "test",
-    "start": "nodemon server.js"
+    "start": "nodemon -r dotenv/config server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mchlpst/awdtv.git"
   },
   "author": "Michael Post",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/mchlpst/awdtv/issues"
   },
   "homepage": "https://github.com/mchlpst/awdtv#readme",
   "dependencies": {
-    "express": "^4.18.1",
-    "wpapi": "^1.2.2"
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.3",
+    "pdf-lib": "^1.17.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^3.0.1"
   }
 }
