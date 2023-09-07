@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { DatoContext } from "../../hooks/datoCMS";
 
 import "./TopMenu.scss";
 
-const TopMenu = (props) => {
-  let data = props.data;
+const TopMenu = () => {
+  const [data, setData] = useState(null);
+  const context = useContext(DatoContext);
+
+  useEffect(() => {
+    if (context) {
+      setData(context.topNavigation);
+    }
+  }, [context]);
+
   return (
     <nav className="top-menu">
-      {data.Body.map((item, index) => {
-        return (
-          <Link key={index} to={item.url} className="top-menu__link">
-            {item.label}
-          </Link>
-        );
-      })}
+      <div className="top-menu__grid">
+        {data &&
+          data.content.map((item, index) => {
+            return (
+              <Link
+                key={index}
+                to={item.url || item.link.slug}
+                className="top-menu__link">
+                {item.linkLabel}
+              </Link>
+            );
+          })}
+      </div>
     </nav>
   );
 };

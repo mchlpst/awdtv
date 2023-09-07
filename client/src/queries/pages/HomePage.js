@@ -1,12 +1,11 @@
-const GridImages = require("../components/GridImages");
+const GridImage = require("../models/GridImage");
+const InstagramBlock = require("../models/InstagramBlock");
+
 module.exports = `
-homePage {
-  data {
-    attributes {
-      content {
-        ${GridImages}
-      }
-    }
+home {
+  content {
+    ${GridImage}
+    ${InstagramBlock}
   }
 }
 `;

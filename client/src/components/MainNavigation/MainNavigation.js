@@ -1,48 +1,99 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { DatoContext } from "../../hooks/datoCMS";
 
 import { ReactComponent as Chevron } from "../../assets/svg/Chevron.svg";
 import { ReactComponent as Magnifyglass } from "../../assets/svg/Magnifyglass.svg";
 import "./MainNavigation.scss";
+import { useViewport } from "../../hooks/useViewport";
 
 const MainNavigation = (props) => {
-  let data = props.data;
-  let globals = props.globals;
+  const [data, setData] = useState(null);
+  const [isFixed, setIsFixed] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const context = useContext(DatoContext);
+  const { isLaptop } = useViewport({
+    mobile: 480,
+    tablet: 768,
+    laptop: 1024,
+    desktop: 1200,
+  });
+
+  const handlePosition = () => {
+    const topMenu = document.getElementsByClassName("top-menu");
+    const offsetHeight = topMenu[0].getBoundingClientRect().height;
+    if (window.scrollY >= offsetHeight) {
+      setIsFixed(true);
+    } else {
+      setIsFixed(false);
+    }
+  };
+
+  useEffect(() => {
+    if (context) {
+      setData(context.allMainNavigations);
+    }
+  }, [context]);
+  useEffect(() => {
+    handlePosition();
+    window.addEventListener("scroll", handlePosition);
+    return () => {
+      window.removeEventListener("scroll", handlePosition);
+    };
+  }, []);
+
+  const toggleFocus = () => {
+    console.log("click");
+    console.log(isLaptop);
+    if (isLaptop) {
+      setIsFocused(!isFocused);
+    }
+  };
+
   return (
-    <nav className="main-navigation">
-      {globals.Logo && (
+    <nav
+      className={`main-navigation ${isFixed ? "main-navigation--fixed" : ""}`}>
+      <div className="main-navigation__grid">
         <a href="/" className="main-navigation__logo-link">
           <img
-            src={`http://localhost:1337${globals.Logo.data.attributes.url}`}
-            alt={globals.Logo.data.attributes.alternativetext}
+            src="/Logo.webp"
+            alt="Logo AW.DTV"
             className="main-navigation__logo"
           />
         </a>
-      )}
-      {data.body.map((item, index) => {
-        return item.url ? (
-          <NavLink
-            key={index}
-            to={item.url}
-            className="main-navigation__link main-navigation__link--primair">
-            {item.label}
-          </NavLink>
-        ) : (
-          <DropdownSection
-            key={index}
-            title={item.Title}
-            body={item.menu_sections}
-          />
-        );
-      })}
-      <div className="main-navigation__search-container">
-        <div className="main-navigation__search">
-          <input
-            type="text"
-            className="main-navigation__search-input"
-            placeholder="Op zoek naar..."
-          />
-          <Magnifyglass className="main-navigation__search-icon" />
+        {data &&
+          data.map((item, index) => {
+            return item.children.length === 0 ? (
+              <NavLink
+                key={index}
+                to={item.link}
+                className="main-navigation__link main-navigation__link--primair">
+                {item.label}
+              </NavLink>
+            ) : (
+              <DropdownSection
+                key={index}
+                label={item.label}
+                body={item.children}
+              />
+            );
+          })}
+        <div
+          className={`main-navigation__search-container ${
+            isFocused ? "main-navigation__search-container--focus" : ""
+          }`}>
+          <div className="main-navigation__search">
+            <input
+              type="text"
+              className="main-navigation__search-input"
+              placeholder="Op zoek naar..."
+              onBlur={() => toggleFocus()}
+            />
+            <Magnifyglass
+              className="main-navigation__search-icon"
+              onClick={() => toggleFocus()}
+            />
+          </div>
         </div>
       </div>
     </nav>
@@ -54,24 +105,20 @@ const DropdownSection = (props) => {
     <>
       <div className="main-navigation__dropdown-section__label-container">
         <p className="main-navigation__dropdown-section__label">
-          {props.title}
+          {props.label}
         </p>
         <Chevron className="main-navigation__dropdown-section__icon" />
       </div>
       <div className="main-navigation__dropdown-section">
         <div className="main-navigation__dropdown-section__container">
-          {props.body.data.map((item, index) => {
+          {props.body.map((item, index) => {
             return (
-              <DropDown
-                key={index}
-                body={item.attributes.Body}
-                label={item.attributes.Label}
-              />
+              <DropDown key={index} body={item.children} label={item.label} />
             );
           })}
         </div>
         <span className="main-navigation__dropdown-section__background-text">
-          {props.title}
+          {props.label}
         </span>
       </div>
     </>
@@ -87,7 +134,7 @@ const DropDown = (props) => {
           return (
             <NavLink
               key={index}
-              to={item.url}
+              to={item.link}
               className="main-navigation__link main-navigation__link--secondair">
               {item.label}
             </NavLink>

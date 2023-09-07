@@ -1,0 +1,21 @@
+@import '../../scss/_index.scss';
+
+$component: 'grid';
+
+.#{$component} {
+  padding: 0 30px;
+  margin: 0 -30px;
+  display: flex;
+  justify-content: center;
+  &__container {
+    max-width: $max-container-width;
+    width: 100%;
+    display: flex;
+  }
+  @include sm-md {
+    &__container {
+      flex-wrap: wrap;
+      gap: 60px;
+    }
+  }
+}

@@ -1,55 +1,49 @@
-import React, { useEffect, useState } from "react";
-import { useQuery } from "@apollo/client";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import "./scss/index.scss";
 import "./App.scss";
 
 import MainNavigation from "./components/MainNavigation/MainNavigation";
 import TopMenu from "./components/TopMenu/Topmenu";
 import HomePage from "./pages/HomePage/HomePage";
-
-import { menuQuery, globalQuery } from "./queries";
+import SlugPage from "./pages/SlugPage/SlugPage";
+import TeamPage from "./pages/TeamPage/TeamPage";
+import TeamsStats from "./pages/TeamsStats/TeamsStats";
+import BecomeMember from "./pages/BecomeMember/BecomeMember";
+import ContactPage from "./pages/ContactPage/ContactPage";
+import Footer from "./components/Footer/Footer";
+import { useViewport } from "./hooks/useViewport";
+import MobileNavigation from "./components/MobileNavigation/MobileNavigation";
 
 const App = () => {
-  const [menus, setMenus] = useState(null);
-  const [globals, setGlobals] = useState(null);
-
-  const {
-    loading: menuQueryLoading,
-    error: menuQueryError,
-    data: menu,
-  } = useQuery(menuQuery);
-  const {
-    loading: globalQueryLoading,
-    error: globalQueryError,
-    data: global,
-  } = useQuery(globalQuery);
-
-  useEffect(() => {
-    if (!globalQueryLoading && !globalQueryError) {
-      setGlobals(global.global.data.attributes);
-    }
-    if (!menuQueryLoading && !menuQueryError) {
-      setMenus({
-        topMenu: menu.topMenu.data.attributes,
-        mainMenu: menu.mainMenu.data.attributes,
-      });
-    }
-    // eslint-disable-next-line
-  }, [globalQueryLoading, menuQueryLoading]);
+  const { isMobile, isTablet } = useViewport({
+    mobile: 480,
+    tablet: 768,
+    laptop: 1024,
+    desktop: 1200,
+  });
 
   return (
     <div className="App">
-      {menus && globals && (
-        <header className="App-header">
-          <TopMenu data={menus.topMenu} />
-          <MainNavigation data={menus.mainMenu} globals={globals} />
-        </header>
-      )}
+      <header className="App-header">
+        {!isTablet && !isMobile && (
+          <>
+            <TopMenu />
+            <MainNavigation />
+          </>
+        )}
+        {(isTablet || isMobile) && <MobileNavigation />}
+      </header>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" exact element={<HomePage />} />
+        <Route path="/teams/:team" exact element={<TeamPage />} />
+        <Route path="/lid-worden" exact element={<BecomeMember />} />
+        <Route path="/contact" exact element={<ContactPage />} />
+        <Route path="/overzicht" exact element={<TeamsStats />} />
+
+        <Route path="/:slug" element={<SlugPage />} />
       </Routes>
+      <Footer />
     </div>
   );
 };
