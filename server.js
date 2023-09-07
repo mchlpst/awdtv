@@ -6,6 +6,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(__dirname + "/client/build"));
 const route = express.Router();
 const port = process.env.PORT || 8080;
 
