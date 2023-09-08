@@ -22,6 +22,7 @@ const App = () => {
     laptop: 1024,
     desktop: 1200,
   });
+  console.log(process.env.REACT_APP_DATO_TOKEN);
 
   return (
     <div className="App">
@@ -40,7 +41,7 @@ const App = () => {
         <Route path="/lid-worden" exact element={<BecomeMember />} />
         <Route path="/contact" exact element={<ContactPage />} />
         <Route path="/overzicht" exact element={<TeamsStats />} />
-        <Route path="/nieuws" exact element={<AllNews />} />
+        {/* <Route path="/nieuws" exact element={<AllNews />} /> */}
 
         <Route path="/:slug" element={<SlugPage />} />
       </Routes>
