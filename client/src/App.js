@@ -48,7 +48,14 @@ const App = () => {
         </header>
       )}
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" exact element={<HomePage />} />
+        <Route path="/teams/:team" exact element={<TeamPage />} />
+        <Route path="/lid-worden" exact element={<BecomeMember />} />
+        <Route path="/contact" exact element={<ContactPage />} />
+        <Route path="/overzicht" exact element={<TeamsStats />} />
+        <Route path="/nieuws" exact element={<AllNews />} />
+
+        <Route path="/:slug" element={<SlugPage />} />
       </Routes>
     </div>
   );

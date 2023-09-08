@@ -1,0 +1,35 @@
+{
+  "name": "aw.dtv",
+  "version": "1.0.0",
+  "engines": {
+    "node": "18.x"
+  },
+  "description": "The website of AW.DTV",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mchlpst/awdtv.git"
+  },
+  "author": "Michael Post",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mchlpst/awdtv/issues"
+  },
+  "homepage": "https://github.com/mchlpst/awdtv#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.3",
+    "pdf-lib": "^1.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
