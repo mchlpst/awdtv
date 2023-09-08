@@ -22,7 +22,6 @@ const App = () => {
     laptop: 1024,
     desktop: 1200,
   });
-  console.log(process.env.REACT_APP_DATO_TOKEN);
 
   return (
     <div className="App">
