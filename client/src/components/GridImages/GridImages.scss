@@ -1,4 +1,4 @@
-@import '../../scss/index.scss';
+@import '../../scss/_index.scss';
 
 $component: 'grid-images';
 
@@ -8,6 +8,7 @@ $component: 'grid-images';
   display: grid;
   grid-template-columns: [first] 60% [line2] auto [end];
   grid-template-rows: [start] 50% [middle] 50% [end];
+  margin-bottom: 30px;
 
   &__tile-container {
     position: relative;    
@@ -24,11 +25,23 @@ $component: 'grid-images';
       grid-row-start: start;
       grid-row-end: middle;
     }
+    &--third {
+      grid-column-start: line2;
+      grid-column-end: end;
+      grid-row-start: middle;
+      grid-row-end: end;
+      background-color: $color-red-dark;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
   }
   &__tile-image {
-    object-fit: cover;
-    object-position: center center;
+    width: 100%;
+    height: 100%;
     img {
+      object-fit: cover;
       width: 100%;
       height: 100%;
     }
@@ -46,7 +59,106 @@ $component: 'grid-images';
     font-size: 32px;
     line-height: 1.2;
     font-family: $font-medium;
-    text-shadow: 0px 0px 40px black;
+    text-shadow: 0px 0px 20px black;
 
   }
+  &__date-container {
+    background: $color-black-dark;
+    position: absolute;
+    top:0;
+    left:0;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    gap: 10px;
+  }
+  &__date-day {
+    font-size: 40px;
+    line-height: 40px;
+    color: $color-white;
+    font-family: $font-variable;
+    font-weight: 700;;
+  }
+  &__date-month {
+    color: $color-white;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  &__date-time {
+    color: white;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  &__countdown-container {
+    display: flex;
+    gap: 40px;
+  }
+  &__game {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+  &__countdown-block {
+    text-align: center;
+    margin-top: 30px;
+    p {
+      font-size: 48px;
+      line-height: 1;
+      color: $color-white;
+      font-family: $font-variable;
+      font-weight: 700;
+    }
+    span {
+      color: $color-white;
+      font-size: 16px;
+      line-height: 1;
+    }
+  }
+  &__no-match-title {
+    font-size: 35px;
+    color: $color-white;
+  }
+  @include sm-md {
+    display: block;
+    &__tile-container {
+      width: 100%;
+      height: 300px;
+      &--third {
+        background-color: $color-red-dark;
+
+      }
+    }
+    &__tile-image {
+      width: 100%;
+      height: 300px;
+    }
+    &__countdown-block p {
+      font-size: 30px;
+    }
+    &__countdown-block span {
+      font-size: 14px;
+    }
+    &__countdown-container {
+      gap: 15px;
+    }
+    &__game {
+      font-size: 16px;
+    }
+    &__tile-context-container {
+      left: 20px;
+      bottom: 25px;
+    }
+  }
+}
+.swiper {
+  width: 100%;
+}
+.swiper-slide {
+  width: 100%;
+}
+.swiper-pagination-bullet {
+  background-color: white;
+  opacity: 0.8;
+}
+.swiper-pagination-bullet-active {
+  background-color: black;
 }

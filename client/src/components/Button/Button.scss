@@ -1,4 +1,4 @@
-@import '../../scss/index.scss';
+@import '../../scss/_index.scss';
 
 $component: 'btn';
 
@@ -8,6 +8,7 @@ $component: 'btn';
   width: fit-content;
   cursor: pointer;
   transition: all 0.2s ease;
+  border:0;
   &:hover {
     filter: brightness(1.13);
   }
