@@ -22,7 +22,7 @@ const MainNavigation = (props) => {
   const handlePosition = () => {
     const topMenu = document.getElementsByClassName("top-menu");
     const offsetHeight = topMenu[0].getBoundingClientRect().height;
-    if (window.scrollY >= offsetHeight) {
+    if (window.scrollY >= offsetHeight && window.scrollY !== 0) {
       setIsFixed(true);
     } else {
       setIsFixed(false);
