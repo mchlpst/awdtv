@@ -11,6 +11,7 @@ import TeamPage from "./pages/TeamPage/TeamPage";
 import TeamsStats from "./pages/TeamsStats/TeamsStats";
 import BecomeMember from "./pages/BecomeMember/BecomeMember";
 import ContactPage from "./pages/ContactPage/ContactPage";
+import AllNews from "./pages/AllNews/AllNews";
 import Footer from "./components/Footer/Footer";
 import { useViewport } from "./hooks/useViewport";
 import MobileNavigation from "./components/MobileNavigation/MobileNavigation";
@@ -40,7 +41,7 @@ const App = () => {
         <Route path="/lid-worden" exact element={<BecomeMember />} />
         <Route path="/contact" exact element={<ContactPage />} />
         <Route path="/overzicht" exact element={<TeamsStats />} />
-        {/* <Route path="/nieuws" exact element={<AllNews />} /> */}
+        <Route path="/nieuws" exact element={<AllNews />} />
 
         <Route path="/:slug" element={<SlugPage />} />
       </Routes>

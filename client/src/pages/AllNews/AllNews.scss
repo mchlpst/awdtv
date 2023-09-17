@@ -1,0 +1,119 @@
+@import '../../scss/_index.scss';
+
+$component: 'news';
+
+.#{$component} {
+  &__tags-container {
+    margin: 30px 0 15px;
+    display: flex;
+    gap: 40px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      width: 0 !important
+      }  
+  }
+  &__tag {
+    padding: 20px 0px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    text-transform: capitalize;
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      bottom: 16px;
+      position: absolute;
+      background-color: $color-red;
+      transition: all 0.2s ease;
+      transform: scaleX(0);
+    }
+    &:hover {
+      &::after {
+        transform: scaleX(1);  
+      }
+    }
+
+
+    &--active {
+      color: $color-red;
+      &::after {
+      transform: scaleX(1);
+      }
+    }
+  }
+  &__card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+  }
+
+  &__card {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+  }
+  &__card-link {
+    text-decoration: none;
+  }
+  &__card-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &__card-title, &__card-date {
+    color: white;
+    text-shadow: 0px 0px 20px black;
+  }
+  &__title {
+    font-size: 20px;
+    line-height: 1.3;
+  }
+  &__card-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+  }
+  &__card-title {
+    font-size: 16px;
+    line-height: 1.2;
+    height: calc((16px * 1.2)*2);
+  }
+  &__card-date {
+    font-size: 12px;
+    &::after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: $color-red;
+      margin: 4px 0;
+    }
+  }
+  @include md {
+    &__card-wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @include sm {
+    &__tags-container {
+      margin: 15px 0 0;
+    }
+    &__tag {
+    }
+    &__card-wrapper {
+      grid-template-columns: none;
+    }
+    &__card {
+      height: 150px;
+    }
+    &__card-title {
+      height: auto;
+    }
+  }
+}

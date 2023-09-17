@@ -27,9 +27,9 @@ $component: 'hero';
   @include sm {
     height: 200px;
     margin-top: -25px;
-  }
-  &__title {
-    font-size: 26px;
-    line-height: 1.2;
+    &__title {
+      font-size: 26px;
+      line-height: 1.2;
+    }
   }
 }
