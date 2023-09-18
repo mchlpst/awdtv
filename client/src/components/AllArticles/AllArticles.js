@@ -42,7 +42,6 @@ const AllArticles = () => {
   }, [activeFilter]);
 
   const toggleFilter = (tag) => {
-    console.log(activeFilter, tag);
     if (activeFilter === tag) {
       setActiveFilter(null);
     } else {

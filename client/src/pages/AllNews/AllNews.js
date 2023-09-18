@@ -41,12 +41,9 @@ const AllNews = () => {
     }
   }, [activeTags, data]);
 
-  useEffect(() => {
-    console.log(activeTags);
-  }, [activeTags]);
+  useEffect(() => {}, [activeTags]);
 
   const handleFilter = (tag) => {
-    console.log(activeTags);
     if (activeTags.includes(tag)) {
       setActiveTags((current) => current.filter((tags) => tags != tag));
     } else {

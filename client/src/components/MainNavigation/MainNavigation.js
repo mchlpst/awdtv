@@ -43,8 +43,6 @@ const MainNavigation = (props) => {
   }, []);
 
   const toggleFocus = () => {
-    console.log("click");
-    console.log(isLaptop);
     if (isLaptop) {
       setIsFocused(!isFocused);
     }

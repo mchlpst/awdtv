@@ -16,12 +16,10 @@ const TeamPage = (props) => {
 
   useEffect(() => {
     if (context) {
-      console.log(context.allTeams, team);
       let selectedTeam = context.allTeams.find((item) => {
         return item.link === team;
       });
       setData(selectedTeam);
-      console.log(data);
     }
     // eslint-disable-next-line
   }, [context]);
