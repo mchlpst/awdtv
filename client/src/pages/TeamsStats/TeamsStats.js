@@ -5,6 +5,7 @@ import Grid from "../../layout/Grid/Grid";
 import Column from "../../layout/Column/Column";
 
 import "./TeamsStats.scss";
+import Hero from "../../components/Hero/Hero";
 const TeamsStats = () => {
   const clubData = useContext(ClubDataContext);
 
@@ -137,21 +138,7 @@ const TeamsStats = () => {
     <main className="teams-overview">
       {data && (
         <>
-          <section className="teams-overview__hero">
-            <div className="teams-overview__background-container">
-              <img
-                src="/img/background-fallback.jpeg"
-                alt="foto van het veld"
-                className="teams-overview__background"
-              />
-            </div>
-            <div className="teams-overview__content">
-              <h1 className="teams-overview__title">{data.pageTitle}</h1>
-              <div
-                className="teams-overview__subtitle"
-                dangerouslySetInnerHTML={{ __html: data.pageSubtitle }}></div>
-            </div>
-          </section>
+          <Hero title={data.pageTitle} description={data.pageSubtitle} />
           <Grid>
             <Column col={12}>
               <section className="teams-overview__card-container">
