@@ -4,14 +4,10 @@ $component: 'news';
 
 .#{$component} {
   &__tags-container {
-    margin: 30px 0 15px;
+    margin: 30px 0;
     display: flex;
     gap: 40px;
-    overflow-x: scroll;
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      width: 0 !important
-      }  
+    flex-direction: wrap;
   }
   &__tag {
     padding: 20px 0px;
@@ -56,6 +52,13 @@ $component: 'news';
     height: 200px;
     position: relative;
     overflow: hidden;
+    &:hover {
+      .#{$component} {
+        &__card-background {
+          transform: scale(1.05);
+        }
+      }
+    }
   }
   &__card-link {
     text-decoration: none;
@@ -64,10 +67,13 @@ $component: 'news';
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.1s;
   }
   &__card-title, &__card-date {
     color: white;
     text-shadow: 0px 0px 20px black;
+    position: relative;
+    z-index: 5;
   }
   &__title {
     font-size: 20px;
@@ -102,7 +108,7 @@ $component: 'news';
   }
   @include sm {
     &__tags-container {
-      margin: 15px 0 0;
+      margin: 15px 0;
     }
     &__tag {
     }

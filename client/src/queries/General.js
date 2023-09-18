@@ -1,16 +1,12 @@
 module.exports = `
-global {
-  data {
-    attributes {
-      Title
-      Logo {
-        data {
-          attributes {
-            url
-            alternativeText
-          }
-        }
-      }
+_site {
+  favicon {
+    responsiveImage {
+      src
     }
+  }
+  globalSeo {
+    siteName
+    titleSuffix
   }
 }`;

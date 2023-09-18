@@ -8,6 +8,7 @@ import AllArticles from "./models/AllArticles";
 import AllTeams from "./models/AllTeams";
 import AllPages from "./models/AllPages";
 import Footer from "./elements/Footer";
+import General from "./General";
 
 export const query = `{
   ${MainMenu}
@@ -20,4 +21,5 @@ export const query = `{
   ${AllPages}
   ${ContactPage}
   ${Footer}
+  ${General}
 }`;
