@@ -8,6 +8,11 @@ const Hero = (props) => {
       {props.title && (
         <div className="hero__title-container">
           <h1 className="hero__title">{props.title}</h1>
+          {props.description && (
+            <div
+              className="hero__subtitle"
+              dangerouslySetInnerHTML={{ __html: props.description }}></div>
+          )}
         </div>
       )}
       <img
