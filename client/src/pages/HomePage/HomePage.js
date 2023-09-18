@@ -24,19 +24,6 @@ const HomePage = () => {
     }
   }, [context]);
 
-  useEffect(() => {
-    if (data) {
-      const link = document.querySelector("link[rel~='icon']");
-
-      if (!link) {
-        link = document.createElement("link");
-        link.rel = "icon";
-        document.head.appendChild(link);
-      }
-      link.href = global.favicon.responsiveImage.src;
-    }
-  }, [data]);
-
   return (
     <main className="homepage">
       {data && (
