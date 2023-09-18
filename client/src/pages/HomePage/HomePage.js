@@ -34,7 +34,6 @@ const HomePage = () => {
         document.head.appendChild(link);
       }
       link.href = global.favicon.responsiveImage.src;
-      console.log(global);
     }
   }, [data]);
 
