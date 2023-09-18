@@ -87,21 +87,56 @@ $component: 'competition-table';
   }
   &__program-item {
     font-size: 14px;
-    display: grid;
-    grid-template-columns: 120px 1fr 1fr;
     padding: 10px 0;
     border-bottom: 1px solid $color-grey-light;
+  }
+  &__program-date {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    color: $color-red;
+  }
+  &__program-teams-wrapper {
+    display: flex;
+    margin-top: 8px;
+  }
+  &__program-team {
+    width: 50%;
+    text-align: center;
   }
   &__results-item {
     padding: 10px 0;
     font-size: 14px;
-    display: grid;
-    column-gap: 10px;
-    grid-template-columns: 70px 1fr 1fr 80px;
     border-bottom: 1px solid $color-grey-light;
-    & > :last-child {
-      text-align: center;
-    }
+  }
+  &__results-date {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 16px;
+    color: $color-red;
+  }
+  &__results-game {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+  }
+  &__results-score {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  &__results-team-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__results-team {
+    font-size: 12px;
+  }
+  &__results-team, &__results-score {
+    min-width: 140px;
+    width: 50%;
+    text-align: center;
   }
   @media screen and (min-width: 1023px) and (max-width: 1200px) {
     &__selected-title {

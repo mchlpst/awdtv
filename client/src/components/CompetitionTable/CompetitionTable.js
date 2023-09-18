@@ -246,7 +246,7 @@ const CompetitionTable = () => {
                       key={index}
                       className={
                         "competition-table__table-row" +
-                        (item.team.name.includes("AW/DTV")
+                        (item.team.name.includes("AWDTV")
                           ? " competition-table__table-row--red"
                           : "")
                       }>
@@ -254,7 +254,7 @@ const CompetitionTable = () => {
                         {item.stats.position}
                       </div>
                       <div className="competition-table__table-body-item">
-                        {item.team.name}
+                        {wordBreak(item.team.name)}
                       </div>
                       <div className="competition-table__table-body-item">
                         {item.stats.played}
@@ -280,7 +280,7 @@ const CompetitionTable = () => {
                     <div
                       key={match.date}
                       className="competition-table__program-item">
-                      <div>
+                      <div className="competition-table__program-date">
                         {new Date(match.date).toLocaleString("nl-NL", {
                           weekday: "short",
                           day: "numeric",
@@ -289,8 +289,14 @@ const CompetitionTable = () => {
                           minute: "numeric",
                         })}
                       </div>
-                      <div>{wordBreak(match.teams.home.name)}</div>
-                      <div>{wordBreak(match.teams.away.name)}</div>
+                      <div className="competition-table__program-teams-wrapper">
+                        <div className="competition-table__program-team">
+                          {wordBreak(match.teams.home.name)}
+                        </div>
+                        <div className="competition-table__program-team">
+                          {wordBreak(match.teams.away.name)}
+                        </div>
+                      </div>
                     </div>
                   );
                 })}
@@ -309,22 +315,35 @@ const CompetitionTable = () => {
                     <div
                       key={match.date}
                       className="competition-table__results-item">
-                      <div>
+                      <div className="competition-table__results-date">
                         {new Date(match.date).toLocaleString("nl-NL", {
                           weekday: "short",
                           day: "numeric",
                           month: "numeric",
                         })}
                       </div>
-                      <div>{match.teams.home.name}</div>
-                      <div>{match.teams.away.name}</div>
                       {match.stats ? (
-                        <div>
-                          {match.stats.home.score} - {match.stats.away.score}
+                        <div className="competition-table__results-game">
+                          <div className="competition-table__results-score">
+                            {match.stats.home.score}
+                          </div>
+                          <div className="competition-table__results-score">
+                            {match.stats.away.score}
+                          </div>
                         </div>
                       ) : (
-                        <div>{match.status.game}</div>
+                        <div className="competition-table__results-game">
+                          {match.status.game}
+                        </div>
                       )}
+                      <div className="competition-table__results-team-wrapper">
+                        <div className="competition-table__results-team">
+                          {wordBreak(match.teams.home.name)}
+                        </div>
+                        <div className="competition-table__results-team">
+                          {wordBreak(match.teams.away.name)}
+                        </div>
+                      </div>
                     </div>
                   );
                 })}
