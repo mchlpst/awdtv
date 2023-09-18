@@ -134,6 +134,28 @@ $component: 'teams-overview';
       margin-top: 5px;
     }
   }
+  &__results-match {
+    padding: 10px 0;
+    & + & {
+      border-top: 1px solid $color-grey-light;
+    }
+  }
+  &__results-date {
+    width: 100%;
+    text-align: center;
+    color: $color-red;
+  }
+  &__results-game {
+    display: flex;
+    margin: 4px;
+    text-align: center;
+  }
+  &__results-score {
+    font-size: 24px;
+  }
+  &__results-score, &__results-team {
+    width: 50%;
+  }
   @media screen and (min-width: 1200px) {
     &__card {
       width: calc(100% / 3 - 40px);

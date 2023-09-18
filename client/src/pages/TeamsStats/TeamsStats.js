@@ -222,7 +222,7 @@ const Card = (item) => {
             <StaningsTable data={item.item.standings} />
           )}
           {activeTab === "program" && <ProgramTable data={item.item.program} />}
-          {/* {activeTab === "results" && <ResultsTable data={item.item.results} />} */}
+          {activeTab === "results" && <ResultsTable data={item.item.results} />}
         </div>
       </div>
     </div>
@@ -321,6 +321,55 @@ const ProgramTable = (props) => {
           </div>
         </div>
       ))}
+    </div>
+  );
+};
+const ResultsTable = (props) => {
+  const wordBreak = (word) => {
+    let index = word.indexOf("/");
+    if (index !== -1) {
+      let wrappedWord = word.slice(0, index) + " " + word.slice(index);
+      return wrappedWord;
+    } else {
+      return word;
+    }
+  };
+  return (
+    <div className="teams-overview__results-table">
+      {props.data &&
+        props.data.map((match) => (
+          <div className="teams-overview__results-match">
+            <div className="teams-overview__results-date">
+              {new Date(match.date).toLocaleString("nl-NL", {
+                weekday: "short",
+                day: "numeric",
+                month: "numeric",
+              })}
+            </div>
+            {match.stats ? (
+              <div className="teams-overview__results-game">
+                <div className="teams-overview__results-score">
+                  {match.stats.home.score}
+                </div>
+                <div className="teams-overview__results-score">
+                  {match.stats.away.score}
+                </div>
+              </div>
+            ) : (
+              <div className="teams-overview__results-game">
+                {match.status.game}
+              </div>
+            )}
+            <div className="teams-overview__results-game">
+              <div className="teams-overview__results-team">
+                {wordBreak(match.teams.home.name)}
+              </div>
+              <div className="teams-overview__results-team">
+                {wordBreak(match.teams.away.name)}
+              </div>
+            </div>
+          </div>
+        ))}
     </div>
   );
 };
