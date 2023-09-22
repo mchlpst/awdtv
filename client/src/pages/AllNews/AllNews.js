@@ -57,8 +57,9 @@ const AllNews = () => {
         <Grid>
           <Column col={12}>
             <div className="news__tags-container">
-              {tags.map((tag) => (
+              {tags.map((tag, index) => (
                 <div
+                  key={index}
                   className={`news__tag ${
                     activeTags.includes(tag) ? "news__tag--active" : ""
                   }`}
@@ -73,8 +74,8 @@ const AllNews = () => {
           <Column col={12}>
             <div className="news__card-wrapper">
               {filteredItems &&
-                filteredItems.map((article) => (
-                  <div className="news__card-container">
+                filteredItems.map((article, index) => (
+                  <div className="news__card-container" key={index}>
                     <Link to={article.slug} className="news__card-link">
                       <div className="news__card">
                         <div className="news__card-content">

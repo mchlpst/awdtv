@@ -109,8 +109,19 @@ $component: 'news';
   @include sm {
     &__tags-container {
       margin: 15px 0;
+      flex-wrap: wrap;
+      gap: 15px;
     }
     &__tag {
+      padding:0;
+      // &:hover {
+      //   &:after {
+      //     display: none;
+      //   }
+      // }
+      &:after {
+        display: none;
+      }
     }
     &__card-wrapper {
       grid-template-columns: none;
