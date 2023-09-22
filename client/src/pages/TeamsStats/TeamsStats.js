@@ -21,7 +21,7 @@ const TeamsStats = () => {
   }, [context]);
 
   useEffect(() => {
-    if (clubData) {
+    if (clubData && data) {
       if (clubData.standings) {
         let res = clubData.standings.res;
         const teamName = res.map((item, index) => ({
@@ -125,7 +125,7 @@ const TeamsStats = () => {
       }
     }
     // eslint-disable-next-line
-  }, [clubData]);
+  }, [clubData, data]);
 
   useEffect(() => {
     setAllFetched(false);
@@ -159,18 +159,24 @@ export default TeamsStats;
 
 const Card = (item) => {
   const [activeTab, setActiveTab] = useState("standings");
+  const [background, setBackground] = useState("");
 
   const handleTabs = (tab) => {
     setActiveTab(tab);
   };
+  useEffect(() => {
+    if (item.item.background) {
+      setBackground(item.item.background.responsiveImage);
+    }
+  }, [item]);
   return (
     <div className="teams-overview__card" key={item.item.name}>
       <div className="teams-overview__card-header">
         <div className="teams-overview__card-background">
           {item.item.background ? (
             <img
-              srcSet={item.item.background.responsiveImage.srcSet}
-              alt={item.item.background.responsiveImage.alt}
+              srcSet={background.srcSet}
+              alt={background.alt}
               className="teams-overview__card-background-image"
             />
           ) : (
