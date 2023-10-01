@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from "react";
 import { DatoContext } from "../../hooks/datoCMS";
 import { Link } from "react-router-dom";
 
+import Button from "../Button/Button";
+
 import "./AllArticles.scss";
 
 const AllArticles = () => {
@@ -51,47 +53,32 @@ const AllArticles = () => {
 
   return (
     <section className="all-articles">
-      {filterOptions.length > 0 && (
-        <div className="all-articles__filter-container">
-          <div
-            className={`all-articles__filter-item ${
-              activeFilter === null ? "all-articles__filter-item--active" : ""
-            }`}
-            onClick={() => setActiveFilter(null)}>
-            Alles
-          </div>
-          {filterOptions.map((tag) => (
-            <div
-              className={`all-articles__filter-item ${
-                activeFilter === tag ? "all-articles__filter-item--active" : ""
-              }`}
-              key={tag}
-              onClick={() => toggleFilter(tag)}>
-              {tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, " ")}
-            </div>
-          ))}
-        </div>
-      )}
-
       {data && (
         <div className="all-articles__article-container">
           {filteredArticles.map((article, index) => {
             return (
-              <article className="all-articles__article" key={index}>
-                <Link to={article.slug} className="all-articles__link">
-                  <img
-                    srcSet={article.visual.responsiveImage.srcSet}
-                    className="all-articles__article-image"
-                    alt={article.visual.responsiveImage.alt}
-                  />
-                  <div className="all-articles__text-container">
-                    <h4 className="all-articles__title">{article.title}</h4>
-                    <p className="all-articles__date">{article.date}</p>
-                  </div>
-                </Link>
-              </article>
+              <>
+                {index <= 3 && (
+                  <article className="all-articles__article" key={index}>
+                    <Link to={article.slug} className="all-articles__link">
+                      <img
+                        srcSet={article.visual.responsiveImage.srcSet}
+                        className="all-articles__article-image"
+                        alt={article.visual.responsiveImage.alt}
+                      />
+                      <div className="all-articles__text-container">
+                        <h4 className="all-articles__title">{article.title}</h4>
+                        <p className="all-articles__date">{article.date}</p>
+                      </div>
+                    </Link>
+                  </article>
+                )}
+              </>
             );
           })}
+          <div className="all-articles__button-container">
+            <Button type="solid" to={"/nieuws"} text="Toon meer" />
+          </div>
         </div>
       )}
     </section>
