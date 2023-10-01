@@ -9,6 +9,7 @@ import TopMenu from "./components/TopMenu/Topmenu";
 import HomePage from "./pages/HomePage/HomePage";
 import SlugPage from "./pages/SlugPage/SlugPage";
 import TeamPage from "./pages/TeamPage/TeamPage";
+import TrainingScheme from "./pages/TrainingScheme/TrainingScheme";
 import TeamsStats from "./pages/TeamsStats/TeamsStats";
 import BecomeMember from "./pages/BecomeMember/BecomeMember";
 import ContactPage from "./pages/ContactPage/ContactPage";
@@ -65,6 +66,7 @@ const App = () => {
         <Route path="/contact" exact element={<ContactPage />} />
         <Route path="/overzicht" exact element={<TeamsStats />} />
         <Route path="/nieuws" exact element={<AllNews />} />
+        <Route path="/trainingsschema" exact element={<TrainingScheme />} />
 
         <Route path="/:slug" element={<SlugPage />} />
       </Routes>

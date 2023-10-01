@@ -6,8 +6,12 @@ const Hero = (props) => {
   return (
     <section className={`hero ${props.maxHeight ? "hero--max-height" : ""}`}>
       {props.title && (
-        <div className="hero__title-container">
+        <div
+          className={`hero__title-container ${
+            props.page ? "hero__title-container--left" : ""
+          }`}>
           <h1 className="hero__title">{props.title}</h1>
+          {props.date && <p className="page__date">{props.date}</p>}
           {props.description && (
             <div
               className="hero__subtitle"

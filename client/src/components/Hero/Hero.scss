@@ -17,6 +17,11 @@ $component: 'hero';
     bottom: 100px;
     width: 100%;
     text-align: center;
+    &--left {
+      text-align: left;
+      left:30px;
+      bottom:30px;
+    }
   }
   &__title {
     color: $color-white;

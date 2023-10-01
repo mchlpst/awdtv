@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { WhatsappShareButton } from "react-share";
 import { SocialIcon } from "react-social-icons";
@@ -6,10 +6,24 @@ import { SocialIcon } from "react-social-icons";
 import { useViewport } from "../../hooks/useViewport";
 
 import "./Page.scss";
+import Hero from "../Hero/Hero";
 
 const Page = (props) => {
-  const content = props.data;
-  const shareUrl = window.location.origin + "/" + content.slug;
+  const [content, setContent] = useState(null);
+  const [switchValue, setSwitchValue] = useState(true);
+  let shareUrl = "";
+
+  useEffect(() => {
+    setContent(props.data);
+    console.log(props.dualContent);
+    if (props.data) {
+      shareUrl = window.location.origin + "/" + props.data.slug;
+    }
+  }, [props.data]);
+
+  const handleSwitch = () => {
+    setSwitchValue(!switchValue);
+  };
 
   const { isMobile, isTablet } = useViewport({
     mobile: 480,
@@ -20,59 +34,94 @@ const Page = (props) => {
 
   return (
     <section className="page">
-      <div className="page__header">
-        <div className="page__visual-container">
-          <img
-            srcSet={content.visual.responsiveImage.srcSet}
-            alt={content.visual.responsiveImage.alt}
-          />
-        </div>
-        <div className="page__header-text-container">
-          <h1 className="page__title">{content.title}</h1>
-          <p className="page__date">{content.date}</p>
-        </div>
-      </div>
-      <article
-        className="page__content"
-        dangerouslySetInnerHTML={{ __html: content.content }}
-      />
-      {content.attachments.length > 0 && (
+      {content && (
         <>
-          {content.attachments[0].filename.includes(".pdf") && (
-            <section className="page__content">
-              {!isTablet && !isMobile ? (
-                <object
-                  data={content.attachments[0].url}
-                  type="application/pdf">
-                  <p>
-                    Het lijkt erop dat je browser dit document niet kan laden.
-                    Je kan het hier downloaden.&nbsp;
-                    <a
-                      href={content.attachments[0].url}
-                      alt="download link"
-                      target="_blank">
-                      Download PDF.
-                    </a>
-                  </p>
-                </object>
-              ) : (
-                <p>
-                  Het lijkt erop dat je browser dit document niet kan laden. Je
-                  kan het hier downloaden.&nbsp;
-                  <a href={content.attachments[0].url}>Download PDF.</a>
-                </p>
+          <Hero
+            title={content.title}
+            date={content.date}
+            imageSrc={
+              content.visual !== null
+                ? content.visual.responsiveImage.src
+                : null
+            }
+            imageAlt={
+              content.visual !== null
+                ? content.visual.responsiveImage.alt
+                : null
+            }
+            page
+          />
+          {props.dualContent !== undefined ? (
+            <section className="page__dual-content">
+              <div className="page__switch-wrapper">
+                <div
+                  className={`page__switch-container ${
+                    switchValue
+                      ? "page__switch-container--left"
+                      : "page__switch-container--right"
+                  }`}
+                  onClick={() => handleSwitch()}>
+                  {content.content.map((item) => (
+                    <div className="page__switch" key={item.schemeType}>
+                      {item.schemeType}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <article
+                className="page__content"
+                dangerouslySetInnerHTML={{
+                  __html: switchValue
+                    ? content.content[0].content
+                    : content.content[1].content,
+                }}
+              />
+            </section>
+          ) : (
+            <article
+              className="page__content"
+              dangerouslySetInnerHTML={{ __html: content.content }}
+            />
+          )}
+          {content.attachments && content.attachments.length > 0 && (
+            <>
+              {content.attachments[0].filename.includes(".pdf") && (
+                <section className="page__content">
+                  {!isTablet && !isMobile ? (
+                    <object
+                      data={content.attachments[0].url}
+                      type="application/pdf">
+                      <p>
+                        Het lijkt erop dat je browser dit document niet kan
+                        laden. Je kan het hier downloaden.&nbsp;
+                        <a
+                          href={content.attachments[0].url}
+                          alt="download link"
+                          target="_blank">
+                          Download PDF.
+                        </a>
+                      </p>
+                    </object>
+                  ) : (
+                    <p>
+                      Het lijkt erop dat je browser dit document niet kan laden.
+                      Je kan het hier downloaden.&nbsp;
+                      <a href={content.attachments[0].url}>Download PDF.</a>
+                    </p>
+                  )}
+                </section>
               )}
-            </section>
-          )}
-          {content.attachments[0].filename.includes(".png") && (
-            <section className="page__content">
-              <img src={content.attachments[0].url} width="100%" />
-            </section>
-          )}
-          {content.attachments[0].filename.includes(".jpg") && (
-            <section className="page__content">
-              <img src={content.attachments[0].url} width="100%" />
-            </section>
+              {content.attachments[0].filename.includes(".png") && (
+                <section className="page__content">
+                  <img src={content.attachments[0].url} width="100%" />
+                </section>
+              )}
+              {content.attachments[0].filename.includes(".jpg") && (
+                <section className="page__content">
+                  <img src={content.attachments[0].url} width="100%" />
+                </section>
+              )}
+            </>
           )}
         </>
       )}

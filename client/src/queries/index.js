@@ -1,6 +1,7 @@
 import TopMenu from "./elements/TopMenu";
 import MainMenu from "./elements/MainMenu";
 import HomePage from "./pages/HomePage";
+import TrainingsScheme from "./pages/TrainingsScheme";
 import BecomeMemberPage from "./pages/BecomeMemberPage";
 import TeamsOverviewPage from "./pages/TeamsOverviewPage";
 import ContactPage from "./pages/ContactPage";
@@ -17,6 +18,7 @@ export const query = `{
   ${AllArticles}
   ${BecomeMemberPage}
   ${TeamsOverviewPage}
+  ${TrainingsScheme}
   ${AllTeams}
   ${AllPages}
   ${ContactPage}

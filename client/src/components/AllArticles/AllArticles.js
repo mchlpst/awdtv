@@ -8,8 +8,6 @@ import "./AllArticles.scss";
 
 const AllArticles = () => {
   const [data, setData] = useState(null);
-  const [activeFilter, setActiveFilter] = useState(null);
-  const [filterOptions, setFilterOptions] = useState([]);
   const [filteredArticles, setFilteredArticles] = useState([]);
   const context = useContext(DatoContext);
 
@@ -19,37 +17,6 @@ const AllArticles = () => {
       setFilteredArticles(context.allArticles);
     }
   }, [context]);
-  useEffect(() => {
-    let array = [];
-    if (data) {
-      data.map((item) => {
-        if (array.indexOf(item.tag) === -1) {
-          array.push(item.tag);
-        }
-      });
-      setFilterOptions(array);
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (data) {
-      if (activeFilter) {
-        setFilteredArticles(
-          data.filter((article) => article.tag === activeFilter)
-        );
-      } else {
-        setFilteredArticles(data);
-      }
-    }
-  }, [activeFilter]);
-
-  const toggleFilter = (tag) => {
-    if (activeFilter === tag) {
-      setActiveFilter(null);
-    } else {
-      setActiveFilter(tag);
-    }
-  };
 
   return (
     <section className="all-articles">
