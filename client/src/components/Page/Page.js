@@ -15,7 +15,6 @@ const Page = (props) => {
 
   useEffect(() => {
     setContent(props.data);
-    console.log(props.dualContent);
     if (props.data) {
       shareUrl = window.location.origin + "/" + props.data.slug;
     }
