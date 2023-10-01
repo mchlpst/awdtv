@@ -13,6 +13,9 @@ $component: 'grid';
     display: flex;
   }
   @include sm-md {
+    width: 100%;
+    margin:0;
+    padding: 0;
     &__container {
       flex-wrap: wrap;
       gap: 60px;
