@@ -119,14 +119,17 @@ $component: 'page';
     p {
       line-height: 1.6;
     }
-    p + p, ul + p, p + ul, p + table {
+    p + p, ul + p, ol + p, p + ul,p + ol, p + table {
       margin-top: 1.6em;
     }
-    ul {
+    ul, ol {
       margin-left: 16px;
     }
-    ul li + li {
+    ul li + li, ol li + li {
       margin-top: 6px;
+    }
+    strong {
+      font-family: $font-bold;
     }
     a {
       color: $color-red;
