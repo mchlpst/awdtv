@@ -10,7 +10,7 @@ import Button from "../Button/Button";
 const InstagramBlock = (props) => {
   let layout = props.data ? props.data.layout : true;
   const { posts } = useInstagramData();
-
+  console.log(posts);
   return (
     <section className="instagram-block">
       <div className="instagram-block__account-container">
@@ -74,13 +74,7 @@ const Post = (props) => {
 
   return (
     <article className="instagram-block__post" key={item.post.media.id}>
-      {item.post.media.media_type === "IMAGE" ? (
-        <img
-          className="instagram-block__media"
-          src={item.post.media.media_url}
-          alt="instagram post"
-        />
-      ) : (
+      {item.post.media.media_type === "VIDEO" ? (
         <>
           <video
             className="instagram-block__media"
@@ -95,6 +89,12 @@ const Post = (props) => {
             )}
           </div>
         </>
+      ) : (
+        <img
+          className="instagram-block__media"
+          src={item.post.media.media_url}
+          alt="instagram post"
+        />
       )}
       {item.post.caption && (
         <div
