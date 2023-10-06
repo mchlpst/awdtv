@@ -100,7 +100,7 @@ const Post = (props) => {
         <div
           className={
             "instagram-block__caption-container" +
-            (item.post.media.media_type === "IMAGE" ? " image" : "")
+            (item.post.media.media_type != "VIDEO" ? " image" : "")
           }
           onClick={() => playVideo()}>
           <div className="instagram-block__caption">{item.post.caption}</div>
