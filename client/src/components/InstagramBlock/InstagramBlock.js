@@ -10,7 +10,6 @@ import Button from "../Button/Button";
 const InstagramBlock = (props) => {
   let layout = props.data ? props.data.layout : true;
   const { posts } = useInstagramData();
-  console.log(posts);
   return (
     <section className="instagram-block">
       <div className="instagram-block__account-container">
@@ -100,7 +99,7 @@ const Post = (props) => {
         <div
           className={
             "instagram-block__caption-container" +
-            (item.post.media.media_type != "VIDEO" ? " image" : "")
+            (item.post.media.media_type !== "VIDEO" ? " image" : "")
           }
           onClick={() => playVideo()}>
           <div className="instagram-block__caption">{item.post.caption}</div>
