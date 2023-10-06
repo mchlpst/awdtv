@@ -44,7 +44,7 @@ const App = () => {
         link.rel = "icon";
         document.head.appendChild(link);
       }
-      link.href = global.favicon.responsiveImage.src;
+      link.href = global.favicon.responsiveImage.src + "?v=2";
     }
   }, [global]);
 
