@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 export const useInstagramData = () => {
   const [mediaId, setMediaId] = useState({});
-  // const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -24,8 +23,13 @@ export const useInstagramData = () => {
 
   useEffect(() => {
     const fields = ["id", "media_type", "media_url", "username", "timestamp"];
-
     const localObject = JSON.parse(localStorage.getItem("posts"));
+    const now = new Date();
+
+    if (!localObject && now.getTime() > localObject.expire) {
+      localStorage.removeItem(posts);
+    }
+
     if (!localObject) {
       if (mediaId.data) {
         const firstNine = mediaId.data.slice(0, 9);
@@ -49,34 +53,21 @@ export const useInstagramData = () => {
           return Promise.all(requests);
         };
         fetchPosts().then((result) => {
-          localStorage.setItem("posts", JSON.stringify(result));
+          let now = new Date();
+          let expire = now.setDate(now.getDate() + 2);
+          let storage = {
+            result: result,
+            expire: expire,
+          };
+
+          localStorage.setItem("posts", JSON.stringify(storage));
           setPosts(result);
         });
       }
     } else {
-      setPosts(localObject);
+      setPosts(localObject.result);
     }
+    // eslint-disable-next-line
   }, [mediaId]);
-
-  // useEffect(() => {
-  //   const fields = ["username"];
-  //   fetch(
-  //     `https://graph.instagram.com/me?fields=${fields}&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`,
-  //     {
-  //       method: "GET",
-  //     }
-  //   )
-  //     .then((res) => {
-  //       if (res.ok) {
-  //         return res.json();
-  //       } else {
-  //         throw `error with status ${res.status}`;
-  //       }
-  //     })
-  //     .then((res) => {
-  //       setUser(res);
-  //     });
-  // }, []);
-
   return { mediaId, posts };
 };
