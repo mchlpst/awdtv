@@ -1,53 +1,53 @@
-@import '../../scss/_index.scss';
+@import "../../scss/_index.scss";
 
-$component: 'main-navigation';
+$component: "main-navigation";
 
 .#{$component} {
   background-color: $color-red-dark;
-margin: 0 auto;
-position: absolute;
-width: 100%;
-z-index: 30;
+  margin: 0 auto;
+  position: absolute;
+  width: 100%;
+  z-index: 30;
   &--fixed {
-  position: fixed;
-  top:0;
-  .#{$component} {
-    &__logo-link {
-      position: absolute;
-      left:30px;
-      top:20px;
-      z-index: 25;
+    position: fixed;
+    top: 0;
+    .#{$component} {
+      &__logo-link {
+        position: absolute;
+        left: 30px;
+        top: 20px;
+        z-index: 25;
+      }
+      &__logo {
+        width: 80px;
+      }
     }
-    &__logo {
-      width: 80px;
-    }
-  }
   }
   &__grid {
     display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 40px;
-  position: relative;
-  height: 80px;
-  padding: 0 30px;
-  margin: 0 auto;
-  max-width: $max-container-width;
-  &::before {
-    background: url('../../assets/svg/AndreasCrossesHorizontal.svg');
-    background-repeat: no-repeat;
-    display: block;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 40px;
+    position: relative;
     height: 80px;
-    width: 100%;
-    left: 100px;
-    position: absolute;
-    content: '';
-  }
+    padding: 0 30px;
+    margin: 0 auto;
+    max-width: $max-container-width;
+    &::before {
+      background: url("../../assets/svg/AndreasCrossesHorizontal.svg");
+      background-repeat: no-repeat;
+      display: block;
+      height: 80px;
+      width: 100%;
+      left: 100px;
+      position: absolute;
+      content: "";
+    }
   }
   &__logo-link {
     position: absolute;
-    left:30px;
-    top:-40px;
+    left: 30px;
+    top: -40px;
     z-index: 25;
     transition: top 0.2s;
   }
@@ -61,7 +61,7 @@ z-index: 30;
     display: block;
     &--primair {
       position: relative;
-    z-index: 20;
+      z-index: 20;
     }
     &--secondair {
       font-family: $font-thin;
@@ -74,7 +74,7 @@ z-index: 30;
     position: absolute;
     overflow: hidden;
     width: 100%;
-    left:0;
+    left: 0;
     top: 80px;
     opacity: 0;
     visibility: hidden;
@@ -109,15 +109,15 @@ z-index: 30;
       display: block;
       width: 15px;
     }
-  
+
     &__container {
       display: flex;
-      gap: 140px;
+      gap: 60px;
     }
     &__background-text {
       position: absolute;
       bottom: -50px;
-      right:30px;
+      right: 30px;
       color: $color-red-dark;
       font-size: 220px;
       line-height: 1;
@@ -161,7 +161,8 @@ z-index: 30;
     &::placeholder {
       color: rgba($color-white, 0.7);
     }
-    &:active, &:focus {
+    &:active,
+    &:focus {
       outline: none;
     }
   }
@@ -171,7 +172,7 @@ z-index: 30;
   }
   @include md {
     &__search-input {
-      width:0;
+      width: 0;
       transition: width 0.2s;
     }
     &__search-container {
@@ -181,6 +182,13 @@ z-index: 30;
             width: 145px;
           }
         }
+      }
+    }
+  }
+  @media screen and (min-width: 1200px) {
+    &__dropdown-section {
+      &__container {
+        gap: 140px;
       }
     }
   }
