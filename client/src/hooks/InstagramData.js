@@ -26,8 +26,10 @@ export const useInstagramData = () => {
     const localObject = JSON.parse(localStorage.getItem("posts"));
     const now = new Date();
 
-    if (!localObject && now.getTime() > localObject.expire) {
-      localStorage.removeItem(posts);
+    if (!localObject) {
+      if (now.getTime() > localObject.expire) {
+        localStorage.removeItem(posts);
+      }
     }
 
     if (!localObject) {
