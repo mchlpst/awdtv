@@ -22,7 +22,6 @@ transporter.verify((err, succes) => {
 });
 
 sendEmailRouter.post("/", async (req, res, next) => {
-  console.log(req.body);
   const messageOwner = {
     from: "Website AWDTV <noreply@awdtv.nl>",
     // to: "secretariaat@awdtv.nl",
@@ -39,7 +38,7 @@ sendEmailRouter.post("/", async (req, res, next) => {
   };
   const messageSender = {
     from: "AW.DTV <noreply@awdtv.nl>",
-    to: req.body.data.email,
+    to: req.body.email,
     subject: "Je bericht is goed aangekomen.",
     html: `
 		<h1>Geluk!</h1>
