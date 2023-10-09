@@ -28,6 +28,8 @@ $component: "contact";
     text-shadow: 0px 0px 20px black;
     position: relative;
     z-index: 2;
+    @include font-semi-bold;
+    letter-spacing: 1px;
   }
   &__content-container {
     position: relative;
@@ -48,6 +50,8 @@ $component: "contact";
     margin-bottom: 20px;
     color: white;
     text-shadow: 0px 0px 20px black;
+    @include font-semi-bold;
+    letter-spacing: 1px;
   }
   &__address-wrapper {
     margin: 50px 0;

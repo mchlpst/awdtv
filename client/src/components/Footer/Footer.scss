@@ -43,6 +43,8 @@ $component: "footer";
     font-size: 26px;
     line-height: 1.6;
     padding-bottom: 15px;
+    @include font-semi-bold;
+    letter-spacing: 1px;
   }
   &__column-text {
     font-size: 16px;
@@ -131,6 +133,8 @@ $component: "footer";
     font-size: 24px;
     margin-bottom: 130px;
     text-align: center;
+    @include font-semi-bold;
+    letter-spacing: 1px;
   }
   &__bottom {
     display: flex;

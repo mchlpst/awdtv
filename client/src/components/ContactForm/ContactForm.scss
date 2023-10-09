@@ -10,6 +10,8 @@ $component: "contact-form";
   box-shadow: 0 0px 25px rgb(0, 0, 0, 0.4);
   &__title {
     margin-bottom: 15px;
+    @include font-bold;
+    letter-spacing: 1px;
   }
   &__label {
     display: block;
