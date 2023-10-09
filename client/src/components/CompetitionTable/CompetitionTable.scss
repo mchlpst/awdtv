@@ -1,6 +1,6 @@
-@import '../../scss/_index.scss';
+@import "../../scss/_index.scss";
 
-$component: 'competition-table';
+$component: "competition-table";
 
 .#{$component} {
   &__tab-container {
@@ -73,11 +73,11 @@ $component: 'competition-table';
     grid-template-columns: 30px 1fr 30px 40px 30px;
 
     &--red {
-      color: $color-red
+      color: $color-red;
     }
   }
   &__table-head-item {
-    font-weight: bold;
+    @include font-semi-bold;
     border-bottom: 1px solid $color-red;
     padding-bottom: 4px;
     margin-bottom: 10px;
@@ -133,7 +133,8 @@ $component: 'competition-table';
   &__results-team {
     font-size: 12px;
   }
-  &__results-team, &__results-score {
+  &__results-team,
+  &__results-score {
     min-width: 140px;
     width: 50%;
     text-align: center;
@@ -141,7 +142,7 @@ $component: 'competition-table';
   @media screen and (min-width: 1023px) and (max-width: 1200px) {
     &__selected-title {
       font-size: 18px;
-    line-height: 18px;
+      line-height: 18px;
     }
     &__tab {
       font-size: 12px;
@@ -150,7 +151,7 @@ $component: 'competition-table';
   @include sm {
     &__selected-title {
       font-size: 20px;
-    line-height: 20px;
+      line-height: 20px;
     }
   }
 }
