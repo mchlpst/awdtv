@@ -18,6 +18,8 @@ import Footer from "./components/Footer/Footer";
 import { useViewport } from "./hooks/useViewport";
 import MobileNavigation from "./components/MobileNavigation/MobileNavigation";
 
+import CustomPage from "./pages/CustomPage/CustomPage";
+
 const App = () => {
   const { isMobile, isTablet } = useViewport({
     mobile: 480,
@@ -32,6 +34,12 @@ const App = () => {
   useEffect(() => {
     if (context) {
       setGlobal(context._site);
+    }
+  }, [context]);
+
+  useEffect(() => {
+    if (context) {
+      console.log(context.allCalenders);
     }
   }, [context]);
 
@@ -68,6 +76,7 @@ const App = () => {
         <Route path="/nieuws" exact element={<AllNews />} />
         <Route path="/trainingsschema" exact element={<TrainingScheme />} />
         <Route path="/nieuws/:slug" exact element={<SlugPage />} />
+        <Route path="/schoolkorfbal-23" exact element={<CustomPage />} />
 
         <Route path="/:slug" element={<SlugPage />} />
       </Routes>

@@ -13,6 +13,7 @@ const port = process.env.PORT || 8080;
 
 // POST email contact
 app.use("/new-member", require("./routes/newMember"));
+app.use("/custom-form", require("./routes/sendCustomForm"));
 app.use("/send-contact-form", require("./routes/sendContactForm"));
 
 app.get("*", (req, res) => {
