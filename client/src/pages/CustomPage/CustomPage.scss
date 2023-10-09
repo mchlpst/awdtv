@@ -5,4 +5,7 @@ $component: "custom-page";
 .#{$component} {
   background-color: $color-red-dark;
   margin-bottom: -100px;
+  &__content {
+    width: 100%;
+  }
 }

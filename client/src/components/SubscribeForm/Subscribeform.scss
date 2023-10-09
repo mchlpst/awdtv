@@ -121,4 +121,22 @@ $component: "subscribe-form";
     font-size: 14px;
     margin-bottom: 14px;
   }
+  @include sm-md {
+    &__select {
+      &.select {
+        width: 100%;
+      }
+    }
+    &__row {
+      display: block;
+    }
+
+    &__fieldset {
+      @for $i from 1 through 12 {
+        &.col-#{$i} {
+          width: 100%;
+        }
+      }
+    }
+  }
 }
