@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { DatoContext } from "../../hooks/datoCMS";
 
 import { ReactComponent as Chevron } from "../../assets/svg/Chevron.svg";
@@ -52,13 +52,13 @@ const MainNavigation = (props) => {
     <nav
       className={`main-navigation ${isFixed ? "main-navigation--fixed" : ""}`}>
       <div className="main-navigation__grid">
-        <a href="/" className="main-navigation__logo-link">
+        <Link to="/" className="main-navigation__logo-link">
           <img
             src="/Logo.webp"
             alt="Logo AW.DTV"
             className="main-navigation__logo"
           />
-        </a>
+        </Link>
         {data &&
           data.map((item, index) => {
             return item.children.length === 0 ? (
