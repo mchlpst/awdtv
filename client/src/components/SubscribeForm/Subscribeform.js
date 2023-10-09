@@ -468,9 +468,11 @@ const SubscribeForm = () => {
             extraClass="subscribe-form__btn"
             type="solid"
             text="Nog een aanmelding"
-            clickAction={() => (
-              setFeedback("Verstuur"), setEmailSend(false), reset()
-            )}
+            clickAction={() => {
+              setFeedback("Verstuur");
+              setEmailSend(false);
+              reset();
+            }}
           />
         </div>
       )}

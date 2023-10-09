@@ -1,6 +1,6 @@
-@import '../../scss/_index.scss';
+@import "../../scss/_index.scss";
 
-$component: 'grid-images';
+$component: "grid-images";
 
 .#{$component} {
   width: 100%;
@@ -11,7 +11,7 @@ $component: 'grid-images';
   margin-bottom: 30px;
 
   &__tile-container {
-    position: relative;    
+    position: relative;
     overflow: hidden;
     &--main {
       grid-column-start: first;
@@ -49,8 +49,8 @@ $component: 'grid-images';
   }
   &__tile-context-container {
     position: absolute;
-    bottom:40px;
-    left:40px;
+    bottom: 40px;
+    left: 40px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -59,15 +59,14 @@ $component: 'grid-images';
     color: $color-white;
     font-size: 32px;
     line-height: 1.2;
-    font-family: $font-medium;
+    @include font-medium;
     text-shadow: 0px 0px 20px black;
-
   }
   &__date-container {
     background: $color-black-dark;
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     padding: 10px;
     text-align: center;
     display: flex;
@@ -77,8 +76,7 @@ $component: 'grid-images';
     font-size: 40px;
     line-height: 40px;
     color: $color-white;
-    font-family: $font-variable;
-    font-weight: 700;;
+    @include font-bold;
   }
   &__date-month {
     color: $color-white;
@@ -107,8 +105,7 @@ $component: 'grid-images';
       font-size: 48px;
       line-height: 1;
       color: $color-white;
-      font-family: $font-variable;
-      font-weight: 700;
+      @include font-bold;
     }
     span {
       color: $color-white;
@@ -127,7 +124,6 @@ $component: 'grid-images';
       height: 300px;
       &--third {
         background-color: $color-red-dark;
-
       }
     }
     &__tile-image {

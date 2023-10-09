@@ -64,7 +64,7 @@ $component: "main-navigation";
       z-index: 20;
     }
     &--secondair {
-      font-family: $font-thin;
+      @include font-extra-light;
       color: $color-white-dark;
       line-height: 24px;
       margin: 2.5px 0;
@@ -121,7 +121,7 @@ $component: "main-navigation";
       color: $color-red-dark;
       font-size: 220px;
       line-height: 1;
-      font-family: $font-bold;
+      @include font-bold;
       z-index: 1;
     }
   }
@@ -129,7 +129,7 @@ $component: "main-navigation";
     position: relative;
     z-index: 2;
     &__label {
-      font-family: $font-medium;
+      @include font-medium;
       color: $color-white;
       margin-bottom: 25px;
     }
@@ -156,7 +156,7 @@ $component: "main-navigation";
     background-color: transparent;
     color: $color-white;
     border: 0;
-    font-family: $font-regular;
+    @include font-regular;
     font-size: 12px;
     &::placeholder {
       color: rgba($color-white, 0.7);

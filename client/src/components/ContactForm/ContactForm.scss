@@ -1,4 +1,4 @@
-@import '../../scss/_index.scss';
+@import "../../scss/_index.scss";
 
 $component: "contact-form";
 
@@ -7,7 +7,7 @@ $component: "contact-form";
   margin: 0px auto 80px;
   padding: 40px;
   background-color: white;
-  box-shadow: 0 0px 25px rgb(0,0,0 ,0.4);
+  box-shadow: 0 0px 25px rgb(0, 0, 0, 0.4);
   &__title {
     margin-bottom: 15px;
   }
@@ -19,8 +19,8 @@ $component: "contact-form";
   &__row {
     display: flex;
     align-items: flex-start;
-    gap:20px;
-    width:100%; 
+    gap: 20px;
+    width: 100%;
   }
   &__btn {
     font-size: 16px;
@@ -38,7 +38,7 @@ $component: "contact-form";
     align-self: start;
     &::placeholder {
       font-size: 14px;
-      font-family: $font-regular;
+      @include font-regular;
     }
     &:focus {
       outline: 0px solid black;
@@ -65,7 +65,7 @@ $component: "contact-form";
     transition: all 0.3s ease-out;
     &::placeholder {
       font-size: 14px;
-      font-family: $font-regular;
+      @include font-regular;
     }
     &:focus {
       outline: 0px solid black;
@@ -82,7 +82,7 @@ $component: "contact-form";
   }
 
   &__fieldset {
-    border:0;
+    border: 0;
     margin: 20px 0;
     position: relative;
     display: grid;
@@ -91,15 +91,16 @@ $component: "contact-form";
   &__fieldset {
     @for $i from 1 through 12 {
       &.col-#{$i} {
-        width: calc(100% / 12 * #{$i})
+        width: calc(100% / 12 * #{$i});
       }
     }
   }
-  &__input-error, &__textarea-error {
+  &__input-error,
+  &__textarea-error {
     color: red;
     display: block;
     position: absolute;
-    top:75px;
+    top: 75px;
     font-size: 14px;
   }
   &__textarea-error {

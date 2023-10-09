@@ -66,7 +66,8 @@ const Footer = () => {
                     <a
                       href={data.facebookLink}
                       className="footer__social-link"
-                      target="_blank">
+                      target="_blank"
+                      rel="noreferrer">
                       <FacebookLogo className="footer__social-icons" />
                     </a>
                   )}
@@ -74,7 +75,8 @@ const Footer = () => {
                     <a
                       href={data.twitterLink}
                       className="footer__social-link"
-                      target="_blank">
+                      target="_blank"
+                      rel="noreferrer">
                       <TwitterLogo className="footer__social-icons" />
                     </a>
                   )}
@@ -82,7 +84,8 @@ const Footer = () => {
                     <a
                       href={data.instagramLink}
                       className="footer__social-link"
-                      target="_blank">
+                      target="_blank"
+                      rel="noreferrer">
                       <InstagramLogo className="footer__social-icons" />
                     </a>
                   )}
@@ -90,7 +93,8 @@ const Footer = () => {
                     <a
                       href={data.TiktokLink}
                       className="footer__social-link"
-                      target="_blank">
+                      target="_blank"
+                      rel="noreferrer">
                       <TiktokLogo className="footer__social-icons" />
                     </a>
                   )}
@@ -98,7 +102,8 @@ const Footer = () => {
                     <a
                       href={data.youtubeLink}
                       className="footer__social-link"
-                      target="_blank">
+                      target="_blank"
+                      rel="noreferrer">
                       <YoutubeLogo className="footer__social-icons" />
                     </a>
                   )}
@@ -155,6 +160,7 @@ const Footer = () => {
               Website door{" "}
               <a
                 target="_blank"
+                rel="noreferrer"
                 href="https://mediabirds.nl"
                 className="footer__credits-link">
                 Mediabirds

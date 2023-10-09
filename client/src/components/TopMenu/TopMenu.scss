@@ -1,16 +1,16 @@
-@import '../../scss/_index.scss';
+@import "../../scss/_index.scss";
 
-$component: 'top-menu';
+$component: "top-menu";
 
 .#{$component} {
   background-color: $color-red;
   &__grid {
     display: flex;
-  gap: 20px;
-  justify-content: flex-end;
-  padding: 0 30px;
-  margin: 0 auto;
-  max-width: $max-container-width;
+    gap: 20px;
+    justify-content: flex-end;
+    padding: 0 30px;
+    margin: 0 auto;
+    max-width: $max-container-width;
   }
 
   &__link {
@@ -18,6 +18,6 @@ $component: 'top-menu';
     text-decoration: none;
     font-size: 13px;
     line-height: 50px;
-    font-family: $font-thin;
+    @include font-extra-light;
   }
 }

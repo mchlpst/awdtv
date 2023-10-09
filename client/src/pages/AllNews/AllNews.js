@@ -45,7 +45,7 @@ const AllNews = () => {
 
   const handleFilter = (tag) => {
     if (activeTags.includes(tag)) {
-      setActiveTags((current) => current.filter((tags) => tags != tag));
+      setActiveTags((current) => current.filter((tags) => tags !== tag));
     } else {
       setActiveTags((current) => [...current, tag]);
     }

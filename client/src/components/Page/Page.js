@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { WhatsappShareButton } from "react-share";
-import { SocialIcon } from "react-social-icons";
+// import { WhatsappShareButton } from "react-share";
+// import { SocialIcon } from "react-social-icons";
 
 import { useViewport } from "../../hooks/useViewport";
 
@@ -11,12 +11,12 @@ import Hero from "../Hero/Hero";
 const Page = (props) => {
   const [content, setContent] = useState(null);
   const [switchValue, setSwitchValue] = useState(true);
-  let shareUrl = "";
+  // let shareUrl = "";
 
   useEffect(() => {
     setContent(props.data);
     if (props.data) {
-      shareUrl = window.location.origin + "/" + props.data.slug;
+      // shareUrl = window.location.origin + "/" + props.data.slug;
     }
   }, [props.data]);
 
@@ -96,7 +96,8 @@ const Page = (props) => {
                         <a
                           href={content.attachments[0].url}
                           alt="download link"
-                          target="_blank">
+                          target="_blank"
+                          rel="noreferrer">
                           Download PDF.
                         </a>
                       </p>
@@ -112,12 +113,20 @@ const Page = (props) => {
               )}
               {content.attachments[0].filename.includes(".png") && (
                 <section className="page__content">
-                  <img src={content.attachments[0].url} width="100%" />
+                  <img
+                    src={content.attachments[0].url}
+                    width="100%"
+                    alt={content.attachments[0].alt}
+                  />
                 </section>
               )}
               {content.attachments[0].filename.includes(".jpg") && (
                 <section className="page__content">
-                  <img src={content.attachments[0].url} width="100%" />
+                  <img
+                    src={content.attachments[0].url}
+                    width="100%"
+                    alt={content.attachments[0].alt}
+                  />
                 </section>
               )}
             </>

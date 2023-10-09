@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { DatoContext } from "../../hooks/datoCMS";
 
-import { ReactComponent as Magnifyglass } from "../../assets/svg/Magnifyglass.svg";
+// import { ReactComponent as Magnifyglass } from "../../assets/svg/Magnifyglass.svg";
 
 import "./MobileNavigation.scss";
 

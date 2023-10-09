@@ -38,6 +38,7 @@ const ContactPage = () => {
       fullscreenControl: false,
       mapTypeControl: false,
     });
+    // eslint-disable-next-line
     const marker = new AdvancedMarkerElement({
       map: map,
       position: position,

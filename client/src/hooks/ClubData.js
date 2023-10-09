@@ -113,6 +113,7 @@ export const ClubProvider = ({ children }) => {
       .catch((error) => {
         console.log(error);
       });
+    // eslint-disable-next-line
   }, []);
   return (
     <ClubDataContext.Provider value={clubData}>
