@@ -29,9 +29,17 @@ const AllArticles = () => {
                   <article className="all-articles__article" key={index}>
                     <Link to={article.slug} className="all-articles__link">
                       <img
-                        srcSet={article.visual.responsiveImage.srcSet}
+                        srcSet={
+                          article.visual
+                            ? article.visual.responsiveImage.srcSet
+                            : "/img/background-fallback.jpeg"
+                        }
                         className="all-articles__article-image"
-                        alt={article.visual.responsiveImage.alt}
+                        alt={
+                          article.visual
+                            ? article.visual.responsiveImage.alt
+                            : "Een wedstrijd van AW.DTV op het veld van AW.DTV"
+                        }
                       />
                       <div className="all-articles__text-container">
                         <h4 className="all-articles__title">{article.title}</h4>

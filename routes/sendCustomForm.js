@@ -30,42 +30,42 @@ sendEmailRouter.post("/", async (req, res, next) => {
     html: `
   	<h1>Aanmelding Schoolkorfbal</h1>
   	<p>Hallo Jet,<br/><br/>Er is een nieuwe aanmelding voor schoolkorbal hieronder zijn de gegevens.</p>
-    <table border="0" style="border: 1px solid black;" cellspacing="15" cellpadding="15>
+    <table border="0">
       <tr>
-        <td>Geslacht</td>
-        <td>${req.body.gender}</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">Geslacht</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">${req.body.gender}</td>
       </tr>
       <tr>
-        <td>Naam</td>
-        <td>${req.body.firstName} ${req.body.lastName}</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">Naam</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">${req.body.firstName} ${req.body.lastName}</td>
       </tr>
       <tr>
-        <td>Telefoonnummer</td>
-        <td>${req.body.phone}</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">Telefoonnummer</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">${req.body.phone}</td>
       </tr>
       <tr>
-        <td>Email</td>
-        <td>${req.body.email}</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">Email</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">${req.body.email}</td>
       </tr>
       <tr>
-        <td>Telefoonnummer</td>
-        <td>${req.body.phone}</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">Telefoonnummer</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">${req.body.phone}</td>
       </tr>
       <tr>
-        <td>School</td>
-        <td>${req.body.school}</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">School</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">${req.body.school}</td>
       </tr>
       <tr>
-        <td>Groep</td>
-        <td>${req.body.group}</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">Groep</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">${req.body.group}</td>
       </tr>
       <tr>
-        <td>Naam ouder</td>
-        <td>${req.body.parent}</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">Naam ouder</td>
+        <td style="padding: 10px 15px; border: 1px solid black;">${req.body.parent}</td>
       </tr>
     </table>
 
-    Met vriendelijke groet,<br>Website AW.DTV
+   <p> Met vriendelijke groet,<br>Website AW.DTV</p>
   	`,
   };
 

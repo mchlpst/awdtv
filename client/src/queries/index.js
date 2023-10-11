@@ -8,6 +8,7 @@ import ContactPage from "./pages/ContactPage";
 import AllArticles from "./models/AllArticles";
 import AllTeams from "./models/AllTeams";
 import AllPages from "./models/AllPages";
+import AllCalenders from "./models/AllCalenders";
 import Footer from "./elements/Footer";
 import General from "./General";
 
@@ -21,6 +22,7 @@ export const query = `{
   ${TrainingsScheme}
   ${AllTeams}
   ${AllPages}
+  ${AllCalenders}
   ${ContactPage}
   ${Footer}
   ${General}
