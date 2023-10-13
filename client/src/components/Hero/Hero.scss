@@ -1,0 +1,53 @@
+@import "../../scss/_index.scss";
+
+$component: "hero";
+
+.#{$component} {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  &__title-container {
+    position: absolute;
+    bottom: 100px;
+    width: 100%;
+    text-align: center;
+    &--left {
+      text-align: left;
+      left: 30px;
+      bottom: 30px;
+    }
+  }
+  &__title {
+    color: $color-white;
+    text-shadow: 0px 0px 20px black;
+    font-size: 40px;
+    line-height: 1.3;
+    @include font-semi-bold;
+    letter-spacing: 1px;
+  }
+  &__subtitle {
+    margin: 30px;
+    font-size: 18px;
+    line-height: 1.2;
+    color: white;
+    text-shadow: 0px 0px 20px black;
+  }
+  @include sm {
+    height: 200px;
+    margin-top: -25px;
+    &__title-container {
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+    &__title {
+      font-size: 26px;
+      line-height: 1.2;
+    }
+  }
+}

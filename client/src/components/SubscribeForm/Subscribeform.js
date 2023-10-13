@@ -19,22 +19,7 @@ const SubscribeForm = () => {
 
   const onSubmit = (data) => {
     setFeedback("verzenden...");
-    // const onSubmit = () => {
-    // const data = {
-    //   gender: "M",
-    //   firstName: "Robin",
-    //   lastName: "van Dongen",
-    //   address: "Beethovenstraat 12",
-    //   postalCode: "1045 HD",
-    //   city: "Amsterdam",
-    //   birthdate: "2015-07-24",
-    //   custody: true,
-    //   memberPhone: "0634332345",
-    //   memberEmail: "Robin@gmail.com",
-    //   class: "pupillen",
-    //   custodyPhone: "0611223456",
-    //   custodyEmail: "Ouder@gmail.com",
-    // };
+
     fetch("/new-member", {
       method: "POST",
       headers: { "Content-type": "application/json" },
@@ -468,9 +453,11 @@ const SubscribeForm = () => {
             extraClass="subscribe-form__btn"
             type="solid"
             text="Nog een aanmelding"
-            clickAction={() => (
-              setFeedback("Verstuur"), setEmailSend(false), reset()
-            )}
+            clickAction={() => {
+              setFeedback("Verstuur");
+              setEmailSend(false);
+              reset();
+            }}
           />
         </div>
       )}

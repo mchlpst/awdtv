@@ -16,15 +16,13 @@ const TeamPage = (props) => {
 
   useEffect(() => {
     if (context) {
-      console.log(context.allTeams, team);
       let selectedTeam = context.allTeams.find((item) => {
         return item.link === team;
       });
       setData(selectedTeam);
-      console.log(data);
     }
     // eslint-disable-next-line
-  }, [context]);
+  }, [context, team]);
 
   return (
     <main>
@@ -97,11 +95,15 @@ export default TeamPage;
 const Player = (props) => {
   return (
     <div className="team-page__player">
-      <img
-        className="team-page__player-image"
-        src={props.content.photo.responsiveImage.srcSet}
-        alt={props.content.photo.responsiveImage.alt}
-      />
+      {props.content.photo ? (
+        <img
+          className="team-page__player-image"
+          src={props.content.photo.responsiveImage.srcSet}
+          alt={props.content.photo.responsiveImage.alt}
+        />
+      ) : (
+        <div className="team-page__player-image--fallback"></div>
+      )}
       <div className="team-page__player-info-container">
         <div className="team-page__player-number">{props.content.number}</div>
         <div
@@ -114,11 +116,15 @@ const Player = (props) => {
 const Staff = (props) => {
   return (
     <div className="team-page__staff">
-      <img
-        className="team-page__staff-image"
-        src={props.content.photo.responsiveImage.srcSet}
-        alt={props.content.photo.responsiveImage.alt}
-      />
+      {props.content.photo ? (
+        <img
+          className="team-page__staff-image"
+          src={props.content.photo.responsiveImage.srcSet}
+          alt={props.content.photo.responsiveImage.alt}
+        />
+      ) : (
+        <div className="team-page__staff-image--fallback"></div>
+      )}
       <div className="team-page__staff-info-container">
         <div className="team-page__staff-name">{props.content.name}</div>
         <div className="team-page__staff-function">

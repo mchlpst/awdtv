@@ -38,6 +38,7 @@ const ContactPage = () => {
       fullscreenControl: false,
       mapTypeControl: false,
     });
+    // eslint-disable-next-line
     const marker = new AdvancedMarkerElement({
       map: map,
       position: position,
@@ -52,53 +53,55 @@ const ContactPage = () => {
     <main className="contact">
       {data && (
         <>
-          <section className="contact__background">
-            <img
-              src={data.background.responsiveImage.srcSet}
-              alt={data.background.responsiveImage.alt}
-            />
-          </section>
-          <section className="contact__title-container">
-            <h1 className="contact__title">Contact</h1>
-          </section>
-          <section className="contact__content-container">
-            <Grid>
-              <Column col={6}>
-                {data.handigeLinks && (
-                  <div className="contact__links-wrapper">
-                    <h2 className="contact__links-title">Handige Links</h2>
-                    <div className="contact__links-container">
-                      {data.handigeLinks.map((item, index) => {
-                        return (
-                          <div className="contact__links" key={index}>
-                            <Button
-                              text={item.linkLabel}
-                              href={item.url ? item.url : null}
-                              to={item.link ? item.link.slug : null}
-                              target="_blank"
-                              type="solid"
-                            />
-                          </div>
-                        );
-                      })}
+          <section className="contact__wrapper">
+            <section className="contact__background">
+              <img
+                src={data.background.responsiveImage.srcSet}
+                alt={data.background.responsiveImage.alt}
+              />
+            </section>
+            <section className="contact__title-container">
+              <h1 className="contact__title">Contact</h1>
+            </section>
+            <section className="contact__content-container">
+              <Grid>
+                <Column col={6}>
+                  {data.handigeLinks && (
+                    <div className="contact__links-wrapper">
+                      <h2 className="contact__links-title">Handige Links</h2>
+                      <div className="contact__links-container">
+                        {data.handigeLinks.map((item, index) => {
+                          return (
+                            <div className="contact__links" key={index}>
+                              <Button
+                                text={item.linkLabel}
+                                href={item.url ? item.url : null}
+                                to={item.link ? item.link.slug : null}
+                                target="_blank"
+                                type="solid"
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
-                )}
-                {data.address && (
-                  <div className="contact__address-wrapper">
-                    <h2 className="contact__address-title">
-                      Adres zaal & veld
-                    </h2>
-                    <div
-                      className="contact__address"
-                      dangerouslySetInnerHTML={address(data.address)}></div>
-                  </div>
-                )}
-              </Column>
-              <Column col={6}>
-                <ContactForm />
-              </Column>
-            </Grid>
+                  )}
+                  {data.address && (
+                    <div className="contact__address-wrapper">
+                      <h2 className="contact__address-title">
+                        Adres zaal & veld
+                      </h2>
+                      <div
+                        className="contact__address"
+                        dangerouslySetInnerHTML={address(data.address)}></div>
+                    </div>
+                  )}
+                </Column>
+                <Column col={6}>
+                  <ContactForm />
+                </Column>
+              </Grid>
+            </section>
           </section>
           <section className="contact__map-container">
             <div className="contact__map" id="map"></div>

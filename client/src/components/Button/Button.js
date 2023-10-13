@@ -13,18 +13,18 @@ const Button = (props) => {
           href={href}
           role="button"
           target={target}
-          className={"btn" + ` btn--${type}`}>
+          className={`btn btn--${type}`}>
           {text}
         </a>
       )}
       {to && (
-        <Link to={to} target={target} className={"btn" + ` btn--${type}`}>
+        <Link to={to} target={target} className={`btn btn--${type}`}>
           {text}
         </Link>
       )}
       {!href && !to && (
         <button
-          className={"btn" + ` btn--${type} ${extraClass}`}
+          className={`btn btn--${type} ${extraClass}`}
           onClick={clickAction}>
           {text}
         </button>

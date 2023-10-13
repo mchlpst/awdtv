@@ -5,7 +5,10 @@ $component: 'homepage';
 .#{$component} {
   margin-top: 30px;
   margin-bottom: -100px;
-  @include sm-md {
-    margin-top: 15px;
+  @include md {
+    margin-top: 75px;
+  }
+  @include sm {
+    margin-top: 0px;
   }
 }

@@ -1,4 +1,4 @@
-@import '../../scss/_index.scss';
+@import "../../scss/_index.scss";
 
 $component: "contact";
 
@@ -8,10 +8,10 @@ $component: "contact";
   margin-bottom: -100px;
   &__background {
     position: absolute;
-    top:0;
-    left:0;
-    width: 100vw;
-    height: 100vh;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 1;
     img {
       width: 100%;
@@ -28,15 +28,30 @@ $component: "contact";
     text-shadow: 0px 0px 20px black;
     position: relative;
     z-index: 2;
+    @include font-semi-bold;
+    letter-spacing: 1px;
   }
   &__content-container {
     position: relative;
     z-index: 5;
   }
-  &__links-title, &__address-title {
+  &__links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__links {
+    a {
+      display: block;
+    }
+  }
+  &__links-title,
+  &__address-title {
     margin-bottom: 20px;
     color: white;
     text-shadow: 0px 0px 20px black;
+    @include font-semi-bold;
+    letter-spacing: 1px;
   }
   &__address-wrapper {
     margin: 50px 0;

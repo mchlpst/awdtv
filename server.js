@@ -1,16 +1,19 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+require("dotenv").config();
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(__dirname + "/client/build"));
 const route = express.Router();
 const port = process.env.PORT || 8080;
 
 // POST email contact
 app.use("/new-member", require("./routes/newMember"));
+app.use("/custom-form", require("./routes/sendCustomForm"));
 app.use("/send-contact-form", require("./routes/sendContactForm"));
 
 app.get("*", (req, res) => {

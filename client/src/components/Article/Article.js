@@ -6,10 +6,8 @@ import "./Article.scss";
 
 const Article = (props) => {
   const content = props.data;
-  console.log(content);
   const shareUrl = window.location.origin + "/" + content.slug;
 
-  console.log(shareUrl);
   return (
     <section className="article">
       <div className="article__header">

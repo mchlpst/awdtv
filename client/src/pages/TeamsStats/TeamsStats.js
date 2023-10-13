@@ -5,6 +5,7 @@ import Grid from "../../layout/Grid/Grid";
 import Column from "../../layout/Column/Column";
 
 import "./TeamsStats.scss";
+import Hero from "../../components/Hero/Hero";
 const TeamsStats = () => {
   const clubData = useContext(ClubDataContext);
 
@@ -20,7 +21,7 @@ const TeamsStats = () => {
   }, [context]);
 
   useEffect(() => {
-    if (clubData) {
+    if (clubData && data) {
       if (clubData.standings) {
         let res = clubData.standings.res;
         const teamName = res.map((item, index) => ({
@@ -124,7 +125,7 @@ const TeamsStats = () => {
       }
     }
     // eslint-disable-next-line
-  }, [clubData]);
+  }, [clubData, data]);
 
   useEffect(() => {
     setAllFetched(false);
@@ -137,21 +138,7 @@ const TeamsStats = () => {
     <main className="teams-overview">
       {data && (
         <>
-          <section className="teams-overview__hero">
-            <div className="teams-overview__background-container">
-              <img
-                src="/img/background-fallback.jpeg"
-                alt="foto van het veld"
-                className="teams-overview__background"
-              />
-            </div>
-            <div className="teams-overview__content">
-              <h1 className="teams-overview__title">{data.pageTitle}</h1>
-              <div
-                className="teams-overview__subtitle"
-                dangerouslySetInnerHTML={{ __html: data.pageSubtitle }}></div>
-            </div>
-          </section>
+          <Hero title={data.pageTitle} description={data.pageSubtitle} />
           <Grid>
             <Column col={12}>
               <section className="teams-overview__card-container">
@@ -172,18 +159,24 @@ export default TeamsStats;
 
 const Card = (item) => {
   const [activeTab, setActiveTab] = useState("standings");
+  const [background, setBackground] = useState("");
 
   const handleTabs = (tab) => {
     setActiveTab(tab);
   };
+  useEffect(() => {
+    if (item.item.background) {
+      setBackground(item.item.background.responsiveImage);
+    }
+  }, [item]);
   return (
     <div className="teams-overview__card" key={item.item.name}>
       <div className="teams-overview__card-header">
         <div className="teams-overview__card-background">
           {item.item.background ? (
             <img
-              srcSet={item.item.background.responsiveImage.srcSet}
-              alt={item.item.background.responsiveImage.alt}
+              srcSet={background.srcSet}
+              alt={background.alt}
               className="teams-overview__card-background-image"
             />
           ) : (
@@ -235,7 +228,7 @@ const Card = (item) => {
             <StaningsTable data={item.item.standings} />
           )}
           {activeTab === "program" && <ProgramTable data={item.item.program} />}
-          {/* {activeTab === "results" && <ResultsTable data={item.item.results} />} */}
+          {activeTab === "results" && <ResultsTable data={item.item.results} />}
         </div>
       </div>
     </div>
@@ -304,8 +297,8 @@ const ProgramTable = (props) => {
         <div className="teams-overview__program-table-col"></div>
         <div className="teams-overview__program-table-col">Uit</div>
       </div>
-      {props.data.map((game) => (
-        <div className="teams-overview__program-table-row">
+      {props.data.map((game, index) => (
+        <div className="teams-overview__program-table-row" key={index}>
           <div className="teams-overview__program-table-col">
             {new Date(game.date).toLocaleString("nl-NL", {
               weekday: "short",
@@ -334,6 +327,55 @@ const ProgramTable = (props) => {
           </div>
         </div>
       ))}
+    </div>
+  );
+};
+const ResultsTable = (props) => {
+  const wordBreak = (word) => {
+    let index = word.indexOf("/");
+    if (index !== -1) {
+      let wrappedWord = word.slice(0, index) + " " + word.slice(index);
+      return wrappedWord;
+    } else {
+      return word;
+    }
+  };
+  return (
+    <div className="teams-overview__results-table">
+      {props.data &&
+        props.data.map((match) => (
+          <div className="teams-overview__results-match">
+            <div className="teams-overview__results-date">
+              {new Date(match.date).toLocaleString("nl-NL", {
+                weekday: "short",
+                day: "numeric",
+                month: "numeric",
+              })}
+            </div>
+            {match.stats ? (
+              <div className="teams-overview__results-game">
+                <div className="teams-overview__results-score">
+                  {match.stats.home.score}
+                </div>
+                <div className="teams-overview__results-score">
+                  {match.stats.away.score}
+                </div>
+              </div>
+            ) : (
+              <div className="teams-overview__results-game">
+                {match.status.game}
+              </div>
+            )}
+            <div className="teams-overview__results-game">
+              <div className="teams-overview__results-team">
+                {wordBreak(match.teams.home.name)}
+              </div>
+              <div className="teams-overview__results-team">
+                {wordBreak(match.teams.away.name)}
+              </div>
+            </div>
+          </div>
+        ))}
     </div>
   );
 };

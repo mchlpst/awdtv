@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { DatoContext } from "./hooks/datoCMS";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.scss";
@@ -8,12 +9,16 @@ import TopMenu from "./components/TopMenu/Topmenu";
 import HomePage from "./pages/HomePage/HomePage";
 import SlugPage from "./pages/SlugPage/SlugPage";
 import TeamPage from "./pages/TeamPage/TeamPage";
+import TrainingScheme from "./pages/TrainingScheme/TrainingScheme";
 import TeamsStats from "./pages/TeamsStats/TeamsStats";
 import BecomeMember from "./pages/BecomeMember/BecomeMember";
 import ContactPage from "./pages/ContactPage/ContactPage";
+import AllNews from "./pages/AllNews/AllNews";
 import Footer from "./components/Footer/Footer";
 import { useViewport } from "./hooks/useViewport";
 import MobileNavigation from "./components/MobileNavigation/MobileNavigation";
+
+import CustomPage from "./pages/CustomPage/CustomPage";
 
 const App = () => {
   const { isMobile, isTablet } = useViewport({
@@ -22,6 +27,28 @@ const App = () => {
     laptop: 1024,
     desktop: 1200,
   });
+
+  const context = useContext(DatoContext);
+  const [global, setGlobal] = useState(null);
+
+  useEffect(() => {
+    if (context) {
+      setGlobal(context._site);
+    }
+  }, [context]);
+
+  useEffect(() => {
+    if (global) {
+      let link = document.querySelector("link[rel~='icon']");
+
+      if (!link) {
+        link = document.createElement("link");
+        link.rel = "icon";
+        document.head.appendChild(link);
+      }
+      link.href = global.favicon.responsiveImage.src + "?v=2";
+    }
+  }, [global]);
 
   return (
     <div className="App">
@@ -40,6 +67,10 @@ const App = () => {
         <Route path="/lid-worden" exact element={<BecomeMember />} />
         <Route path="/contact" exact element={<ContactPage />} />
         <Route path="/overzicht" exact element={<TeamsStats />} />
+        <Route path="/nieuws" exact element={<AllNews />} />
+        <Route path="/trainingsschema" exact element={<TrainingScheme />} />
+        <Route path="/nieuws/:slug" exact element={<SlugPage />} />
+        <Route path="/schoolkorfbal-23" exact element={<CustomPage />} />
 
         <Route path="/:slug" element={<SlugPage />} />
       </Routes>

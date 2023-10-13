@@ -1,4 +1,4 @@
-@import '../../scss/_index.scss';
+@import "../../scss/_index.scss";
 
 $component: "subscribe-form";
 
@@ -7,7 +7,7 @@ $component: "subscribe-form";
   margin: 50px auto;
   padding: 40px;
   background-color: white;
-  box-shadow: 0 0px 25px rgb(0,0,0 ,0.4);
+  box-shadow: 0 0px 25px rgb(0, 0, 0, 0.4);
   &__label {
     display: block;
     width: 100%;
@@ -16,8 +16,8 @@ $component: "subscribe-form";
   &__row {
     display: flex;
     align-items: flex-start;
-    gap:20px;
-    width:100%; 
+    gap: 20px;
+    width: 100%;
   }
   &__btn {
     font-size: 16px;
@@ -35,7 +35,7 @@ $component: "subscribe-form";
     align-self: start;
     &::placeholder {
       font-size: 14px;
-      font-family: $font-regular;
+      @include font-regular;
     }
     &:focus {
       outline: 0px solid black;
@@ -61,11 +61,11 @@ $component: "subscribe-form";
     color: red;
     display: block;
     position: absolute;
-    top:75px;
+    top: 75px;
     min-width: 200px;
   }
   &__fieldset {
-    border:0;
+    border: 0;
     margin: 20px 0;
     position: relative;
     display: grid;
@@ -90,7 +90,7 @@ $component: "subscribe-form";
   &__fieldset {
     @for $i from 1 through 12 {
       &.col-#{$i} {
-        width: calc(100% / 12 * #{$i})
+        width: calc(100% / 12 * #{$i});
       }
     }
   }
@@ -115,10 +115,28 @@ $component: "subscribe-form";
   &__finished-title {
     text-align: center;
     margin-bottom: 20px;
+    @include font-semi-bold;
   }
   &__finished-text {
     font-size: 14px;
-      margin-bottom: 14px;
+    margin-bottom: 14px;
+  }
+  @include sm-md {
+    &__select {
+      &.select {
+        width: 100%;
+      }
+    }
+    &__row {
+      display: block;
+    }
 
+    &__fieldset {
+      @for $i from 1 through 12 {
+        &.col-#{$i} {
+          width: 100%;
+        }
+      }
+    }
   }
 }

@@ -8,7 +8,7 @@ export const useViewport = ({ mobile, tablet, laptop, desktop }) => {
   let mobileBreakpoint = mobile;
   let tabletBreakpoint = tablet;
   let laptopBreakpoint = laptop;
-  let desktopBreakpoint = desktop;
+  // let desktopBreakpoint = desktop;
 
   const update = () => {
     const windowWidth = window.innerWidth;
@@ -37,6 +37,7 @@ export const useViewport = ({ mobile, tablet, laptop, desktop }) => {
     return () => {
       window.removeEventListener("resize", update);
     };
+    // eslint-disable-next-line
   }, []);
 
   return { isMobile, isTablet, isDesktop, isLaptop };
