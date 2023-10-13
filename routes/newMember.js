@@ -27,8 +27,8 @@ sendEmailRouter.post("/", async (req, res, next) => {
 
   const messageOwner = {
     from: "Website AWDTV <noreply@awdtv.nl>",
-    // to: "secretariaat@awdtv.nl",
-    to: "michael@weareonetribe.nl",
+    to: "secretariaat@awdtv.nl",
+    // to: "michael@weareonetribe.nl",
     subject: "Nieuw lidmaatschap",
     attachments: {
       path: `./PDF/${req.body.firstName}-${req.body.lastName}.pdf`,
