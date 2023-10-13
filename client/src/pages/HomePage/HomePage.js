@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { DatoContext } from "../../hooks/datoCMS";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import ComponentLoader from "../../components/ComponentLoader/ComponentLoader";
 import AllArticles from "../../components/AllArticles/AllArticles";
@@ -11,6 +11,7 @@ import Column from "../../layout/Column/Column";
 
 import "./HomePage.scss";
 import InstagramBlock from "../../components/InstagramBlock/InstagramBlock";
+import Calendar from "../../components/Calendar/Calendar";
 
 const HomePage = () => {
   const [data, setData] = useState(null);
@@ -27,7 +28,7 @@ const HomePage = () => {
   return (
     <main className="homepage">
       {data && (
-        <>
+        <HelmetProvider>
           <Helmet>
             <title>
               {global.globalSeo.siteName}
@@ -47,6 +48,7 @@ const HomePage = () => {
             </Column>
             <Column col={4}>
               <CompetitionTable />
+              <Calendar />
             </Column>
           </Grid>
           <Grid>
@@ -54,7 +56,7 @@ const HomePage = () => {
               <InstagramBlock />
             </Column>
           </Grid>
-        </>
+        </HelmetProvider>
       )}
     </main>
   );

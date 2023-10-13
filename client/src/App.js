@@ -38,12 +38,6 @@ const App = () => {
   }, [context]);
 
   useEffect(() => {
-    if (context) {
-      console.log(context.allCalenders);
-    }
-  }, [context]);
-
-  useEffect(() => {
     if (global) {
       let link = document.querySelector("link[rel~='icon']");
 

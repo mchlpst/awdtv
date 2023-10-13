@@ -1,0 +1,30 @@
+@import "../../scss/_index.scss";
+
+$component: "calendar";
+
+.#{$component} {
+  margin-top: 60px;
+  &__title {
+    text-align: center;
+    padding: 10px 0;
+    @include font-semi-bold;
+    letter-spacing: 1px;
+    border-bottom: 1px solid $color-red;
+  }
+  &__date-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+  }
+  &__date,
+  &__time {
+    color: $color-red;
+    font-size: 20px;
+  }
+  &__upcoming-title {
+    font-size: 24px;
+    text-align: center;
+    margin: 15px 0;
+    @include font-bold;
+  }
+}
