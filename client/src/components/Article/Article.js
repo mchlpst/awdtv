@@ -13,8 +13,17 @@ const Article = (props) => {
       <div className="article__header">
         <div className="article__visual-container">
           <img
-            srcSet={content.visual.responsiveImage.srcSet}
-            alt={content.visual.responsiveImage.alt}
+            srcSet={
+              content.visual
+                ? content.visual.responsiveImage.srcSet
+                : "/img/background-fallback.jpeg"
+            }
+            className="all-articles__article-image"
+            alt={
+              content.visual
+                ? content.visual.responsiveImage.alt
+                : "Een wedstrijd van AW.DTV op het veld van AW.DTV"
+            }
           />
         </div>
         <div className="article__header-text-container">
