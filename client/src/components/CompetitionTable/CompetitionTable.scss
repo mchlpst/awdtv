@@ -84,6 +84,9 @@ $component: "competition-table";
   }
   &__table-body-item {
     padding: 5px 0;
+    span {
+      margin-left: 10px;
+    }
   }
   &__program-item {
     font-size: 14px;

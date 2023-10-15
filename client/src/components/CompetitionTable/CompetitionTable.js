@@ -255,6 +255,9 @@ const CompetitionTable = () => {
                       </div>
                       <div className="competition-table__table-body-item">
                         {wordBreak(item.team.name)}
+                        {item.stats.position === 1 &&
+                          item.team.name.includes("AWDTV") &&
+                          teamProgram.length === 0 && <span>🏆</span>}
                       </div>
                       <div className="competition-table__table-body-item">
                         {item.stats.played}
