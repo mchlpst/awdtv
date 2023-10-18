@@ -57,7 +57,7 @@ const Calendar = () => {
   useEffect(() => {
     if (data) {
       const activeMonth = activeDate.getMonth();
-      const upcomingEvents = data.filter((item) => {
+      const upcomingEvents = data.slice(1).filter((item) => {
         const event = new Date(item.eventDate);
         const eventMonth = event.getMonth();
         return eventMonth === activeMonth;
@@ -82,6 +82,9 @@ const Calendar = () => {
         <div className="calendar__wrapper">
           <h2 className="calendar__title">Agenda</h2>
           <div className="calendar__upcoming-wrapper">
+            <span className="calendar__upcoming-subtitle">
+              Eerst volgende evenement
+            </span>
             <h2 className="calendar__upcoming-title">{data[0].title}</h2>
             <p className="calendar__date-container">
               <span className="calendar__date">
@@ -105,7 +108,7 @@ const Calendar = () => {
               <button
                 onClick={() => changeMonth(+1)}
                 className="calendar__navigation-button">
-                <ChevronRight className="calendar__navigation__icon" />
+                <ChevronRight className="calendar__navigation-icon" />
               </button>
             </div>
             {events.length > 0 ? (
@@ -114,18 +117,23 @@ const Calendar = () => {
                   <li key={event.eventDate} className="calendar__event-item">
                     <details className="calendar__details">
                       <summary className="calendar__summary">
-                        <h4 className="calendar__event-title">{event.title}</h4>
-                        <span className="calendar__event-date">
-                          {getDateNoYear(event.eventDate)}
-                        </span>
+                        <h4 className="calendar__event-title">
+                          <span className="calendar__event-date">
+                            {getDateNoYear(event.eventDate)}
+                          </span>
+                          {event.title}
+                        </h4>
+                        <ChevronLeft className="calendar__summary-icon" />
                       </summary>
                       <div className="calendar__details-container">
-                        <p className="calendar__location">
-                          Locatie: {event.location}
-                        </p>
-                        <p className="calendar__time">
-                          Tijdstip: {getTime(event.eventDate)}
-                        </p>
+                        <div className="calendar__details-content">
+                          <p className="calendar__event-location">
+                            <span>Locatie:</span> {event.location}
+                          </p>
+                          <p className="calendar__event-time">
+                            <span>Tijdstip:</span> {getTime(event.eventDate)}
+                          </p>
+                        </div>
                         {event.articleLink && (
                           <Button
                             type="solid"
@@ -138,7 +146,7 @@ const Calendar = () => {
                 ))}
               </ul>
             ) : (
-              <div className="calender__no-event">
+              <div className="calendar__no-event">
                 Er zijn geen activiteiten deze maand
               </div>
             )}
