@@ -63,7 +63,6 @@ const Calendar = () => {
         return eventMonth === activeMonth;
       });
       setEvents(upcomingEvents);
-      console.log(upcomingEvents);
     }
   }, [activeDate, data]);
 
