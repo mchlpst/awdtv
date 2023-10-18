@@ -16,6 +16,7 @@ const Page = (props) => {
   useEffect(() => {
     setContent(props.data);
     if (props.data) {
+      console.log(props.data);
       // shareUrl = window.location.origin + "/" + props.data.slug;
     }
   }, [props.data]);
@@ -111,7 +112,8 @@ const Page = (props) => {
                   )}
                 </section>
               )}
-              {content.attachments[0].filename.includes(".png") && (
+              {content.attachments[0].filename.includes(".png") ||
+              content.attachments[0].filename.includes(".jpg") ? (
                 <section className="page__content">
                   <img
                     src={content.attachments[0].url}
@@ -119,14 +121,13 @@ const Page = (props) => {
                     alt={content.attachments[0].alt}
                   />
                 </section>
-              )}
-              {content.attachments[0].filename.includes(".jpg") && (
+              ) : (
                 <section className="page__content">
-                  <img
-                    src={content.attachments[0].url}
-                    width="100%"
-                    alt={content.attachments[0].alt}
-                  />
+                  <a href={content.attachments[0].url}>
+                    {content.attachementLinkText
+                      ? content.attachementLinkText
+                      : "Download het bestand"}
+                  </a>
                 </section>
               )}
             </>
