@@ -48,7 +48,7 @@ const HomePage = () => {
             </Column>
             <Column col={4}>
               <CompetitionTable />
-              {/* <Calendar /> */}
+              <Calendar />
             </Column>
           </Grid>
           <Grid>
