@@ -84,8 +84,16 @@ const AllNews = () => {
                         </div>
                         <img
                           className="news__card-background"
-                          srcSet={article.visual.responsiveImage.srcSet}
-                          alt={article.visual.responsiveImage.alt}
+                          srcSet={
+                            article.visual
+                              ? article.visual.responsiveImage.srcSet
+                              : "/img/background-fallback.jpeg"
+                          }
+                          alt={
+                            article.visual
+                              ? article.visual.responsiveImage.alt
+                              : "Een wedstrijd van AW.DTV op het veld van AW.DTV"
+                          }
                         />
                       </div>
                     </Link>
