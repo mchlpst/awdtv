@@ -113,3 +113,6 @@ $component: "calendar";
     padding: 10px 15px;
   }
 }
+details summary::-webkit-details-marker {
+  display: none;
+}
