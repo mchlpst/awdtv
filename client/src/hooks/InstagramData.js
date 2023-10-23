@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export const useInstagramData = () => {
   const [mediaId, setMediaId] = useState({});
   const [posts, setPosts] = useState([]);
+  localStorage.removeItem(posts);
 
   useEffect(() => {
     const fields = ["id", "caption"];
