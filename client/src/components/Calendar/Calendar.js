@@ -75,9 +75,6 @@ const Calendar = () => {
     const formattedTime = `${hours}:${minutes}`;
     return formattedTime;
   };
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
   return (
     <section className="calendar">
       <h2 className="calendar__title">Agenda</h2>
