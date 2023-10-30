@@ -77,9 +77,9 @@ const Calendar = () => {
   };
   return (
     <section className="calendar">
-      {data ? (
+      <h2 className="calendar__title">Agenda</h2>
+      {data && data.length > 0 ? (
         <div className="calendar__wrapper">
-          <h2 className="calendar__title">Agenda</h2>
           <div className="calendar__upcoming-wrapper">
             <span className="calendar__upcoming-subtitle">
               Eerst volgende evenement
@@ -152,8 +152,8 @@ const Calendar = () => {
           </div>
         </div>
       ) : (
-        <div className="calender__no-data">
-          Er zijn geen opkomende evenementen
+        <div className="calendar__no-data">
+          Er zijn geen aankomende evenementen
         </div>
       )}
     </section>

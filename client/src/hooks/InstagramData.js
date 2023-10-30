@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export const useInstagramData = () => {
   const [mediaId, setMediaId] = useState({});
   const [posts, setPosts] = useState([]);
+  localStorage.removeItem(posts);
 
   useEffect(() => {
     const fields = ["id", "caption"];
@@ -23,12 +24,12 @@ export const useInstagramData = () => {
 
   useEffect(() => {
     const fields = ["id", "media_type", "media_url", "username", "timestamp"];
-    const localObject = JSON.parse(localStorage.getItem("posts"));
+    const localObject = JSON.parse(sessionStorage.getItem("posts"));
     const now = new Date();
 
     if (localObject) {
       if (now.getTime() > localObject.expire) {
-        localStorage.removeItem(posts);
+        sessionStorage.removeItem(posts);
       }
     }
 
@@ -62,7 +63,7 @@ export const useInstagramData = () => {
             expire: expire,
           };
 
-          localStorage.setItem("posts", JSON.stringify(storage));
+          sessionStorage.setItem("posts", JSON.stringify(storage));
           setPosts(result);
         });
       }

@@ -13,6 +13,7 @@ allPages {
       url
     }
     content
+    attachementLinkText
     _modelApiKey
 }
 `;

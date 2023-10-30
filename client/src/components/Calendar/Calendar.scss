@@ -112,4 +112,10 @@ $component: "calendar";
   &__no-event {
     padding: 10px 15px;
   }
+  &__no-data {
+    margin-top: 15px;
+  }
+}
+details summary::-webkit-details-marker {
+  display: none;
 }
