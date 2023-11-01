@@ -11,7 +11,9 @@ export const ClubProvider = ({ children }) => {
   let fromMm = String(today.getMonth() + 1).padStart(2, "0");
   let fromYyyy = today.getFullYear();
 
-  let future = new Date(today.setMonth(today.getMonth() + 6));
+  // Er zit een bug in de call van de KNKV. Daardoor toont hij het goede schema niet als het groter is dan 2 maanden.
+  // Voor nu is de '2' de fix.
+  let future = new Date(today.setMonth(today.getMonth() + 2));
 
   let toDd = String(future.getDate()).padStart(2, "0");
   let toMm = String(future.getMonth() + 1).padStart(2, "0");
