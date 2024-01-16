@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_page_components_grid_images",
+  "info": {
+    "displayName": "Grid images",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "MainBlockTitle": {
+      "type": "string"
+    },
+    "MainBlockLink": {
+      "type": "string"
+    }
+  }
+}
