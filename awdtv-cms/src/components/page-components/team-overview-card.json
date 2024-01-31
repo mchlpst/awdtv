@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_page_components_team_overview_cards",
+  "info": {
+    "displayName": "Team Overview Card",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "teamName": {
+      "type": "string"
+    },
+    "TeamPhoto": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

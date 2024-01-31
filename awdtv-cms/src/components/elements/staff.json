@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_elements_staff",
+  "info": {
+    "displayName": "Staff"
+  },
+  "options": {},
+  "attributes": {
+    "FirstName": {
+      "type": "string"
+    },
+    "LastName": {
+      "type": "string"
+    },
+    "Photo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

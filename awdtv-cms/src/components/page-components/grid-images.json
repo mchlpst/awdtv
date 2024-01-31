@@ -2,15 +2,59 @@
   "collectionName": "components_page_components_grid_images",
   "info": {
     "displayName": "Grid images",
-    "icon": "grid"
+    "icon": "grid",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "MainBlockTitle": {
       "type": "string"
     },
-    "MainBlockLink": {
+    "MainBlockImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "SecondairBlockTitle": {
       "type": "string"
+    },
+    "SecondairBlockImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "TetiairBlockImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "MainLink": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.link"
+    },
+    "SecondairLink": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.link"
     }
   }
 }

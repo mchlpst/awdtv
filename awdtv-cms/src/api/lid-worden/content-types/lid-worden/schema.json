@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "lid_wordens",
+  "info": {
+    "singularName": "lid-worden",
+    "pluralName": "lid-wordens",
+    "displayName": "Lid worden"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Slug": {
+      "type": "string"
+    },
+    "Background": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

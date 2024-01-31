@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_page_components_training_scheme_blocks",
+  "info": {
+    "displayName": "Training Scheme Block",
+    "icon": "clock"
+  },
+  "options": {},
+  "attributes": {
+    "SchemeType": {
+      "type": "string"
+    },
+    "Content": {
+      "type": "blocks"
+    }
+  }
+}

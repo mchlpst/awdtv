@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_elements_players",
+  "info": {
+    "displayName": "Player",
+    "icon": "shirt"
+  },
+  "options": {},
+  "attributes": {
+    "FirstName": {
+      "type": "string"
+    },
+    "LastName": {
+      "type": "string"
+    },
+    "Number": {
+      "type": "integer"
+    },
+    "Photo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

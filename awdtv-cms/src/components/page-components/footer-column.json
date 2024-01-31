@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_page_components_footer_columns",
+  "info": {
+    "displayName": "Footer Column"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Text": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "standard"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
+    },
+    "Links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.link",
+      "max": 5
+    }
+  }
+}

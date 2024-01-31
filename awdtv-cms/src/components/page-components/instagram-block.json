@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_page_components_instagram_blocks",
+  "info": {
+    "displayName": "Instagram Block",
+    "icon": "manyWays",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Layout": {
+      "type": "enumeration",
+      "enum": [
+        "Table",
+        "Slider"
+      ],
+      "required": true
+    }
+  }
+}
