@@ -1,0 +1,34 @@
+{
+  "kind": "singleType",
+  "collectionName": "training_schemes",
+  "info": {
+    "singularName": "training-scheme",
+    "pluralName": "training-schemes",
+    "displayName": "Training scheme"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "string"
+    },
+    "Title": {
+      "type": "string"
+    },
+    "Visual": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Content": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-components.training-scheme-block",
+      "max": 2
+    }
+  }
+}

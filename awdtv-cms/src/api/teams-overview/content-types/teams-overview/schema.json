@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "teams_overviews",
+  "info": {
+    "singularName": "teams-overview",
+    "pluralName": "teams-overviews",
+    "displayName": "Teams overview"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "string"
+    },
+    "PageTitle": {
+      "type": "string"
+    },
+    "PageSubtitle": {
+      "type": "string"
+    },
+    "Teams": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-components.team-overview-card"
+    }
+  }
+}

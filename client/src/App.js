@@ -13,6 +13,7 @@ import TrainingScheme from "./pages/TrainingScheme/TrainingScheme";
 import TeamsStats from "./pages/TeamsStats/TeamsStats";
 import BecomeMember from "./pages/BecomeMember/BecomeMember";
 import ContactPage from "./pages/ContactPage/ContactPage";
+import AllImages from "./pages/AllImages/AllImages";
 import AllNews from "./pages/AllNews/AllNews";
 import Footer from "./components/Footer/Footer";
 import { useViewport } from "./hooks/useViewport";
@@ -71,6 +72,7 @@ const App = () => {
         <Route path="/trainingsschema" exact element={<TrainingScheme />} />
         <Route path="/nieuws/:slug" exact element={<SlugPage />} />
         <Route path="/schoolkorfbal-23" exact element={<CustomPage />} />
+        <Route path="/alle-fotos" exact element={<AllImages />} />
 
         <Route path="/:slug" element={<SlugPage />} />
       </Routes>

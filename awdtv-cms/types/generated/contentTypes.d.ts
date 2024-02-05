@@ -909,6 +909,49 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   };
 }
 
+export interface ApiCalendarCalendar extends Schema.CollectionType {
+  collectionName: 'calendars';
+  info: {
+    singularName: 'calendar';
+    pluralName: 'calendars';
+    displayName: 'Calendar';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    EventDate: Attribute.DateTime;
+    Title: Attribute.String;
+    Location: Attribute.String;
+    Article: Attribute.Relation<
+      'api::calendar.calendar',
+      'oneToOne',
+      'api::article.article'
+    >;
+    Page: Attribute.Relation<
+      'api::calendar.calendar',
+      'oneToOne',
+      'api::page.page'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::calendar.calendar',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::calendar.calendar',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiContactContact extends Schema.SingleType {
   collectionName: 'contacts';
   info: {
@@ -1136,6 +1179,78 @@ export interface ApiTeamTeam extends Schema.CollectionType {
   };
 }
 
+export interface ApiTeamsOverviewTeamsOverview extends Schema.SingleType {
+  collectionName: 'teams_overviews';
+  info: {
+    singularName: 'teams-overview';
+    pluralName: 'teams-overviews';
+    displayName: 'Teams overview';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    slug: Attribute.String;
+    PageTitle: Attribute.String;
+    PageSubtitle: Attribute.String;
+    Teams: Attribute.Component<'page-components.team-overview-card', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::teams-overview.teams-overview',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::teams-overview.teams-overview',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTrainingSchemeTrainingScheme extends Schema.SingleType {
+  collectionName: 'training_schemes';
+  info: {
+    singularName: 'training-scheme';
+    pluralName: 'training-schemes';
+    displayName: 'Training scheme';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    slug: Attribute.String;
+    Title: Attribute.String;
+    Visual: Attribute.Media;
+    Content: Attribute.Component<
+      'page-components.training-scheme-block',
+      true
+    > &
+      Attribute.SetMinMax<{
+        max: 2;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::training-scheme.training-scheme',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::training-scheme.training-scheme',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1157,6 +1272,7 @@ declare module '@strapi/types' {
       'plugin::menus.menu': PluginMenusMenu;
       'plugin::menus.menu-item': PluginMenusMenuItem;
       'api::article.article': ApiArticleArticle;
+      'api::calendar.calendar': ApiCalendarCalendar;
       'api::contact.contact': ApiContactContact;
       'api::event.event': ApiEventEvent;
       'api::footer.footer': ApiFooterFooter;
@@ -1164,6 +1280,8 @@ declare module '@strapi/types' {
       'api::lid-worden.lid-worden': ApiLidWordenLidWorden;
       'api::page.page': ApiPagePage;
       'api::team.team': ApiTeamTeam;
+      'api::teams-overview.teams-overview': ApiTeamsOverviewTeamsOverview;
+      'api::training-scheme.training-scheme': ApiTrainingSchemeTrainingScheme;
     }
   }
 }

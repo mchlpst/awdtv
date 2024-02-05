@@ -1,7 +1,7 @@
 const Image = require("../elements/Image");
 
 module.exports = `
-allArticles(orderBy: _publishedAt_DESC) {
+allArticles(orderBy: _publishedAt_DESC, first: 100) {
   slug
   title
   date
