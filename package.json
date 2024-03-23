@@ -1,36 +1,39 @@
 {
-  "name": "aw.dtv",
-  "version": "1.0.0",
-  "engines": {
-    "node": "18.x"
-  },
-  "description": "The website of AW.DTV",
-  "main": "server.js",
+  "name": "awdtv-cms",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
   "scripts": {
-    "test": "test",
-    "start": "node server.js",
-    "dev": "nodemon server.js",
-    "heroku-postbuild": "cd awdtv-cms && npm install && npm run build"
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mchlpst/awdtv.git"
-  },
-  "author": "Michael Post",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mchlpst/awdtv/issues"
-  },
-  "homepage": "https://github.com/mchlpst/awdtv#readme",
   "dependencies": {
-    "body-parser": "^1.20.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "nodemailer": "^6.9.3",
-    "pdf-lib": "^1.17.1"
+    "@ckeditor/strapi-plugin-ckeditor": "^0.0.10",
+    "@strapi/plugin-cloud": "4.17.0",
+    "@strapi/plugin-graphql": "4.17.0",
+    "@strapi/plugin-i18n": "4.17.0",
+    "@strapi/plugin-seo": "^1.9.8",
+    "@strapi/plugin-users-permissions": "4.17.0",
+    "@strapi/strapi": "4.17.0",
+    "better-sqlite3": "8.6.0",
+    "pg": "^8.11.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "5.3.4",
+    "strapi-plugin-menus": "^1.6.0",
+    "styled-components": "5.3.3"
   },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
-  }
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "4417e5c9-3bcc-4c9b-b83c-30ccae5235ac"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
 }
