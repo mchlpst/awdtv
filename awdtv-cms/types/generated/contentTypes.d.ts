@@ -879,7 +879,6 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   };
   attributes: {
     Title: Attribute.String;
-    Tag: Attribute.String;
     Data: Attribute.Date;
     Visual: Attribute.Media;
     Slug: Attribute.String & Attribute.Required & Attribute.Unique;
@@ -891,6 +890,9 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           preset: 'rich';
         }
       >;
+    Tag: Attribute.Enumeration<
+      ['Van de voorzitter', 'Teamnieuws', 'De Kantine', 'Clubnieuws', 'Overig']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

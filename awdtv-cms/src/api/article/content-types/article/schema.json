@@ -15,9 +15,6 @@
     "Title": {
       "type": "string"
     },
-    "Tag": {
-      "type": "string"
-    },
     "Data": {
       "type": "date"
     },
@@ -45,6 +42,16 @@
         "preset": "rich"
       },
       "customField": "plugin::ckeditor.CKEditor"
+    },
+    "Tag": {
+      "type": "enumeration",
+      "enum": [
+        "Van de voorzitter",
+        "Teamnieuws",
+        "De Kantine",
+        "Clubnieuws",
+        "Overig"
+      ]
     }
   }
 }
