@@ -6,25 +6,39 @@ import "./TopMenu.scss";
 
 const TopMenu = () => {
   const [data, setData] = useState(null);
-  const context = useContext(DatoContext);
 
   useEffect(() => {
-    if (context) {
-      setData(context.topNavigation);
-    }
-  }, [context]);
+    fetch(
+      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/menus/2?nested&populate=*`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "*/*",
+          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res.data.attributes);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <nav className="top-menu">
       <div className="top-menu__grid">
         {data &&
-          data.content.map((item, index) => {
+          data.items.data.map((item, index) => {
             return (
               <Link
                 key={index}
-                to={item.url || item.link.slug}
+                to={item.attributes.url}
                 className="top-menu__link">
-                {item.linkLabel}
+                {item.attributes.title}
               </Link>
             );
           })}
