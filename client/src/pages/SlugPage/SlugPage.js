@@ -7,25 +7,57 @@ import ComponentLoader from "../../components/ComponentLoader/ComponentLoader";
 
 const SlugPage = () => {
   const { slug } = useParams();
+  console.log(slug);
 
-  const [data, setData] = useState(null);
-  const context = useContext(DatoContext);
+  const [article, setArticle] = useState(null);
+  const [page, setPage] = useState(null);
 
   useEffect(() => {
-    if (context) {
-      if (context.allArticles || context.allPages) {
-        let articleItem = context.allArticles.find(
-          (article) => article.slug === slug
-        );
-        let pageItem = context.allPages.find((page) => page.slug === slug);
-        setData({ articleItem, pageItem });
+    fetch(
+      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/articles?filters[Slug][$eq]=/${slug}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "*/*",
+          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+        },
       }
-    }
-    // eslint-disable-next-line
-  }, [context, slug]);
-
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setArticle(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [slug]);
+  useEffect(() => {
+    fetch(
+      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/pages?filters[Slug][$eq]=/${slug}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "*/*",
+          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setPage(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [slug]);
+  console.log(article, page);
   return (
-    <main className="slug-page">{data && <ComponentLoader data={data} />}</main>
+    <main className="slug-page">
+      {article && article.length > 0 && <ComponentLoader article={article} />}
+      {page && page.length > 0 && <ComponentLoader page={page} />}
+    </main>
   );
 };
 export default SlugPage;

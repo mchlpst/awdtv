@@ -7,6 +7,7 @@ import "./Article.scss";
 const Article = (props) => {
   const content = props.data;
   const shareUrl = window.location.origin + "/" + content.slug;
+  console.log(content);
 
   return (
     <section className="article">
@@ -27,8 +28,8 @@ const Article = (props) => {
           />
         </div>
         <div className="article__header-text-container">
-          <h1 className="article__title">{content.title}</h1>
-          <p className="article__date">{content.date}</p>
+          <h1 className="article__title">{content.Title}</h1>
+          <p className="article__date">{content.Data}</p>
           <div className="article__share-container">
             <WhatsappShareButton size={32} url={shareUrl}>
               <SocialIcon
@@ -42,7 +43,7 @@ const Article = (props) => {
       </div>
       <article
         className="article__content"
-        dangerouslySetInnerHTML={{ __html: content.content }}
+        dangerouslySetInnerHTML={{ __html: content.Content }}
       />
     </section>
   );

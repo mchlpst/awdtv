@@ -36,18 +36,10 @@ const Page = (props) => {
       {content && (
         <>
           <Hero
-            title={content.title}
-            date={content.date}
-            imageSrc={
-              content.visual !== null
-                ? content.visual.responsiveImage.src
-                : null
-            }
-            imageAlt={
-              content.visual !== null
-                ? content.visual.responsiveImage.alt
-                : null
-            }
+            title={content.Title}
+            date={content.publishedAt}
+            imageSrc={null}
+            imageAlt={null}
             page
           />
           {props.dualContent !== undefined ? (
@@ -79,7 +71,7 @@ const Page = (props) => {
           ) : (
             <article
               className="page__content"
-              dangerouslySetInnerHTML={{ __html: content.content }}
+              dangerouslySetInnerHTML={{ __html: content.Content }}
             />
           )}
           {content.attachments && content.attachments.length > 0 && (

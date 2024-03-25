@@ -6,9 +6,9 @@ import Article from "../Article/Article";
 import Page from "../Page/Page";
 
 const ComponentLoader = (props) => {
-  const content = props.data.content;
-  const articleItem = props.data.articleItem;
-  const pageItem = props.data.pageItem;
+  const content = props.content ? props.content : null;
+  const articleItem = props.article ? props.article[0].attributes : null;
+  const pageItem = props.page ? props.page[0].attributes : null;
 
   return (
     <>
@@ -22,10 +22,8 @@ const ComponentLoader = (props) => {
           }
           return null;
         })}
-      {articleItem && articleItem._modelApiKey === "article" && (
-        <Article data={articleItem} />
-      )}
-      {pageItem && pageItem._modelApiKey === "page" && <Page data={pageItem} />}
+      {articleItem && <Article data={articleItem} />}
+      {pageItem && <Page data={pageItem} />}
     </>
   );
 };

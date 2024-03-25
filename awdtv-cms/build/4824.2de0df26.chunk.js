@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkawdtv_cms=self.webpackChunkawdtv_cms||[]).push([[4824],{34824:(t,d,e)=>{e.r(d),e.d(d,{default:()=>n});const n={"plugin.description.long":"Tilf\xF8jer GraphQL endpoint med standard API metoder.","plugin.description.short":"Tilf\xF8jer GraphQL endpoint med standard API metoder.","plugin.name":"GraphQL"}}}]);
