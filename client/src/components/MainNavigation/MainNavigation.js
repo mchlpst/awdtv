@@ -28,12 +28,27 @@ const MainNavigation = (props) => {
       setIsFixed(false);
     }
   };
-
   useEffect(() => {
-    if (context) {
-      setData(context.allMainNavigations);
-    }
-  }, [context]);
+    fetch(
+      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/menus/1?nested&populate=*`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "*/*",
+          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res.data.attributes);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   useEffect(() => {
     handlePosition();
     window.addEventListener("scroll", handlePosition);
@@ -60,19 +75,19 @@ const MainNavigation = (props) => {
           />
         </Link>
         {data &&
-          data.map((item, index) => {
-            return item.children.length === 0 ? (
+          data.items.data.map((item, index) => {
+            return item.attributes.children.data.length === 0 ? (
               <NavLink
                 key={index}
-                to={item.link}
+                to={item.attributes.url}
                 className="main-navigation__link main-navigation__link--primair">
-                {item.label}
+                {item.attributes.title}
               </NavLink>
             ) : (
               <DropdownSection
                 key={index}
-                label={item.label}
-                body={item.children}
+                label={item.attributes.title}
+                body={item.attributes.children.data}
               />
             );
           })}
@@ -111,7 +126,11 @@ const DropdownSection = (props) => {
         <div className="main-navigation__dropdown-section__container">
           {props.body.map((item, index) => {
             return (
-              <DropDown key={index} body={item.children} label={item.label} />
+              <DropDown
+                key={index}
+                body={item.attributes.children.data}
+                label={item.attributes.title}
+              />
             );
           })}
         </div>
@@ -132,9 +151,9 @@ const DropDown = (props) => {
           return (
             <NavLink
               key={index}
-              to={item.link}
+              to={item.attributes.url}
               className="main-navigation__link main-navigation__link--secondair">
-              {item.label}
+              {item.attributes.title}
             </NavLink>
           );
         })}

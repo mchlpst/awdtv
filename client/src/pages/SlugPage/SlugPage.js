@@ -7,7 +7,6 @@ import ComponentLoader from "../../components/ComponentLoader/ComponentLoader";
 
 const SlugPage = () => {
   const { slug } = useParams();
-  console.log(slug);
 
   const [article, setArticle] = useState(null);
   const [page, setPage] = useState(null);
@@ -52,7 +51,6 @@ const SlugPage = () => {
         console.log(error);
       });
   }, [slug]);
-  console.log(article, page);
   return (
     <main className="slug-page">
       {article && article.length > 0 && <ComponentLoader article={article} />}
