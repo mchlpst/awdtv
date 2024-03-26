@@ -1071,6 +1071,7 @@ export interface ApiHomeHome extends Schema.SingleType {
     singularName: 'home';
     pluralName: 'homes';
     displayName: 'Home';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1079,6 +1080,7 @@ export interface ApiHomeHome extends Schema.SingleType {
     Content: Attribute.DynamicZone<
       ['page-components.grid-images', 'page-components.instagram-block']
     >;
+    seo: Attribute.Component<'shared.seo'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
