@@ -33,73 +33,75 @@ const GridImages = (props) => {
   });
   const content = props.data;
   const clubData = useContext(ClubDataContext);
+  console.log(content);
 
   useEffect(() => {
-    if (content.articles.length !== 0) {
+    if (content.MainLink.article.data) {
       setMainBlock({
-        title: content.articles[0].title,
-        slug: content.articles[0].slug,
+        title: content.MainLink.article.data.attributes.Title,
+        slug: content.MainLink.article.data.attributes.Slug,
         label: "Bekijk artikel",
-        src: content.articles[0].visual.responsiveImage.src,
-        alt: content.articles[0].visual.responsiveImage.alt,
-        srcSet: content.articles[0].visual.responsiveImage.srcSet,
+        src: content.MainLink.article.data.attributes.Visual.data.attributes
+          .formats.large.url,
+        alt: content.MainLink.article.data.attributes.Visual.data.attributes
+          .alterantiveText,
       });
-      if (content.articles.length > 1) {
+      if (content.SecondairLink.article.data) {
         setSecondairBlock({
-          title: content.articles[1].title,
-          slug: content.articles[1].slug,
-          label: "Bekijk artikel",
-          src: content.articles[1].visual.responsiveImage.src,
-          alt: content.articles[1].visual.responsiveImage.alt,
-          srcSet: content.articles[1].visual.responsiveImage.srcSet,
+          title: content.SecondairBlockTitle,
+          slug: content.SecondairLink.Url,
+          label: content.SecondairLink.LinkLabel,
+          src: content.SecondairBlockImage
+            ? content.SecondairBlockImage.data.attributes.formats.large.url
+            : null,
+          alt: content.SecondairBlockImage
+            ? content.SecondairBlockImage.data.attributes.alternativeText
+            : null,
+          // title: content.articles[1].title,
+          // slug: content.articles[1].slug,
+          // label: "Bekijk artikel",
+          // src: content.articles[1].visual.responsiveImage.src,
+          // alt: content.articles[1].visual.responsiveImage.alt,
+          // srcSet: content.articles[1].visual.responsiveImage.srcSet,
         });
       } else {
         setSecondairBlock({
-          title: content.secondairBlockTitle,
-          slug: content.secondairBlockLink,
-          label: content.secondairBlockLinkLabel,
-          src: content.secondairBlockImage
-            ? content.secondairBlockImage.responsiveImage.src
+          title: content.SecondairBlockTitle,
+          slug: content.SecondairLink.Url,
+          label: content.SecondairLink.LinkLabel,
+          src: content.SecondairBlockImage
+            ? content.SecondairBlockImage.data.attributes.formats.large.url
             : null,
-          alt: content.secondairBlockImage
-            ? content.secondairBlockImage.responsiveImage.alt
-            : null,
-          srcSet: content.secondairBlockImage
-            ? content.secondairBlockImage.responsiveImage.srcSet
+          alt: content.SecondairBlockImage
+            ? content.SecondairBlockImage.data.attributes.alternativeText
             : null,
         });
       }
     } else {
       setMainBlock({
-        title: content.mainBlockTitle,
-        slug: content.mainBlockLink,
-        label: content.mainBlockLinkLabel,
+        title: content.MainBlockTitle,
+        slug: content.MainLink.Url,
+        label: content.MainLink.LinkLabel,
         src: content.mainBlockImage
-          ? content.mainBlockImage.responsiveImage.src
+          ? content.MainBlockImage.data.attributes.formats.large.url
           : null,
         alt: content.mainBlockImage
-          ? content.mainBlockImage.responsiveImage.alt
-          : null,
-        srcSet: content.mainBlockImage
-          ? content.mainBlockImage.responsiveImage.srcSet
+          ? content.mainBlockImage.data.attributes.alternativeText
           : null,
       });
       setSecondairBlock({
-        title: content.secondairBlockTitle,
-        slug: content.secondairBlockLink,
-        label: content.secondairBlockLinkLabel,
-        src: content.secondairBlockImage
-          ? content.secondairBlockImage.responsiveImage.src
+        title: content.SecondairBlockTitle,
+        slug: content.SecondairLink.Url,
+        label: content.SecondairLink.LinkLabel,
+        src: content.SecondairBlockImage
+          ? content.SecondairBlockImage.data.attributes.formats.large.url
           : null,
-        alt: content.secondairBlockImage
-          ? content.secondairBlockImage.responsiveImage.alt
-          : null,
-        srcSet: content.secondairBlockImage
-          ? content.secondairBlockImage.responsiveImage.srcSet
+        alt: content.SecondairBlockImage
+          ? content.SecondairBlockImage.data.attributes.alternativeText
           : null,
       });
     }
-  }, [content]);
+  }, []);
 
   useEffect(() => {
     if (clubData && clubData.program && clubData.program.res) {
@@ -159,7 +161,7 @@ const GridImages = (props) => {
             <SwiperSlide>
               <div className="grid-images__tile-container">
                 <div className="grid-images__tile-image">
-                  <img srcSet={mainBlock.srcSet} alt={mainBlock.alt} />
+                  <img srcSet={mainBlock.src} alt={mainBlock.alt} />
                 </div>
                 <div className="grid-images__tile-context-container">
                   {mainBlock.title && (
@@ -180,10 +182,7 @@ const GridImages = (props) => {
             <SwiperSlide>
               <div className="grid-images__tile-container">
                 <div className="grid-images__tile-image">
-                  <img
-                    srcSet={secondairBlock.srcSet}
-                    alt={secondairBlock.alt}
-                  />
+                  <img srcSet={secondairBlock.src} alt={secondairBlock.alt} />
                 </div>
                 <div className="grid-images__tile-context-container">
                   {secondairBlock.title && (
@@ -263,7 +262,7 @@ const GridImages = (props) => {
           {mainBlock && (
             <div className="grid-images__tile-container grid-images__tile-container--main">
               <div className="grid-images__tile-image">
-                <img srcSet={mainBlock.srcSet} alt={mainBlock.alt} />
+                <img srcSet={mainBlock.src} alt={mainBlock.alt} />
               </div>
               <div className="grid-images__tile-context-container">
                 {mainBlock.title && (
@@ -282,7 +281,7 @@ const GridImages = (props) => {
           {secondairBlock && (
             <div className="grid-images__tile-container grid-images__tile-container--second">
               <div className="grid-images__tile-image">
-                <img srcSet={secondairBlock.srcSet} alt={secondairBlock.alt} />
+                <img srcSet={secondairBlock.src} alt={secondairBlock.alt} />
               </div>
               <div className="grid-images__tile-context-container">
                 {secondairBlock.title && (

@@ -16,30 +16,39 @@ import Calendar from "../../components/Calendar/Calendar";
 const HomePage = () => {
   const [data, setData] = useState(null);
   const [global, setGlobal] = useState(null);
-  const context = useContext(DatoContext);
 
   useEffect(() => {
-    if (context) {
-      setData(context.home);
-      setGlobal(context._site);
-    }
-  }, [context]);
+    fetch(
+      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/home?populate[0]=Content&populate[1]=Content.MainLink&populate[2]=Content.MainLink.article&populate[3]=Content.SecondairLink&populate[4]=Content.SecondairLink.article&populate[5]=Content.MainLink.page&populate[6]=Content.SecondairLink.page&populate[7]=Content.SecondairBlockImage&populate[8]=seo&populate[9]=Content.MainLink.article.Visual&populate[10]=Content.SecondairLink.article.Visual&populate[11]=Content.SecondairLink.page.Visual&populate[12]=Content.MainLink.page.Visual&populate[13]=Content.MainBlockImage`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "*/*",
+          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res.data.attributes);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <main className="homepage">
       {data && (
         <HelmetProvider>
           <Helmet>
-            <title>
-              {global.globalSeo.siteName}
-              {global.globalSeo.titleSuffix
-                ? ` ${global.globalSeo.titleSuffix}`
-                : ""}
-            </title>
+            <title>{data.seo.metaTitle}</title>
+            <meta name="description" content={data.seo.metaDescription} />
           </Helmet>
           <Grid>
             <Column col={12}>
-              <ComponentLoader data={data} />
+              <ComponentLoader content={data.Content} />
             </Column>
           </Grid>
           <Grid>

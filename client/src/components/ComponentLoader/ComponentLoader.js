@@ -9,12 +9,11 @@ const ComponentLoader = (props) => {
   const content = props.content ? props.content : null;
   const articleItem = props.article ? props.article[0].attributes : null;
   const pageItem = props.page ? props.page[0].attributes : null;
-
   return (
     <>
       {content &&
         content.map((comp, index) => {
-          if (comp._modelApiKey === "image_grid") {
+          if (comp.__component === "page-components.grid-images") {
             return <GridImages key={index} data={comp} />;
           }
           if (comp._modelApiKey === "instagram_block") {
