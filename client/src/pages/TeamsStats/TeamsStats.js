@@ -15,10 +15,25 @@ const TeamsStats = () => {
   const [stats, setStats] = useState([]);
 
   useEffect(() => {
-    if (context) {
-      setData(context.teamsOverview);
-    }
-  }, [context]);
+    fetch(
+      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/teams-overview?populate[0]=Teams&populate[1]=Teams.TeamPhoto`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "*/*",
+          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   useEffect(() => {
     if (clubData && data) {
@@ -72,11 +87,11 @@ const TeamsStats = () => {
         });
         teamName.forEach((obj) => {
           if (data) {
-            let cards = data.cards;
+            let cards = data.attributes.Teams;
             if (cards) {
               cards.forEach((card) => {
                 if (obj.team.name === card.teamName) {
-                  obj.team.background = card.teamPhoto;
+                  obj.team.background = card.TeamPhoto;
                 }
               });
             }
@@ -138,7 +153,10 @@ const TeamsStats = () => {
     <main className="teams-overview">
       {data && (
         <>
-          <Hero title={data.pageTitle} description={data.pageSubtitle} />
+          <Hero
+            title={data.attributes.PageTitle}
+            description={data.attributes.PageSubtitle}
+          />
           <Grid>
             <Column col={12}>
               <section className="teams-overview__card-container">
@@ -164,9 +182,10 @@ const Card = (item) => {
   const handleTabs = (tab) => {
     setActiveTab(tab);
   };
+
   useEffect(() => {
     if (item.item.background) {
-      setBackground(item.item.background.responsiveImage);
+      setBackground(item.item.background.data.attributes);
     }
   }, [item]);
   return (
@@ -175,8 +194,8 @@ const Card = (item) => {
         <div className="teams-overview__card-background">
           {item.item.background ? (
             <img
-              srcSet={background.srcSet}
-              alt={background.alt}
+              src={background.url}
+              alt={background.alternativeText}
               className="teams-overview__card-background-image"
             />
           ) : (

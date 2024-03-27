@@ -33,7 +33,6 @@ const GridImages = (props) => {
   });
   const content = props.data;
   const clubData = useContext(ClubDataContext);
-  console.log(content);
 
   useEffect(() => {
     if (content.MainLink.article.data) {
