@@ -11,23 +11,41 @@ const BecomeMember = () => {
   const context = useContext(DatoContext);
 
   useEffect(() => {
-    if (context) {
-      setData(context.lidWorden);
-    }
-  }, [context]);
+    fetch(
+      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/lid-worden?populate[0]=Background`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "*/*",
+          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res.data.attributes);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <main className="become-member">
       {data && (
-        <section className="become-member__background">
-          <img
-            src={data.background.responsiveImage.srcSet}
-            alt={data.background.responsiveImage.alt}
-          />
-        </section>
+        <>
+          <section className="become-member__background">
+            <img
+              src={data.Background.data.attributes.url}
+              alt={data.Background.data.attributes.alternativeText}
+            />
+          </section>
+          <section className="become-member__title-container">
+            <h1 className="become-member__title">{data.Title}</h1>
+          </section>
+        </>
       )}
-      <section className="become-member__title-container">
-        <h1 className="become-member__title">Lid Worden</h1>
-      </section>
+
       <section className="become-member__content">
         <Grid>
           <Column col={12}>
