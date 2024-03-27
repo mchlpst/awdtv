@@ -13,7 +13,7 @@ module.exports = [
             "data:",
             "blob:",
             "dl.airtable.com",
-            "yourBucketName.s3.yourRegion.amazonaws.com",
+            "strapi-aws-s3-awdtv-images.s3.eu-central-1.amazonaws.com",
           ],
           "media-src": [
             "'self'",
