@@ -133,10 +133,18 @@ export interface PageComponentsTrainingSchemeBlock extends Schema.Component {
   info: {
     displayName: 'Training Scheme Block';
     icon: 'clock';
+    description: '';
   };
   attributes: {
-    SchemeType: Attribute.String;
-    Content: Attribute.Blocks;
+    SchemeType: Attribute.Enumeration<['Zaal', 'Veld']>;
+    Content: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'HTML';
+          preset: 'rich';
+        }
+      >;
   };
 }
 

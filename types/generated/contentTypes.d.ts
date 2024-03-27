@@ -1222,6 +1222,7 @@ export interface ApiTrainingSchemeTrainingScheme extends Schema.SingleType {
     singularName: 'training-scheme';
     pluralName: 'training-schemes';
     displayName: 'Training scheme';
+    description: '';
   };
   options: {
     draftAndPublish: true;

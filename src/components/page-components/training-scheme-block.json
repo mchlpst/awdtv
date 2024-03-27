@@ -2,15 +2,25 @@
   "collectionName": "components_page_components_training_scheme_blocks",
   "info": {
     "displayName": "Training Scheme Block",
-    "icon": "clock"
+    "icon": "clock",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "SchemeType": {
-      "type": "string"
+      "type": "enumeration",
+      "enum": [
+        "Zaal",
+        "Veld"
+      ]
     },
     "Content": {
-      "type": "blocks"
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "rich"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
     }
   }
 }
