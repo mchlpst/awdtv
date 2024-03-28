@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
-import { DatoContext } from "../../hooks/datoCMS";
+import React, { useState, useEffect } from "react";
 
 import { ReactComponent as FacebookLogo } from "../../assets/svg/facebook.svg";
 import { ReactComponent as TwitterLogo } from "../../assets/svg/x-twitter.svg";
@@ -12,17 +11,32 @@ import "./Footer.scss";
 
 const Footer = () => {
   const [data, setData] = useState(null);
-  const context = useContext(DatoContext);
 
   useEffect(() => {
-    if (context) {
-      setData(context.footer);
-    }
-  }, [context]);
+    fetch(
+      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/footer?populate[0]=Hoofdsponsor&populate[1]=Sponsoren&populate[2]=Column&populate[3]=Column.Links&populate[4]=Column.Links.article&populate[5]=Column.Links.page`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "*/*",
+          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res.data.attributes);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   const year = () => {
     let date = new Date();
     return date.getFullYear();
   };
+  console.log(data);
 
   return (
     <footer className="footer">
@@ -30,77 +44,95 @@ const Footer = () => {
         <>
           <section className="footer__row footer__row--red">
             <div className="footer__column-container">
-              {data.columns.map((item, index) => {
+              {data.Column.map((item, index) => {
                 return (
                   <div className="footer__column" key={index}>
-                    <h3 className="footer__column-title">{item.title}</h3>
-                    {item.text !== "" && (
+                    <h3 className="footer__column-title">{item.Title}</h3>
+                    {item.Text !== "" && (
                       <div
                         className="footer__column-text"
-                        dangerouslySetInnerHTML={{ __html: item.text }}></div>
+                        dangerouslySetInnerHTML={{ __html: item.Text }}></div>
                     )}
-                    {item.links.length !== 0 && item.text === "" && (
-                      <ul className="footer__column-link-list">
-                        {item.links.map((link, index) => {
-                          return (
-                            <li
-                              className="footer__column-link-item"
-                              key={index}>
-                              <a
-                                className="footer__column-link"
-                                href={link.url || `/${link.link.slug}`}>
-                                {link.linkLabel}
-                              </a>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    )}
+                    {item.Links.length !== 0 &&
+                      (item.Text === "" || !item.Text) && (
+                        <ul className="footer__column-link-list">
+                          {item.Links.map((link, index) => {
+                            return (
+                              <li
+                                className="footer__column-link-item"
+                                key={index}>
+                                {link.Url !== "" &&
+                                  (!link.article.data || !link.page.data) && (
+                                    <a
+                                      className="footer__column-link"
+                                      href={link.url}>
+                                      {link.LinkLabel}
+                                    </a>
+                                  )}
+                                {!link.article.data && link.page.data && (
+                                  <a
+                                    className="footer__column-link"
+                                    href={link.page.data.attributes.Slug}>
+                                    {link.page.data.attributes.Title}
+                                  </a>
+                                )}
+                                {link.article.data && (
+                                  <a
+                                    className="footer__column-link"
+                                    href={link.article.data.attributes.Slug}>
+                                    {link.article.data.attributes.Title}
+                                  </a>
+                                )}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      )}
                   </div>
                 );
               })}
               <div className="footer__column">
                 <h3 className="footer__column-title">Social Media</h3>
                 <div className="footer__social-container">
-                  {data.facebookLink && (
+                  {data.Facebook && (
                     <a
-                      href={data.facebookLink}
+                      href={data.Facebook}
                       className="footer__social-link"
                       target="_blank"
                       rel="noreferrer">
                       <FacebookLogo className="footer__social-icons" />
                     </a>
                   )}
-                  {data.twitterLink && (
+                  {data.X && (
                     <a
-                      href={data.twitterLink}
+                      href={data.X}
                       className="footer__social-link"
                       target="_blank"
                       rel="noreferrer">
                       <TwitterLogo className="footer__social-icons" />
                     </a>
                   )}
-                  {data.instagramLink && (
+                  {data.Instagram && (
                     <a
-                      href={data.instagramLink}
+                      href={data.Instagram}
                       className="footer__social-link"
                       target="_blank"
                       rel="noreferrer">
                       <InstagramLogo className="footer__social-icons" />
                     </a>
                   )}
-                  {data.TiktokLink && (
+                  {data.TikTok && (
                     <a
-                      href={data.TiktokLink}
+                      href={data.TikTok}
                       className="footer__social-link"
                       target="_blank"
                       rel="noreferrer">
                       <TiktokLogo className="footer__social-icons" />
                     </a>
                   )}
-                  {data.youtubeLink && (
+                  {data.Youtube && (
                     <a
-                      href={data.youtubeLink}
+                      href={data.Youtube}
                       className="footer__social-link"
                       target="_blank"
                       rel="noreferrer">
@@ -113,34 +145,28 @@ const Footer = () => {
           </section>
           <section className="footer__row footer__row--black">
             <div className="footer__column-container">
-              {data.hoofdsponser && (
+              {data.Hoofdsponsor.data && (
                 <div className="footer__main-sponsor-container">
-                  <h5 className="footer__main-sponsor-title">Hoofdsponser</h5>
+                  <h5 className="footer__main-sponsor-title">Hoofdsponsor</h5>
                   <div className="footer__main-sponsor-image-container">
                     <img
-                      src={
-                        data.hoofdsponser.responsiveImage
-                          ? data.hoofdsponser.responsiveImage.srcSet
-                          : data.hoofdsponser.url
+                      src={data.Hoofdsponsor.data.attributes.url}
+                      alt={
+                        data.Hoofdsponsor.data.attributes.alternativeText || ""
                       }
-                      alt={data.hoofdsponser.alt || ""}
                       className="footer__main-sponsor-image"
                     />
                   </div>
                 </div>
               )}
               <div className="footer__sponsor-container">
-                {data.sponsoren.length !== 0 &&
-                  data.sponsoren.map((sponsor, index) => {
+                {data.Sponsoren.data.length !== 0 &&
+                  data.Sponsoren.data.map((sponsor, index) => {
                     return (
                       <div className="footer__sponsor-item" key={index}>
                         <img
-                          src={
-                            sponsor.responsiveImage
-                              ? sponsor.responsiveImage.srcSet
-                              : sponsor.url
-                          }
-                          alt={sponsor.alt}
+                          src={sponsor.attributes.url}
+                          alt={sponsor.attributes.alternativeText}
                           className="footer__sponsor-image"
                         />
                       </div>
