@@ -10,10 +10,25 @@ const TrainingScheme = () => {
   const context = useContext(DatoContext);
 
   useEffect(() => {
-    if (context) {
-      setData(context.trainingSchemePage);
-    }
-  }, [context]);
+    fetch(
+      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/training-scheme?populate[0]=Visual&populate[1]=Content`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "*/*",
+          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res.data.attributes);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   useEffect(() => {}, [data]);
   return (
     <>

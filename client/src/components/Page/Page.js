@@ -30,6 +30,7 @@ const Page = (props) => {
     laptop: 1024,
     desktop: 1200,
   });
+  console.log(content);
 
   return (
     <section className="page">
@@ -52,9 +53,9 @@ const Page = (props) => {
                       : "page__switch-container--right"
                   }`}
                   onClick={() => handleSwitch()}>
-                  {content.content.map((item) => (
-                    <div className="page__switch" key={item.schemeType}>
-                      {item.schemeType}
+                  {content.Content.map((item) => (
+                    <div className="page__switch" key={item.SchemeType}>
+                      {item.SchemeType}
                     </div>
                   ))}
                 </div>
@@ -63,8 +64,8 @@ const Page = (props) => {
                 className="page__content"
                 dangerouslySetInnerHTML={{
                   __html: switchValue
-                    ? content.content[0].content
-                    : content.content[1].content,
+                    ? content.Content[0].Content
+                    : content.Content[1].Content,
                 }}
               />
             </section>
