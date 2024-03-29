@@ -1,5 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
-import { DatoContext } from "../../hooks/datoCMS";
+import React, { useState, useEffect } from "react";
 
 import Hero from "../../components/Hero/Hero";
 
@@ -13,35 +12,53 @@ const AllNews = () => {
   const [activeTags, setActiveTags] = useState([]);
   const [tags, setTags] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
-  const context = useContext(DatoContext);
 
   useEffect(() => {
-    if (context) {
-      setData(context.allArticles);
-    }
-  }, [context]);
+    fetch(
+      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/articles?sort=Data:desc&populate[0]=Visual&pagination[page]=1&pagination[pageSize]=30`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "*/*",
+          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  console.log(data);
   useEffect(() => {
     if (data) {
-      const all = data.map((item) => item.tag);
+      const all = data
+        .map((item) => item.attributes.Tag)
+        .filter((item) => !!item);
       setTags(
         all.filter((value, index, self) => self.indexOf(value) === index)
       );
     }
   }, [data]);
 
-  const replaceDash = (word) => {
-    return word.replace(/-/g, " ");
-  };
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   useEffect(() => {
     if (activeTags.length === 0) {
       setFilteredItems(data);
     } else {
-      setFilteredItems(data.filter((item) => activeTags.includes(item.tag)));
+      setFilteredItems(
+        data.filter((item) => activeTags.includes(item.attributes.Tag))
+      );
     }
   }, [activeTags, data]);
-
-  useEffect(() => {}, [activeTags]);
 
   const handleFilter = (tag) => {
     if (activeTags.includes(tag)) {
@@ -50,6 +67,7 @@ const AllNews = () => {
       setActiveTags((current) => [...current, tag]);
     }
   };
+  console.log(tags);
   return (
     <main className="news">
       <Hero title="Nieuws" maxHeight />
@@ -64,7 +82,7 @@ const AllNews = () => {
                     activeTags.includes(tag) ? "news__tag--active" : ""
                   }`}
                   onClick={() => handleFilter(tag)}>
-                  {replaceDash(tag)}
+                  {tag}
                 </div>
               ))}
             </div>
@@ -76,22 +94,29 @@ const AllNews = () => {
               {filteredItems &&
                 filteredItems.map((article, index) => (
                   <div className="news__card-container" key={index}>
-                    <Link to={article.slug} className="news__card-link">
+                    <Link
+                      to={article.attributes.Slug}
+                      className="news__card-link">
                       <div className="news__card">
                         <div className="news__card-content">
-                          <p className="news__card-date">{article.date}</p>
-                          <h2 className="news__card-title">{article.title}</h2>
+                          <p className="news__card-date">
+                            {article.attributes.Data}
+                          </p>
+                          <h2 className="news__card-title">
+                            {article.attributes.Title}
+                          </h2>
                         </div>
                         <img
                           className="news__card-background"
-                          srcSet={
-                            article.visual
-                              ? article.visual.responsiveImage.srcSet
+                          src={
+                            article.attributes.Visual.data
+                              ? article.attributes.Visual.data.attributes.url
                               : "/img/background-fallback.jpeg"
                           }
                           alt={
-                            article.visual
-                              ? article.visual.responsiveImage.alt
+                            article.attributes.Visual.data
+                              ? article.attributes.Visual.data.attributes
+                                  .alternativeText
                               : "Een wedstrijd van AW.DTV op het veld van AW.DTV"
                           }
                         />
