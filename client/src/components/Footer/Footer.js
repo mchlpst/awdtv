@@ -36,7 +36,6 @@ const Footer = () => {
     let date = new Date();
     return date.getFullYear();
   };
-  console.log(data);
 
   return (
     <footer className="footer">
