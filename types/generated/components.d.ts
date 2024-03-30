@@ -56,11 +56,13 @@ export interface ElementsStaff extends Schema.Component {
   collectionName: 'components_elements_staff';
   info: {
     displayName: 'Staff';
+    description: '';
   };
   attributes: {
     FirstName: Attribute.String;
     LastName: Attribute.String;
     Photo: Attribute.Media;
+    Function: Attribute.String;
   };
 }
 
