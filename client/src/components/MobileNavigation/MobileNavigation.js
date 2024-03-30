@@ -9,13 +9,27 @@ import "./MobileNavigation.scss";
 const MobileNavigation = () => {
   const [data, setData] = useState(null);
   const [showMenu, setShowMenu] = useState(null);
-  const context = useContext(DatoContext);
 
   useEffect(() => {
-    if (context) {
-      setData(context.allMainNavigations);
-    }
-  }, [context]);
+    fetch(
+      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/menus/1?nested&populate=*`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "*/*",
+          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res.data.attributes);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const toggleShowMenu = () => {
     setShowMenu(!showMenu);
@@ -42,23 +56,24 @@ const MobileNavigation = () => {
         className={`mobile-navigation__container ${
           showMenu ? "mobile-navigation__container--show" : ""
         }`}>
-        {data && (
+        {data && data.items && data.items.data && (
           <nav className="mobile-navigation__nav">
-            {data.map((item, index) => {
-              return item.children.length === 0 ? (
+            {data.items.data.map((item, index) => {
+              return item.attributes.children.length === 0 ? (
                 <NavLink
                   key={index}
-                  to={item.link}
+                  to={item.attributes.url}
                   onClick={() => setShowMenu(false)}
                   className="mobile-navigation__link mobile-navigation__link--primair">
-                  {item.label}
+                  {item.attributes.title}
                 </NavLink>
               ) : (
                 <DropdownSection
                   key={index}
-                  label={item.label}
-                  body={item.children}
+                  label={item.attributes.title}
+                  body={item.attributes.children.data}
                   closeMenu={() => setShowMenu(false)}
+                  meunIsClosed={showMenu}
                 />
               );
             })}
@@ -73,6 +88,10 @@ export default MobileNavigation;
 const DropdownSection = (props) => {
   const [expand, setExpand] = useState(false);
   const [show, setShow] = useState(false);
+  useEffect(() => {
+    setShow(false);
+    setExpand(false);
+  }, [props.meunIsClosed]);
 
   const toggleExpand = () => {
     if (expand) {
@@ -115,7 +134,7 @@ const DropdownSection = (props) => {
             return (
               <DropDown
                 key={index}
-                body={item.children}
+                body={item.attributes.children.data}
                 label={item.label}
                 closeMenu={props.closeMenu}
               />
@@ -136,10 +155,10 @@ const DropDown = (props) => {
           return (
             <NavLink
               key={index}
-              to={item.link}
+              to={item.attributes.url}
               onClick={props.closeMenu}
               className="mobile-navigation__link main-navigation__link--secondair">
-              {item.label}
+              {item.attributes.title}
             </NavLink>
           );
         })}
