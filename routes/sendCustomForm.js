@@ -26,7 +26,7 @@ sendEmailRouter.post("/", async (req, res, next) => {
     from: "Website AWDTV <noreply@awdtv.nl>",
     to: "schoolkorfbal@awdtv.nl",
     // to: "michael@weareonetribe.nl",
-    subject: "Aanmelding schoolkorfbal 2023",
+    subject: "Aanmelding schoolkorfbal 2024",
     html: `
   	<h1>Aanmelding Schoolkorfbal</h1>
   	<p>Hallo Jet,<br/><br/>Er is een nieuwe aanmelding voor schoolkorbal hieronder zijn de gegevens.</p>
