@@ -220,10 +220,9 @@ const CustomForm = () => {
                     required: "Dit veld is verplicht",
                   })}>
                   <option value="">Kies...</option>
-                  <option value="groep 3">Groep 3</option>
-                  <option value="groep 4">Groep 4</option>
-                  <option value="groep 5">Groep 5</option>
-                  <option value="groep 6">Groep 6</option>
+                  <option value="groep 4">Groep 6</option>
+                  <option value="groep 5">Groep 7</option>
+                  <option value="groep 6">Groep 8</option>
                 </select>
               </div>
               {errors.group && (
