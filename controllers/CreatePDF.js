@@ -3,12 +3,13 @@ const PDFDocument = PdfLib.PDFDocument;
 const StandardFonts = PdfLib.StandardFonts;
 const rgb = PdfLib.rgb;
 const base64 = require("../utils/base64");
-const { writeFileSync } = require("fs");
+const { writeFileSync, existsSync, mkdirSync } = require("fs");
 
 async function createPDF(data) {
   const base = base64.module;
   const pdfDoc = await PDFDocument.load(base);
   const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+  const directoryPath = "./PDF";
 
   const pages = pdfDoc.getPages();
   const page = pages[0];
@@ -113,6 +114,10 @@ async function createPDF(data) {
 
   // const pdfUnit8 = await pdfDoc.save();
   // const arr = new Uint8Array(pdfUnit8);
+  if (!existsSync(directoryPath)) {
+    // If it doesn't exist, create the directory
+    mkdirSync(directoryPath);
+  }
   writeFileSync(
     `./PDF/${data.firstName}-${data.lastName}.pdf`,
     await pdfDoc.save()
