@@ -59,7 +59,7 @@ const MobileNavigation = () => {
         {data && data.items && data.items.data && (
           <nav className="mobile-navigation__nav">
             {data.items.data.map((item, index) => {
-              return item.attributes.children.length === 0 ? (
+              return item.attributes.children.data.length === 0 ? (
                 <NavLink
                   key={index}
                   to={item.attributes.url}
