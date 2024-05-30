@@ -68,7 +68,6 @@ const ContactPage = () => {
   const address = (val) => {
     return { __html: val };
   };
-  console.log(data);
   return (
     <main className="contact">
       {data && (
