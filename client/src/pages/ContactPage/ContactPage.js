@@ -77,7 +77,7 @@ const ContactPage = () => {
             <section className="contact__background">
               {data.Background.data && (
                 <img
-                  src={data.Background.data.attributes.formats.medium.url}
+                  src={data.Background.data.attributes.url}
                   alt={data.Background.data.attributes.alternativeText}
                 />
               )}
