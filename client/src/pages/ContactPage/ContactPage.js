@@ -10,13 +10,32 @@ import ContactForm from "../../components/ContactForm/ContactForm";
 
 const ContactPage = () => {
   const [data, setData] = useState(null);
-  const context = useContext(DatoContext);
-
   useEffect(() => {
-    if (context) {
-      setData(context.contact);
-    }
-  }, [context]);
+    fetch(
+      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/contact?populate[0]=HandigeLinks&populate[1]=Background&populate[2]=HandigeLinks.page&populate[3]=HandigeLinks.article`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "*/*",
+          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res.data.attributes);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  // useEffect(() => {
+  //   if (context) {
+  //     setData(context.contact);
+  //   }
+  // }, [context]);
 
   let map;
   const loader = new Loader({
@@ -49,34 +68,45 @@ const ContactPage = () => {
   const address = (val) => {
     return { __html: val };
   };
+  console.log(data);
   return (
     <main className="contact">
       {data && (
         <>
           <section className="contact__wrapper">
             <section className="contact__background">
-              <img
-                src={data.background.responsiveImage.srcSet}
-                alt={data.background.responsiveImage.alt}
-              />
+              {data.Background.data && (
+                <img
+                  src={data.Background.data.attributes.formats.medium.url}
+                  alt={data.Background.data.attributes.alternativeText}
+                />
+              )}
             </section>
             <section className="contact__title-container">
-              <h1 className="contact__title">Contact</h1>
+              <h1 className="contact__title">
+                {data.Title ? data.Title : "Contact"}
+              </h1>
             </section>
             <section className="contact__content-container">
               <Grid>
                 <Column col={6}>
-                  {data.handigeLinks && (
+                  {data.HandigeLinks.length > 0 && (
                     <div className="contact__links-wrapper">
                       <h2 className="contact__links-title">Handige Links</h2>
                       <div className="contact__links-container">
-                        {data.handigeLinks.map((item, index) => {
+                        {data.HandigeLinks.map((item, index) => {
                           return (
                             <div className="contact__links" key={index}>
                               <Button
-                                text={item.linkLabel}
-                                href={item.url ? item.url : null}
-                                to={item.link ? item.link.slug : null}
+                                text={item.LinkLabel}
+                                href={item.Url ? item.Url : null}
+                                to={
+                                  item.article.data
+                                    ? item.article.data.Slug
+                                    : item.page.data
+                                    ? item.pate.data.Slug
+                                    : null
+                                }
                                 target="_blank"
                                 type="solid"
                               />
@@ -93,7 +123,7 @@ const ContactPage = () => {
                       </h2>
                       <div
                         className="contact__address"
-                        dangerouslySetInnerHTML={address(data.address)}></div>
+                        dangerouslySetInnerHTML={address(data.Address)}></div>
                     </div>
                   )}
                 </Column>
