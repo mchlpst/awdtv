@@ -1,27 +1,45 @@
-name: Deploy Frontend to Heroku
+name: Deploy to Heroku
 
 on:
   workflow_dispatch:
     inputs:
       environment:
-        description: "Environment to deploy to"
+        description: "Environment to deploy"
         required: true
-        default: "staging"
+        default: "Frontend"
         type: choice
         options:
-          - staging
-          - production
+          - Frontend
+          - CMS
 
 jobs:
-  build:
+  set-variables:
+    runs-on: ubuntu-latest
+    outputs:
+      app_name: ${{ steps.set-vars.outputs.app_name }}
+      appdir: ${{ steps.set-vars.outputs.appdir }}
+    steps:
+      - name: Set variables
+        id: set-vars
+        run: |
+          if [ "${{ github.event.inputs.environment }}" == "Frontend" ]; then
+            echo "app_name=test-deploy-from-folder" >> $GITHUB_OUTPUT
+            echo "appdir=client" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.inputs.environment }}" == "CMS" ]; then
+            echo "app_name=awdtv-cms-production" >> $GITHUB_OUTPUT
+            echo "appdir=cms" >> $GITHUB_OUTPUT
+          fi
+
+  deploy:
+    needs: set-variables
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
+      - uses: akhileshns/heroku-deploy@v3.13.15
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "test-deploy-from-folder" #Must be unique in Heroku
+          heroku_app_name: ${{ needs.set-variables.outputs.app_name }}
           heroku_email: "hallo@michaelpost.nl"
-          appdir: "client"
+          appdir: ${{ needs.set-variables.outputs.appdir }}
           dontautocreate: true
           region: "eu"
