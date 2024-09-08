@@ -3,7 +3,8 @@ name: Deploy Frontend to Heroku
 on:
   push:
     branches:
-      - Main
+      - main
+      - master
 
 jobs:
   build:
