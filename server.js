@@ -25,7 +25,7 @@ app.get("/webhook", (req, res) => {
   console.log(req.query);
 
   if (mode && token === VERIFY_TOKEN) {
-    res.status(200).send(challenge);
+    res.status(200).send(res);
   } else {
     res.sendStatus(403);
   }
