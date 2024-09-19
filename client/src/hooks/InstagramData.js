@@ -7,9 +7,12 @@ export const useInstagramData = () => {
 
   useEffect(() => {
     const fields = ["id", "caption"];
-    fetch(
-      `https://graph.instagram.com/me/media?fields=${fields}&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
-    )
+    fetch(`https://graph.instagram.com/me/media?fields=${fields}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_INSTAGRAM_TOKEN}`,
+      },
+    })
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -19,6 +22,9 @@ export const useInstagramData = () => {
       })
       .then((res) => {
         setMediaId(res);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }, []);
 
@@ -39,9 +45,12 @@ export const useInstagramData = () => {
 
         const fetchPosts = () => {
           const requests = firstNine.map((item) =>
-            fetch(
-              `https://graph.instagram.com/${item.id}?fields=${fields}&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
-            )
+            fetch(`https://graph.instagram.com/${item.id}?fields=${fields}`, {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_INSTAGRAM_TOKEN}`,
+              },
+            })
               .then((res) => {
                 if (res.ok) {
                   return res.json();
@@ -51,6 +60,9 @@ export const useInstagramData = () => {
               })
               .then((res) => {
                 return { post: { caption: item.caption, media: res } };
+              })
+              .catch((error) => {
+                console.log(error);
               })
           );
           return Promise.all(requests);
