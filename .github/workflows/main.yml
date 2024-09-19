@@ -23,7 +23,7 @@ jobs:
         id: set-vars
         run: |
           if [ "${{ github.event.inputs.environment }}" == "Frontend" ]; then
-            echo "app_name=test-deploy-from-folder" >> $GITHUB_OUTPUT
+            echo "app_name=awdtv-production" >> $GITHUB_OUTPUT
             echo "appdir=client" >> $GITHUB_OUTPUT
           elif [ "${{ github.event.inputs.environment }}" == "CMS" ]; then
             echo "app_name=awdtv-cms-production" >> $GITHUB_OUTPUT
