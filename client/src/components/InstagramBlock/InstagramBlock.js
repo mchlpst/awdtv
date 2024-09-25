@@ -10,6 +10,7 @@ import Button from "../Button/Button";
 const InstagramBlock = (props) => {
   let layout = props.data ? props.data.layout : true;
   const { posts } = useInstagramData();
+
   return (
     <section className="instagram-block">
       <div className="instagram-block__account-container">
@@ -36,8 +37,8 @@ const InstagramBlock = (props) => {
               ? " instagram-block__wrapper--table"
               : " instagram-block__wrapper--slider",
           ]}>
-          {posts.map((item) => (
-            <Post item={item} key={item.post.media.id} />
+          {posts.map((item, index) => (
+            <Post item={item} key={index} />
           ))}
         </div>
       )}
@@ -72,12 +73,12 @@ const Post = (props) => {
   };
 
   return (
-    <article className="instagram-block__post" key={item.post.media.id}>
-      {item.post.media.media_type === "VIDEO" ? (
+    <article className="instagram-block__post">
+      {item.media_type === "VIDEO" ? (
         <>
           <video
             className="instagram-block__media"
-            src={item.post.media.media_url}
+            src={item.media_url}
             ref={video}
           />
           <div className="instagram-block__icon-container">
@@ -91,18 +92,18 @@ const Post = (props) => {
       ) : (
         <img
           className="instagram-block__media"
-          src={item.post.media.media_url}
+          src={item.media_url}
           alt="instagram post"
         />
       )}
-      {item.post.caption && (
+      {item.caption && (
         <div
           className={
             "instagram-block__caption-container" +
-            (item.post.media.media_type !== "VIDEO" ? " image" : "")
+            (item.media_type !== "VIDEO" ? " image" : "")
           }
           onClick={() => playVideo()}>
-          <div className="instagram-block__caption">{item.post.caption}</div>
+          <div className="instagram-block__caption">{item.caption}</div>
         </div>
       )}
     </article>

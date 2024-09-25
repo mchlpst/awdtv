@@ -12,7 +12,7 @@ const ContactForm = () => {
 
   const onSubmit = (data) => {
     setFeedback("verzenden...");
-    fetch("send-contact-form", {
+    fetch("/api/send-contact-form", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),

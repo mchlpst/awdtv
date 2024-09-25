@@ -20,7 +20,7 @@ const SubscribeForm = () => {
   const onSubmit = (data) => {
     setFeedback("verzenden...");
 
-    fetch("/new-member", {
+    fetch("/api/new-member", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),

@@ -18,7 +18,7 @@ const CustomForm = () => {
 
   const onSubmit = (data) => {
     setFeedback("verzenden...");
-    fetch("/custom-form", {
+    fetch("/api/custom-form", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),
