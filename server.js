@@ -12,6 +12,7 @@ const route = express.Router();
 const port = process.env.PORT || 8080;
 
 app.use("/api", require("./api"));
+app.use("/sportlink", require("./sportlink"));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
