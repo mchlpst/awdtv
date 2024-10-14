@@ -1,7 +1,7 @@
 const express = require("express");
 const sendEmailRouter = express.Router();
 const nodemailer = require("nodemailer");
-const { createPDF } = require("../../controllers/CreatePDF");
+const { createPDF } = require("../../../controllers/CreatePDF");
 const fs = require("fs");
 
 // Connect to Email server
