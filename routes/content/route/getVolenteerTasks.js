@@ -4,6 +4,9 @@ const axios = require("axios");
 const {
   getSportLinkVolenteer,
 } = require("../../../controllers/getSportLinkVolenteer");
+const {
+  createYearWithEventsCalendar,
+} = require("../../../controllers/createCalendar");
 require("dotenv").config();
 
 const host =
@@ -29,15 +32,17 @@ router.get("/", async (req, res) => {
     }
   };
   const strapiData = await getStrapiData();
+  const year = createYearWithEventsCalendar(2024, strapiData);
+
   let sportLinkData = [];
-  strapiData.forEach(async (task) => {
-    switch (task.attributes.Type) {
-      case "Scheidsrechtersdienst":
-        sportLinkData = [...(await getSportLinkVolenteer(22))];
-    }
-  });
-  console.log(sportLinkData);
-  return res.json(strapiData);
+  // strapiData.forEach(async (task) => {
+  //   switch (task.attributes.Type) {
+  //     case "Scheidsrechtersdienst":
+  //       sportLinkData = [...(await getSportLinkVolenteer(22))];
+  //   }
+  // });
+  // console.log(sportLinkData);
+  return res.json(year);
 });
 
 module.exports = router;
