@@ -1,62 +1,80 @@
-function createYearWithEventsCalendar(year, events) {
+function createMonthsWithEventsCalendar(events) {
   const monthNames = [
-    "Januari",
-    "Februari",
-    "Maart",
-    "April",
-    "Mei",
-    "Juni",
-    "Juli",
-    "Augustus",
-    "September",
-    "Oktober",
-    "November",
-    "December",
+    "januari",
+    "februari",
+    "maart",
+    "april",
+    "mei",
+    "juni",
+    "juli",
+    "augustus",
+    "september",
+    "oktober",
+    "november",
+    "december",
   ];
-
-  function isLeapYear(year) {
-    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-  }
 
   function getDaysInMonth(year, month) {
     return new Date(year, month + 1, 0).getDate();
   }
 
   function getMonthOffset(year, month) {
-    return new Date(year, month, 1).getDay();
+    return (new Date(year, month, 1).getDay() + 6) % 7;
   }
 
-  const yearCalendar = {
-    year: year,
-    months: [],
-  };
-
-  for (let month = 0; month < 12; month++) {
+  function createMonthCalendar(year, month) {
     const daysInMonth = getDaysInMonth(year, month);
-    const monthObj = {
+    return {
       name: monthNames[month],
       number: month + 1,
-      offset: (getMonthOffset(year, month) + 6) % 7, // Adjust so that Monday is 0 and Sunday is 6
-      days: {},
+      year: year,
+      offset: getMonthOffset(year, month),
+      days: Array.from({ length: daysInMonth }, (_, i) => ({
+        day: i + 1,
+        events: [],
+      })),
     };
+  }
 
-    for (let day = 1; day <= daysInMonth; day++) {
-      monthObj.days[day] = [];
-    }
+  if (!events || events.length === 0) {
+    return [];
+  }
 
-    yearCalendar.months.push(monthObj);
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth();
+  const previousMonth = (currentMonth - 1 + 12) % 12;
+  const previousMonthYear = currentMonth === 0 ? currentYear - 1 : currentYear;
+
+  const startDate = new Date(previousMonthYear, previousMonth, 1);
+
+  const lastEvent = events.reduce((latest, event) => {
+    const eventDate = new Date(event.date);
+    return eventDate > latest ? eventDate : latest;
+  }, startDate);
+
+  const months = [];
+  let currentDate = new Date(startDate);
+
+  while (currentDate <= lastEvent) {
+    months.push(
+      createMonthCalendar(currentDate.getFullYear(), currentDate.getMonth())
+    );
+    currentDate.setMonth(currentDate.getMonth() + 1);
   }
 
   events.forEach((event) => {
-    const eventDate = new Date(event.attributes.DateFrom);
-    if (eventDate.getFullYear() === year) {
-      const month = eventDate.getMonth();
+    const eventDate = new Date(event.date);
+    if (eventDate >= startDate) {
+      const monthIndex =
+        (eventDate.getFullYear() - startDate.getFullYear()) * 12 +
+        (eventDate.getMonth() - startDate.getMonth());
       const day = eventDate.getDate();
-      yearCalendar.months[month].days[day].push(event);
+      months[monthIndex].days[day - 1].events.push(event);
     }
   });
 
-  return [yearCalendar];
+  return months;
 }
 
-exports.createYearWithEventsCalendar = createYearWithEventsCalendar;
+exports.createMonthsWithEventsCalendar = createMonthsWithEventsCalendar;

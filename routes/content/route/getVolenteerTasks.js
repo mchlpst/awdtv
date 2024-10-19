@@ -5,7 +5,7 @@ const {
   getSportLinkVolenteer,
 } = require("../../../controllers/getSportLinkVolenteer");
 const {
-  createYearWithEventsCalendar,
+  createMonthsWithEventsCalendar,
 } = require("../../../controllers/createCalendar");
 require("dotenv").config();
 
@@ -25,14 +25,39 @@ router.get("/", async (req, res) => {
           Authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
         },
       });
-      return response.data.data;
+      const res = response.data.data;
+      const transformedResponse = [];
+      if (res) {
+        res.forEach((item) => {
+          const dateFrom = new Date(item.attributes.DateFrom);
+          const dateTill = new Date(item.attributes.DateTill);
+          const newItem = {
+            id: item.id,
+            type: item.attributes.Type,
+            date: dateFrom.toISOString().split("T")[0],
+            description: item.attributes.Description,
+            timeFrom: dateFrom.toLocaleTimeString("nl-NL", {
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
+            }),
+            timeTill: dateTill.toLocaleTimeString("nl-NL", {
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
+            }),
+          };
+          transformedResponse.push(newItem);
+        });
+      }
+      return transformedResponse;
     } catch (error) {
       console.error("Error fetching data:", error.message);
       res.status(500).json({ error: "Failed to fetch data" });
     }
   };
   const strapiData = await getStrapiData();
-  const year = createYearWithEventsCalendar(2024, strapiData);
+  const year = createMonthsWithEventsCalendar(strapiData);
 
   let sportLinkData = [];
   // strapiData.forEach(async (task) => {
