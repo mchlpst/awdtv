@@ -12,6 +12,7 @@ import Column from "../../layout/Column/Column";
 import "./HomePage.scss";
 import InstagramBlock from "../../components/InstagramBlock/InstagramBlock";
 import Calendar from "../../components/Calendar/Calendar";
+import VolenteerCalendar from "../../components/VolenteerCalendar/VolenteerCalendar";
 
 const HomePage = () => {
   const [data, setData] = useState(null);
@@ -58,6 +59,11 @@ const HomePage = () => {
             <Column col={4}>
               <CompetitionTable />
               <Calendar />
+            </Column>
+          </Grid>
+          <Grid>
+            <Column col={12}>
+              <VolenteerCalendar />
             </Column>
           </Grid>
           <Grid>
