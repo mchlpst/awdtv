@@ -26,6 +26,7 @@ const VolenteerCalendar = () => {
       .then((res) => res.json())
       .then((res) => {
         setMonths(res);
+        console.log(res);
         // Set active month to the current month or the first month in the array
         const currentDate = new Date();
         const currentMonthIndex = res.findIndex(
@@ -71,6 +72,15 @@ const VolenteerCalendar = () => {
   };
 
   if (months.length === 0 || activeMonthIndex === null) return null;
+
+  const convertDate = (date) => {
+    const setDate = new Date(date);
+    const options = {
+      month: "long",
+      day: "numeric",
+    };
+    return setDate.toLocaleDateString("nl-NL", options);
+  };
 
   const activeMonth = months[activeMonthIndex];
 
@@ -154,6 +164,14 @@ const VolenteerCalendar = () => {
                     <div className="volenteer-calendar__calendar-task-date-container">
                       <div className="volenteer-calendar__calendar-task-date-item">
                         <h6 className="volenteer-calendar__calendar-task-date-label">
+                          Datum
+                        </h6>
+                        <p className="volenteer-calendar__calendar-task-date-value">
+                          {convertDate(task.date)}
+                        </p>
+                      </div>
+                      <div className="volenteer-calendar__calendar-task-date-item">
+                        <h6 className="volenteer-calendar__calendar-task-date-label">
                           Van
                         </h6>
                         <p className="volenteer-calendar__calendar-task-date-value">
@@ -166,6 +184,33 @@ const VolenteerCalendar = () => {
                         </h6>
                         <p className="volenteer-calendar__calendar-task-date-value">
                           {task.timeTill}
+                        </p>
+                      </div>
+                      <div className="volenteer-calendar__calendar-task-date-item">
+                        <h6 className="volenteer-calendar__calendar-task-date-label">
+                          {task.persons ? "Vrijwilligers" : "Vrijwilliger"}
+                        </h6>
+                        <p
+                          className={`volenteer-calendar__calendar-task-date-value ${
+                            task.persons
+                              ? "volenteer-calendar__calendar-task-date-value--multiple"
+                              : ""
+                          }`}>
+                          {task.persons ? (
+                            task.persons.map((person) => (
+                              <strong className="volenteer-calendar__calendar-task-person">
+                                {person}
+                              </strong>
+                            ))
+                          ) : task.person ? (
+                            <strong className="volenteer-calendar__calendar-task-person">
+                              {task.person}
+                            </strong>
+                          ) : (
+                            <em className="volenteer-calendar__calendar-task-person volenteer-calendar__calendar-task-person--empty">
+                              Leeg
+                            </em>
+                          )}
                         </p>
                       </div>
                     </div>

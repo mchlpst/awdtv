@@ -36,6 +36,7 @@ router.get("/", async (req, res) => {
             type: item.attributes.Type,
             date: dateFrom.toISOString().split("T")[0],
             description: item.attributes.Description,
+            person: null,
             timeFrom: dateFrom.toLocaleTimeString("nl-NL", {
               hour: "2-digit",
               minute: "2-digit",
@@ -57,16 +58,65 @@ router.get("/", async (req, res) => {
     }
   };
   const strapiData = await getStrapiData();
+
+  async function processTask(task, volunteerType, isSameEvent) {
+    const fetchedArray = await getSportLinkVolenteer(volunteerType);
+
+    // Filter matching items
+    const matchingItems = fetchedArray.filter(
+      (item) =>
+        task.date === item.datumvanaf.split("T")[0] &&
+        task.timeFrom === item.tijdvanaf &&
+        task.timeTill === item.tijdtot
+    );
+
+    if (matchingItems.length > 0) {
+      if (isSameEvent) {
+        // For same event, collect all names in an array
+        task.persons = matchingItems.map((item) => item.naam);
+      } else {
+        // For different events, find the first unused matching item
+        const unusedItem = matchingItems.find(
+          (item) =>
+            !strapiData.some(
+              (t) =>
+                t.person === item.naam &&
+                t.date === task.date &&
+                t.timeFrom === task.timeFrom &&
+                t.timeTill === task.timeTill
+            )
+        );
+
+        if (unusedItem) {
+          task.person = unusedItem.naam;
+        }
+      }
+    }
+  }
+
+  await Promise.all(
+    strapiData.map(async (task) => {
+      switch (task.type) {
+        case "Scheidsrechtersdienst":
+          await processTask(task, 22, false);
+          break;
+        case "Bardienst-1":
+          await processTask(task, 1, false);
+          break;
+        case "Bardienst-2":
+          await processTask(task, 61, true);
+          break;
+        case "Bardienst-3":
+          await processTask(task, 62, true);
+          break;
+        case "Zaaldienst":
+          await processTask(task, 21);
+          break;
+      }
+    })
+  );
   const year = createMonthsWithEventsCalendar(strapiData);
 
-  let sportLinkData = [];
-  // strapiData.forEach(async (task) => {
-  //   switch (task.attributes.Type) {
-  //     case "Scheidsrechtersdienst":
-  //       sportLinkData = [...(await getSportLinkVolenteer(22))];
-  //   }
-  // });
-  // console.log(sportLinkData);
   return res.json(year);
 });
 

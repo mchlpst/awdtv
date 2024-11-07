@@ -5,7 +5,7 @@ require("dotenv").config();
 async function getSportLinkVolenteer(volenteerId) {
   try {
     const response = await axios.get(
-      `https://data.sportlink.com/vrijwilligers?client_id=QEG62mGcVQ&vrijwilligerstaakcode=${volenteerId}`,
+      `https://data.sportlink.com/vrijwilligers?client_id=${process.env.SPORTLINK_ID}&vrijwilligerstaakcode=${volenteerId}&aantaldagen=200`,
       {
         method: "GET",
         headers: {
@@ -14,7 +14,6 @@ async function getSportLinkVolenteer(volenteerId) {
         },
       }
     );
-    console.log("sportlink:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error.message);
