@@ -155,7 +155,16 @@ $component: "volenteer-calendar";
         }
       }
     }
-    &--Bardienst-2,
+    &--Bardienst-2 {
+      .#{$component} {
+        &__calendar-task-type {
+          background-color: $color-violet;
+        }
+        &__calendar-task-date-label {
+          color: $color-violet;
+        }
+      }
+    }
     &--Bardienst-2-pers {
       .#{$component} {
         &__calendar-task-type {
@@ -166,7 +175,16 @@ $component: "volenteer-calendar";
         }
       }
     }
-    &--Bardienst-3,
+    &--Bardienst-3 {
+      .#{$component} {
+        &__calendar-task-type {
+          background-color: $color-blue-sky;
+        }
+        &__calendar-task-date-label {
+          color: $color-blue-sky;
+        }
+      }
+    }
     &--Bardienst-3-pers {
       .#{$component} {
         &__calendar-task-type {
