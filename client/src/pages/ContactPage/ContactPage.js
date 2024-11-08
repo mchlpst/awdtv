@@ -12,7 +12,7 @@ const ContactPage = () => {
   const [data, setData] = useState(null);
   useEffect(() => {
     fetch(
-      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/contact?populate[0]=HandigeLinks&populate[1]=Background&populate[2]=HandigeLinks.page&populate[3]=HandigeLinks.article`,
+      `https://awdtv-cms-prod-9a1b80aeab80.herokuapp.com/api/contact?populate[0]=HandigeLinks&populate[1]=Background&populate[2]=HandigeLinks.page&populate[3]=HandigeLinks.article`,
       {
         method: "GET",
         headers: {

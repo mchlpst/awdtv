@@ -13,7 +13,7 @@ const SlugPage = () => {
 
   useEffect(() => {
     fetch(
-      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/articles?filters[Slug][$eq]=/${slug}`,
+      `https://awdtv-cms-prod-9a1b80aeab80.herokuapp.com/api/articles?filters[Slug][$eq]=/${slug}`,
       {
         method: "GET",
         headers: {
@@ -33,7 +33,7 @@ const SlugPage = () => {
   }, [slug]);
   useEffect(() => {
     fetch(
-      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/pages?filters[Slug][$eq]=/${slug}`,
+      `https://awdtv-cms-prod-9a1b80aeab80.herokuapp.com/api/pages?filters[Slug][$eq]=/${slug}`,
       {
         method: "GET",
         headers: {

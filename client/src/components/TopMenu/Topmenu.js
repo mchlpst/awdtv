@@ -9,7 +9,7 @@ const TopMenu = () => {
 
   useEffect(() => {
     fetch(
-      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/menus/2?nested&populate=*`,
+      `https://awdtv-cms-prod-9a1b80aeab80.herokuapp.com/api/menus/2?nested&populate=*`,
       {
         method: "GET",
         headers: {
