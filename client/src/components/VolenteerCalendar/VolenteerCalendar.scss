@@ -1,0 +1,227 @@
+@import "../../scss/_index.scss";
+
+$component: "volenteer-calendar";
+
+.#{$component} {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  &__calendar-title {
+    font-size: 25px;
+    line-height: 25px;
+    text-transform: capitalize;
+    @include sm-md {
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
+  &__calendar-wrapper {
+    width: 50%;
+    overflow: hidden;
+    @include sm-md {
+      width: 100%;
+    }
+  }
+  &__button {
+    background-color: $color-red;
+    border: 0;
+    padding: 10px;
+    &:disabled {
+      background-color: $color-grey-light;
+    }
+  }
+  &__calendar {
+    @include sm-md {
+      display: none;
+    }
+  }
+  &__icon {
+    width: 16px;
+    &--next {
+      transform: rotate(-90deg);
+    }
+    &--previous {
+      transform: rotate(90deg);
+    }
+  }
+  &__calendar-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    @include sm-md {
+      margin-bottom: 0;
+      align-items: center;
+    }
+  }
+  &__calendar-list-header {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    list-style-type: none;
+    gap: 1px;
+    border-bottom: 1px solid $color-red;
+  }
+  &__calendar-header-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-red;
+    font-weight: 500;
+  }
+  &__calendar-days-list {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: $color-grey-light;
+    gap: 1px;
+    list-style-type: none;
+  }
+  &__calendar-days {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    border: 2px solid white;
+    background-color: white;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+    &--selected {
+      border-color: $color-red-dark;
+    }
+  }
+  &__day-dot,
+  &__day-dots {
+    position: absolute;
+    bottom: 16px;
+    width: 4px;
+    height: 4px;
+    border-radius: 4px;
+    background-color: $color-red-dark;
+  }
+  &__day-dots {
+    width: 8px;
+  }
+  &__calendar-task-wrapper {
+    flex: 1 1 auto;
+  }
+
+  &__calendar-task-list {
+    height: 429px;
+    overflow: auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    @include sm-md {
+      height: auto;
+    }
+  }
+  &__calendar-task {
+    padding: 20px 10px;
+    display: flex;
+    gap: 16px;
+    @include sm-md {
+      padding: 20px 0;
+    }
+
+    &--Scheidsrechtersdienst {
+      .#{$component} {
+        &__calendar-task-type {
+          background-color: $color-orange;
+        }
+        &__calendar-task-date-label {
+          color: $color-orange;
+        }
+      }
+    }
+    &--Bardienst-1 {
+      .#{$component} {
+        &__calendar-task-type {
+          background-color: $color-green;
+        }
+        &__calendar-task-date-label {
+          color: $color-green;
+        }
+      }
+    }
+    &--Bardienst-2 {
+      .#{$component} {
+        &__calendar-task-type {
+          background-color: $color-violet;
+        }
+        &__calendar-task-date-label {
+          color: $color-violet;
+        }
+      }
+    }
+    &--Bardienst-3 {
+      .#{$component} {
+        &__calendar-task-type {
+          background-color: $color-blue-sky;
+        }
+        &__calendar-task-date-label {
+          color: $color-blue-sky;
+        }
+      }
+    }
+    &--Zaaldienst {
+      .#{$component} {
+        &__calendar-task-type {
+          background-color: $color-red-dark;
+        }
+        &__calendar-task-date-label {
+          color: $color-red-dark;
+        }
+      }
+    }
+  }
+  &__calendar-task-title {
+    @include sm-md {
+      font-size: 14px;
+    }
+  }
+  &__calendar-task + &__calendar-task {
+    border-top: 1px solid $color-grey-light;
+  }
+  &__calendar-task-type {
+    display: block;
+    width: 4px;
+    background-color: grey;
+  }
+  &__calendar-task-date-container {
+    display: grid;
+    grid-template-columns: 110px 50px 50px 1fr;
+    gap: 10px;
+    @include sm-md {
+      display: flex;
+      gap: 16px;
+    }
+  }
+  &__calendar-task-date-value {
+    &--multiple {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    @include sm-md {
+      font-size: 12px;
+    }
+  }
+  &__calendar-task-person {
+    font-weight: 500;
+    &--empty {
+      font-weight: 400;
+    }
+  }
+}

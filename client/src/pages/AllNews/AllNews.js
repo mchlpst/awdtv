@@ -47,10 +47,6 @@ const AllNews = () => {
   }, [data]);
 
   useEffect(() => {
-    console.log(data);
-  }, [data]);
-
-  useEffect(() => {
     if (activeTags.length === 0) {
       setFilteredItems(data);
     } else {
