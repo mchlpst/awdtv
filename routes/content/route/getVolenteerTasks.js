@@ -112,6 +112,12 @@ router.get("/", async (req, res) => {
           case "Zaaldienst":
             await processTask(task, 21);
             break;
+          case "Bardienst-2-pers":
+            await processTask(task, 81, true);
+            break;
+          case "Bardienst-3-pers":
+            await processTask(task, 82, true);
+            break;
         }
       })
     );
