@@ -12,7 +12,7 @@ require("dotenv").config();
 const host =
   process.env.NODE_ENV === "development"
     ? "http://127.0.0.1:1337"
-    : "https://awdtv-cms-8c73f71b0b4d.herokuapp.com";
+    : "https://awdtv-cms-prod-9a1b80aeab80.herokuapp.com";
 
 router.get("/", async (req, res) => {
   const getStrapiData = async () => {

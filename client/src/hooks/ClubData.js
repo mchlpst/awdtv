@@ -89,7 +89,7 @@ export const ClubProvider = ({ children }) => {
       });
     // Veld = -VE-; Zaal is -ZA-
     fetch(
-      `https://api-mijn.korfbal.nl/api/v2/pools/club/NCX14G7?sport=KORFBALL-VE-WK&team=true`,
+      `https://api-mijn.korfbal.nl/api/v2/pools/club/NCX14G7?sport=KORFBALL-ZA-WK&team=true`,
       {
         method: "GET",
         headers: {

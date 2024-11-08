@@ -15,7 +15,7 @@ const AllNews = () => {
 
   useEffect(() => {
     fetch(
-      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/articles?sort=Data:desc&populate[0]=Visual&pagination[page]=1&pagination[pageSize]=30`,
+      `https://awdtv-cms-prod-9a1b80aeab80.herokuapp.com/api/articles?sort=Data:desc&populate[0]=Visual&pagination[page]=1&pagination[pageSize]=30`,
       {
         method: "GET",
         headers: {

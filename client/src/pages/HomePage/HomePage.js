@@ -20,7 +20,7 @@ const HomePage = () => {
 
   useEffect(() => {
     fetch(
-      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/home?populate[0]=Content&populate[1]=Content.MainLink&populate[2]=Content.MainLink.article&populate[3]=Content.SecondairLink&populate[4]=Content.SecondairLink.article&populate[5]=Content.MainLink.page&populate[6]=Content.SecondairLink.page&populate[7]=Content.SecondairBlockImage&populate[8]=seo&populate[9]=Content.MainLink.article.Visual&populate[10]=Content.SecondairLink.article.Visual&populate[11]=Content.SecondairLink.page.Visual&populate[12]=Content.MainLink.page.Visual&populate[13]=Content.MainBlockImage`,
+      `https://awdtv-cms-prod-9a1b80aeab80.herokuapp.com/api/home?populate[0]=Content&populate[1]=Content.MainLink&populate[2]=Content.MainLink.article&populate[3]=Content.SecondairLink&populate[4]=Content.SecondairLink.article&populate[5]=Content.MainLink.page&populate[6]=Content.SecondairLink.page&populate[7]=Content.SecondairBlockImage&populate[8]=seo&populate[9]=Content.MainLink.article.Visual&populate[10]=Content.SecondairLink.article.Visual&populate[11]=Content.SecondairLink.page.Visual&populate[12]=Content.MainLink.page.Visual&populate[13]=Content.MainBlockImage`,
       {
         method: "GET",
         headers: {

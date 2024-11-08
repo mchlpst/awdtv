@@ -11,7 +11,7 @@ const TrainingScheme = () => {
 
   useEffect(() => {
     fetch(
-      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/training-scheme?populate[0]=Visual&populate[1]=Content`,
+      `https://awdtv-cms-prod-9a1b80aeab80.herokuapp.com/api/training-scheme?populate[0]=Visual&populate[1]=Content`,
       {
         method: "GET",
         headers: {

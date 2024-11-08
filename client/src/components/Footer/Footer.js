@@ -14,7 +14,7 @@ const Footer = () => {
 
   useEffect(() => {
     fetch(
-      `https://awdtv-cms-8c73f71b0b4d.herokuapp.com/api/footer?populate[0]=Hoofdsponsor&populate[1]=Sponsoren&populate[2]=Column&populate[3]=Column.Links&populate[4]=Column.Links.article&populate[5]=Column.Links.page`,
+      `https://awdtv-cms-prod-9a1b80aeab80.herokuapp.com/api/footer?populate[0]=Hoofdsponsor&populate[1]=Sponsoren&populate[2]=Column&populate[3]=Column.Links&populate[4]=Column.Links.article&populate[5]=Column.Links.page`,
       {
         method: "GET",
         headers: {
