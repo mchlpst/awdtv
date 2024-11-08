@@ -93,31 +93,36 @@ router.get("/", async (req, res) => {
       }
     }
   }
+  if (strapiData) {
+    await Promise.all(
+      strapiData.map(async (task) => {
+        switch (task.type) {
+          case "Scheidsrechtersdienst":
+            await processTask(task, 22, false);
+            break;
+          case "Bardienst-1":
+            await processTask(task, 1, false);
+            break;
+          case "Bardienst-2":
+            await processTask(task, 61, true);
+            break;
+          case "Bardienst-3":
+            await processTask(task, 62, true);
+            break;
+          case "Zaaldienst":
+            await processTask(task, 21);
+            break;
+        }
+      })
+    );
+    const year = createMonthsWithEventsCalendar(strapiData);
 
-  await Promise.all(
-    strapiData.map(async (task) => {
-      switch (task.type) {
-        case "Scheidsrechtersdienst":
-          await processTask(task, 22, false);
-          break;
-        case "Bardienst-1":
-          await processTask(task, 1, false);
-          break;
-        case "Bardienst-2":
-          await processTask(task, 61, true);
-          break;
-        case "Bardienst-3":
-          await processTask(task, 62, true);
-          break;
-        case "Zaaldienst":
-          await processTask(task, 21);
-          break;
-      }
-    })
-  );
-  const year = createMonthsWithEventsCalendar(strapiData);
+    return res.json(year);
+  } else {
+    const year = createMonthsWithEventsCalendar(null);
 
-  return res.json(year);
+    return res.json(year);
+  }
 });
 
 module.exports = router;

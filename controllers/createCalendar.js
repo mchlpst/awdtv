@@ -36,16 +36,30 @@ function createMonthsWithEventsCalendar(events) {
     };
   }
 
-  if (!events || events.length === 0) {
-    return [];
-  }
-
   const now = new Date();
   const currentYear = now.getFullYear();
   const currentMonth = now.getMonth();
+
+  if (!events || events.length === 0) {
+    // If events are empty or undefined, return previous 3 months and next 8 months with empty events
+    const startDate = new Date(currentYear, currentMonth - 3, 1);
+    const endDate = new Date(currentYear, currentMonth + 8, 1);
+    const months = [];
+    let currentDate = new Date(startDate);
+
+    while (currentDate <= endDate) {
+      months.push(
+        createMonthCalendar(currentDate.getFullYear(), currentDate.getMonth())
+      );
+      currentDate.setMonth(currentDate.getMonth() + 1);
+    }
+
+    return months;
+  }
+
+  // Original functionality when events are present
   const previousMonth = (currentMonth - 1 + 12) % 12;
   const previousMonthYear = currentMonth === 0 ? currentYear - 1 : currentYear;
-
   const startDate = new Date(previousMonthYear, previousMonth, 1);
 
   const lastEvent = events.reduce((latest, event) => {
