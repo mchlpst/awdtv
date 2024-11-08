@@ -155,7 +155,8 @@ $component: "volenteer-calendar";
         }
       }
     }
-    &--Bardienst-2 {
+    &--Bardienst-2,
+    &--Bardienst-2-pers {
       .#{$component} {
         &__calendar-task-type {
           background-color: $color-violet;
@@ -165,7 +166,8 @@ $component: "volenteer-calendar";
         }
       }
     }
-    &--Bardienst-3 {
+    &--Bardienst-3,
+    &--Bardienst-3-pers {
       .#{$component} {
         &__calendar-task-type {
           background-color: $color-blue-sky;
