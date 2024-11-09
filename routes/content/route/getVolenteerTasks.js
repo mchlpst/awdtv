@@ -110,7 +110,7 @@ router.get("/", async (req, res) => {
             await processTask(task, 62, true);
             break;
           case "Zaaldienst":
-            await processTask(task, 21);
+            await processTask(task, 21, false);
             break;
           case "Bardienst-2-pers":
             await processTask(task, 81, true);
