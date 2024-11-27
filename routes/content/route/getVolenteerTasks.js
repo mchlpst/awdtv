@@ -29,6 +29,9 @@ router.get("/", async (req, res) => {
       });
       const res = response.data.data;
       const transformedResponse = [];
+      console.log(Intl.DateTimeFormat().resolvedOptions().timeZone); // Logs the system's time zone
+      console.log(new Date().getTimezoneOffset()); // Logs the time zone offset in minutes
+
       if (res) {
         res.forEach((item) => {
           const dateFrom = DateTime.fromISO(item.attributes.DateFrom, {
