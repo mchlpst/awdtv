@@ -26,7 +26,6 @@ const VolenteerCalendar = () => {
       .then((res) => res.json())
       .then((res) => {
         setMonths(res);
-        console.log(res);
         // Set active month to the current month or the first month in the array
         const currentDate = new Date();
         const currentMonthIndex = res.findIndex(
