@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const { DateTime } = require("luxon");
+
 const {
   getSportLinkVolenteer,
 } = require("../../../controllers/getSportLinkVolenteer");
@@ -29,25 +31,23 @@ router.get("/", async (req, res) => {
       const transformedResponse = [];
       if (res) {
         res.forEach((item) => {
-          const dateFrom = new Date(item.attributes.DateFrom);
-          const dateTill = new Date(item.attributes.DateTill);
+          const dateFrom = DateTime.fromISO(item.attributes.DateFrom, {
+            zone: "utc",
+          });
+          const dateTill = DateTime.fromISO(item.attributes.DateTill, {
+            zone: "utc",
+          });
+
           const newItem = {
             id: item.id,
             type: item.attributes.Type,
-            date: dateFrom.toISOString().split("T")[0],
+            date: dateFrom.toISODate(), // ISO Date in YYYY-MM-DD format
             description: item.attributes.Description,
             person: null,
-            timeFrom: dateFrom.toLocaleTimeString("nl-NL", {
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: false,
-            }),
-            timeTill: dateTill.toLocaleTimeString("nl-NL", {
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: false,
-            }),
+            timeFrom: dateFrom.setZone("Europe/Amsterdam").toFormat("HH:mm"), // Consistent in "nl-NL" timezone
+            timeTill: dateTill.setZone("Europe/Amsterdam").toFormat("HH:mm"), // Consistent in "nl-NL" timezone
           };
+
           transformedResponse.push(newItem);
         });
       }
