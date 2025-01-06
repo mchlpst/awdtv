@@ -71,6 +71,7 @@ const App = () => {
         <Route path="/trainingsschema" exact element={<TrainingScheme />} />
         <Route path="/nieuws/:slug" exact element={<SlugPage />} />
         <Route path="/schoolkorfbal-23" exact element={<CustomPage />} />
+        <Route path="/schoolkorfbal-25" exact element={<CustomPage />} />
 
         <Route path="/:slug" element={<SlugPage />} />
       </Routes>
