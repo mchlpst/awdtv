@@ -30,7 +30,6 @@ const Page = (props) => {
     laptop: 1024,
     desktop: 1200,
   });
-  console.log(content);
 
   return (
     <section className="page">

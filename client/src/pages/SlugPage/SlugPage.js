@@ -1,14 +1,14 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { DatoContext } from "../../hooks/datoCMS";
-
 import ComponentLoader from "../../components/ComponentLoader/ComponentLoader";
+import PasswordChecker from "../../components/PasswordChecker/PasswordChecker";
 
 const SlugPage = () => {
   const { slug } = useParams();
 
   const [article, setArticle] = useState(null);
+  const [passwordNeeded, setPasswordNeeded] = useState(null);
   const [page, setPage] = useState(null);
 
   useEffect(() => {
@@ -32,20 +32,19 @@ const SlugPage = () => {
       });
   }, [slug]);
   useEffect(() => {
-    fetch(
-      `https://awdtv-cms-prod-9a1b80aeab80.herokuapp.com/api/pages?filters[Slug][$eq]=/${slug}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "*/*",
-          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
-        },
-      }
-    )
+    fetch(`content/pages/${slug}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "*/*",
+      },
+    })
       .then((res) => res.json())
       .then((res) => {
-        setPage(res.data);
+        setPasswordNeeded(res.passwordNeeded);
+        if (!passwordNeeded) {
+          setPage(res.content);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -53,8 +52,9 @@ const SlugPage = () => {
   }, [slug]);
   return (
     <main className="slug-page">
+      {passwordNeeded && <PasswordChecker />}
       {article && article.length > 0 && <ComponentLoader article={article} />}
-      {page && page.length > 0 && <ComponentLoader page={page} />}
+      {page && <ComponentLoader page={page} />}
     </main>
   );
 };
