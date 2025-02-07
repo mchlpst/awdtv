@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { DatoContext } from "../../hooks/datoCMS";
+import React, { useEffect, useState } from "react";
 
 import Page from "../../components/Page/Page";
 
@@ -7,7 +6,6 @@ import "./TrainingScheme.scss";
 
 const TrainingScheme = () => {
   const [data, setData] = useState(null);
-  const context = useContext(DatoContext);
 
   useEffect(() => {
     fetch(

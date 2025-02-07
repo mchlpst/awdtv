@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { DatoContext } from "./hooks/datoCMS";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.scss";
@@ -27,28 +26,6 @@ const App = () => {
     laptop: 1024,
     desktop: 1200,
   });
-
-  const context = useContext(DatoContext);
-  const [global, setGlobal] = useState(null);
-
-  useEffect(() => {
-    if (context) {
-      setGlobal(context._site);
-    }
-  }, [context]);
-
-  useEffect(() => {
-    if (global) {
-      let link = document.querySelector("link[rel~='icon']");
-
-      if (!link) {
-        link = document.createElement("link");
-        link.rel = "icon";
-        document.head.appendChild(link);
-      }
-      link.href = global.favicon.responsiveImage.src + "?v=2";
-    }
-  }, [global]);
 
   return (
     <div className="App">
