@@ -1,6 +1,6 @@
-@import '../../scss/_index.scss';
+@import "../../scss/_index.scss";
 
-$component: 'btn';
+$component: "btn";
 
 .#{$component} {
   text-decoration: none;
@@ -8,11 +8,15 @@ $component: 'btn';
   width: fit-content;
   cursor: pointer;
   transition: all 0.2s ease;
-  border:0;
+  border: 0;
+  & > * {
+    text-decoration: none;
+    color: inherit;
+  }
   &:hover {
     filter: brightness(1.13);
   }
-  
+
   &--solid {
     background-color: $color-red;
     color: $color-white;

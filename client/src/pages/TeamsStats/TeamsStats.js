@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { ClubDataContext } from "../../hooks/ClubData";
-import { DatoContext } from "../../hooks/datoCMS";
 import Grid from "../../layout/Grid/Grid";
 import Column from "../../layout/Column/Column";
 
@@ -10,7 +9,6 @@ const TeamsStats = () => {
   const clubData = useContext(ClubDataContext);
 
   const [data, setData] = useState(null);
-  const context = useContext(DatoContext);
   const [allFetched, setAllFetched] = useState(false);
   const [stats, setStats] = useState([]);
 

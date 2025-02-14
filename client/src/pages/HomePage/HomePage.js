@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import { DatoContext } from "../../hooks/datoCMS";
+import React, { useState, useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import ComponentLoader from "../../components/ComponentLoader/ComponentLoader";
@@ -16,7 +15,6 @@ import VolenteerCalendar from "../../components/VolenteerCalendar/VolenteerCalen
 
 const HomePage = () => {
   const [data, setData] = useState(null);
-  const [global, setGlobal] = useState(null);
 
   useEffect(() => {
     fetch(

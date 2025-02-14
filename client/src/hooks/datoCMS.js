@@ -1,10 +1,10 @@
-import React, { useEffect, createContext, useState } from "react";
-import { query } from "../queries";
+import React, { useEffect, createContext } from "react";
 
 export const DatoContext = createContext();
 
 export const DatoProvider = ({ children }) => {
-  const [client, setClient] = useState();
+  const client = null;
+  // const [client, setClient] = useState();
   useEffect(() => {
     // fetch("https://graphql.datocms.com/", {
     //   method: "POST",

@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { DatoContext } from "../../hooks/datoCMS";
 
 import { ReactComponent as Chevron } from "../../assets/svg/Chevron.svg";
 import { ReactComponent as Magnifyglass } from "../../assets/svg/Magnifyglass.svg";
@@ -11,7 +10,6 @@ const MainNavigation = (props) => {
   const [data, setData] = useState(null);
   const [isFixed, setIsFixed] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const context = useContext(DatoContext);
   const { isLaptop } = useViewport({
     mobile: 480,
     tablet: 768,

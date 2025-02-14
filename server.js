@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const cache = require("./modules/cache");
 require("dotenv").config();
 
 const app = express();
@@ -14,6 +15,10 @@ const port = process.env.PORT || 8080;
 app.use("/api", require("./routes/api"));
 app.use("/sportlink", require("./routes/sportlink"));
 app.use("/content", require("./routes/content"));
+app.get("/clear-cache", (req, res) => {
+  cache.clear();
+  res.send("cache cleared!");
+});
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));

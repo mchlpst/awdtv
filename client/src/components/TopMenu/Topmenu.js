@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { DatoContext } from "../../hooks/datoCMS";
 
 import "./TopMenu.scss";
 

@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { DatoContext } from "../../hooks/datoCMS";
+import React, { useEffect, useState } from "react";
 
 import { ReactComponent as ChevronLeft } from "../../assets/svg/chevronLeft.svg";
 import { ReactComponent as ChevronRight } from "../../assets/svg/chevronRight.svg";
@@ -12,13 +11,6 @@ const Calendar = () => {
   const [data, setData] = useState(null);
   const [events, setEvents] = useState({});
   const [activeDate, setActiveDate] = useState(today);
-  const context = useContext(DatoContext);
-
-  useEffect(() => {
-    if (context) {
-      setData(context.allCalenders);
-    }
-  }, [context]);
 
   const getDate = (string) => {
     const date = new Date(string);

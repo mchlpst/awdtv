@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
-import { DatoProvider } from "./hooks/datoCMS";
 import { ClubProvider } from "./hooks/ClubData";
+import { GlobalStoreProvider } from "./hooks/GlobalStore";
 
 import "./index.scss";
 import App from "./App";
@@ -13,11 +13,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <DatoProvider>
-        <ClubProvider>
+      <ClubProvider>
+        <GlobalStoreProvider>
           <App />
-        </ClubProvider>
-      </DatoProvider>
+        </GlobalStoreProvider>
+      </ClubProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

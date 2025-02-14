@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { DatoContext } from "../../hooks/datoCMS";
 
 // import { ReactComponent as Magnifyglass } from "../../assets/svg/Magnifyglass.svg";
 

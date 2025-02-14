@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import { DatoContext } from "../../hooks/datoCMS";
 import SubscribeForm from "../../components/SubscribeForm/Subscribeform";
 import Grid from "../../layout/Grid/Grid";
 import Column from "../../layout/Column/Column";
@@ -8,7 +7,6 @@ import "./BecomeMember.scss";
 
 const BecomeMember = () => {
   const [data, setData] = useState(null);
-  const context = useContext(DatoContext);
 
   useEffect(() => {
     fetch(

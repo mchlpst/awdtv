@@ -8,7 +8,7 @@ import Page from "../Page/Page";
 const ComponentLoader = (props) => {
   const content = props.content ? props.content : null;
   const articleItem = props.article ? props.article[0].attributes : null;
-  const pageItem = props.page ? props.page[0].attributes : null;
+  const pageItem = props.page ? props.page.attributes : null;
   return (
     <>
       {content &&

@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
-import { DatoContext } from "../../hooks/datoCMS";
+import React, { useState, useEffect } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
 
 import "./ContactPage.scss";
