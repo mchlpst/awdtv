@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 import { ClubProvider } from "./hooks/ClubData";
+import { GlobalStoreProvider } from "./hooks/GlobalStore";
 
 import "./index.scss";
 import App from "./App";
@@ -13,7 +14,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ClubProvider>
-        <App />
+        <GlobalStoreProvider>
+          <App />
+        </GlobalStoreProvider>
       </ClubProvider>
     </BrowserRouter>
   </React.StrictMode>

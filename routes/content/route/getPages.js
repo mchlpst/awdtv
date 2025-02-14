@@ -20,7 +20,7 @@ router.get("/", async (req, res, next) => {
   try {
     const { slug } = req.params;
     const page = await checkCache(slug);
-    const pageData = createResponse(page);
+    const pageData = createResponse(page, hasPassword(page));
     cache.set(slug, page);
     res.status(200).json(pageData);
   } catch (error) {
@@ -38,14 +38,15 @@ router.post("/verify-password", async (req, res, next) => {
 
     const page = await checkCache(slug);
 
-    if (
-      !page.attributes.Password ||
-      page.attributes.Password === providedPassword
-    ) {
-      return res.status(200).json(createResponse(page, true));
-    } else {
-      return res.status(200).json({ correctPassword: false });
-    }
+    return res
+      .status(200)
+      .json(
+        createResponse(
+          page,
+          true,
+          page.attributes.Password === providedPassword
+        )
+      );
   } catch (error) {
     next(error);
   }
@@ -66,16 +67,40 @@ const fetchPages = async (slug) => {
 
 const hasPassword = (page) => {
   const { Password } = page.attributes;
-  return Password !== null;
+
+  return Password ? Password !== null : false;
 };
 
-const createResponse = (page, validPassword = false) =>
-  validPassword
-    ? { content: page, passwordNeeded: false }
-    : {
-        content: hasPassword(page) ? null : page,
-        passwordNeeded: hasPassword(page),
-      };
+const filterPasswordProperty = (content) => {
+  const obj = content;
+  delete obj.attributes.Password;
+  return obj;
+};
+
+const createResponse = (
+  page,
+  requiredPassword = false,
+  validPassword = false
+) => {
+  if (requiredPassword) {
+    return validPassword
+      ? {
+          content: filterPasswordProperty(page),
+          passwordNeeded: false,
+          correctPassword: true,
+        }
+      : {
+          content: null,
+          passwordNeeded: true,
+          correctPassword: false,
+        };
+  } else {
+    return {
+      content: hasPassword(page) ? null : page,
+      passwordNeeded: hasPassword(page),
+    };
+  }
+};
 
 async function getStrapiData(slug) {
   const allPages = await fetchPages(slug);

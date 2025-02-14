@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import { useGlobalStore } from "../../hooks/GlobalStore";
+
 import ComponentLoader from "../../components/ComponentLoader/ComponentLoader";
 import PasswordChecker from "../../components/PasswordChecker/PasswordChecker";
 
 const SlugPage = () => {
   const { slug } = useParams();
+  const { state, dispatch } = useGlobalStore();
 
   const [article, setArticle] = useState(null);
-  const [passwordNeeded, setPasswordNeeded] = useState(null);
-  const [page, setPage] = useState(null);
 
   useEffect(() => {
     fetch(
@@ -41,9 +42,17 @@ const SlugPage = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        setPasswordNeeded(res.passwordNeeded);
-        if (!passwordNeeded) {
-          setPage(res.content);
+        dispatch({
+          type: "SET_PROPERTY",
+          key: "passwordNeeded",
+          value: res.passwordNeeded,
+        });
+        if (!state.passwordNeeded) {
+          dispatch({
+            type: "SET_PROPERTY",
+            key: "currentPage",
+            value: res.content,
+          });
         }
       })
       .catch((error) => {
@@ -52,9 +61,9 @@ const SlugPage = () => {
   }, [slug]);
   return (
     <main className="slug-page">
-      {passwordNeeded && <PasswordChecker />}
+      {state.passwordNeeded && <PasswordChecker />}
       {article && article.length > 0 && <ComponentLoader article={article} />}
-      {page && <ComponentLoader page={page} />}
+      {state.currentPage && <ComponentLoader page={state.currentPage} />}
     </main>
   );
 };
