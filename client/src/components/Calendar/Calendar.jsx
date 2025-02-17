@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { ReactComponent as ChevronLeft } from "../../assets/svg/chevronLeft.svg";
-import { ReactComponent as ChevronRight } from "../../assets/svg/chevronRight.svg";
+import ChevronLeft from "../../assets/svg/chevronLeft.svg?react";
+import ChevronRight from "../../assets/svg/chevronRight.svg?react";
 
 import {
   getDate,

@@ -16,7 +16,7 @@ const BecomeMember = () => {
         headers: {
           "Content-Type": "application/json",
           Accept: "*/*",
-          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+          Authorization: `Bearer ${import.meta.env.VITE_STRAPI_TOKEN}`,
         },
       }
     )

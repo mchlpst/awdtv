@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 
 import { ClubDataContext } from "../../hooks/ClubData";
-import { ReactComponent as Chevron } from "../../assets/svg/Chevron.svg";
+import Chevron from "../../assets/svg/Chevron.svg?react";
 
 import "./CompetitionTable.scss";
 

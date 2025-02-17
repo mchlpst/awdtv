@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useInstagramData } from "../../hooks/InstagramData";
 
-import { ReactComponent as Play } from "../../assets/svg/Play.svg";
-import { ReactComponent as Pause } from "../../assets/svg/Pause.svg";
+import Play from "../../assets/svg/Play.svg?react";
+import Pause from "../../assets/svg/Pause.svg?react";
 
 import "./InstagramBlock.scss";
 import Button from "../Button/Button";

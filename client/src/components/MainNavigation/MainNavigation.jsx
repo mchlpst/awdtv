@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 
-import { ReactComponent as Chevron } from "../../assets/svg/Chevron.svg";
-import { ReactComponent as Magnifyglass } from "../../assets/svg/Magnifyglass.svg";
+import Chevron from "../../assets/svg/Chevron.svg?react";
+import Magnifyglass from "../../assets/svg/Magnifyglass.svg?react";
 import "./MainNavigation.scss";
 import { useViewport } from "../../hooks/useViewport";
 
@@ -34,7 +34,7 @@ const MainNavigation = (props) => {
         headers: {
           "Content-Type": "application/json",
           Accept: "*/*",
-          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+          Authorization: `Bearer ${import.meta.env.VITE_STRAPI_TOKEN}`,
         },
       }
     )
