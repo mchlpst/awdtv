@@ -1,4 +1,4 @@
-@import "../../scss/_index.scss";
+@use "../../scss/_index.scss" as *;
 
 $component: "footer";
 
