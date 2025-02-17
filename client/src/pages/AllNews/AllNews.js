@@ -34,7 +34,6 @@ const AllNews = () => {
       });
   }, []);
 
-  console.log(data);
   useEffect(() => {
     if (data) {
       const all = data
@@ -63,7 +62,6 @@ const AllNews = () => {
       setActiveTags((current) => [...current, tag]);
     }
   };
-  console.log(tags);
   return (
     <main className="news">
       <Hero title="Nieuws" maxHeight />
