@@ -1,6 +1,4 @@
-@import '../../scss/_index.scss';
-
-$component: 'teams-overview';
+$component: "teams-overview";
 
 .#{$component} {
   &__hero {
@@ -24,7 +22,8 @@ $component: 'teams-overview';
     width: 100%;
     text-align: center;
   }
-  &__title, &__subtitle {
+  &__title,
+  &__subtitle {
     color: $color-white;
     text-shadow: 0px 0px 20px black;
   }
@@ -70,7 +69,6 @@ $component: 'teams-overview';
   }
   &__card-tab-container {
     display: flex;
-
   }
   &__card-tab {
     padding: 15px 0;
@@ -81,11 +79,13 @@ $component: 'teams-overview';
       color: white;
     }
   }
-  &__standings-table-row, &__standings-table-head {
+  &__standings-table-row,
+  &__standings-table-head {
     display: flex;
     gap: 5px;
   }
-  &__standings-table-head, &__program-table-head {
+  &__standings-table-head,
+  &__program-table-head {
     color: $color-red;
     font-weight: bold;
     padding: 5px 0;
@@ -106,7 +106,8 @@ $component: 'teams-overview';
       text-align: center;
     }
   }
-  &__program-table-head, &__program-table-row {
+  &__program-table-head,
+  &__program-table-row {
     display: flex;
     justify-content: space-between;
   }
@@ -118,7 +119,8 @@ $component: 'teams-overview';
     &:nth-child(2) {
       width: 40px;
     }
-    &:nth-child(3), &:last-of-type {
+    &:nth-child(3),
+    &:last-of-type {
       width: 150px;
     }
     &:nth-child(4) {
@@ -153,7 +155,8 @@ $component: 'teams-overview';
   &__results-score {
     font-size: 24px;
   }
-  &__results-score, &__results-team {
+  &__results-score,
+  &__results-team {
     width: 50%;
   }
   @media screen and (min-width: 1200px) {
