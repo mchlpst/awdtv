@@ -17,7 +17,7 @@ const ContactPage = () => {
         headers: {
           "Content-Type": "application/json",
           Accept: "*/*",
-          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+          Authorization: `Bearer ${import.meta.env.VITE_STRAPI_TOKEN}`,
         },
       }
     )
@@ -38,7 +38,7 @@ const ContactPage = () => {
 
   let map;
   const loader = new Loader({
-    apiKey: process.env.REACT_APP_MAPS_API,
+    apiKey: import.meta.env.VITE__MAPS_API,
     version: "weekly",
   });
   const position = { lat: 52.37250267528257, lng: 4.968654268456325 };

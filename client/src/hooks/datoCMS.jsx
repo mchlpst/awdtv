@@ -11,7 +11,7 @@ export const DatoProvider = ({ children }) => {
     //   headers: {
     //     "Content-Type": "application/json",
     //     Accept: "application/json",
-    //     Authorization: `Bearer ${process.env.REACT_APP_DATO_TOKEN}`,
+    //     Authorization: `Bearer ${process.env.VITE__DATO_TOKEN}`,
     //   },
     //   body: JSON.stringify({
     //     query: query,

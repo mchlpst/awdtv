@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import { ReactComponent as FacebookLogo } from "../../assets/svg/facebook.svg";
-import { ReactComponent as TwitterLogo } from "../../assets/svg/x-twitter.svg";
-import { ReactComponent as InstagramLogo } from "../../assets/svg/instagram.svg";
-import { ReactComponent as TiktokLogo } from "../../assets/svg/tiktok.svg";
-import { ReactComponent as YoutubeLogo } from "../../assets/svg/youtube.svg";
-import { ReactComponent as Nix18Logo } from "../../assets/svg/nix-18.svg";
+import FacebookLogo from "../../assets/svg/facebook.svg?react";
+import TwitterLogo from "../../assets/svg/x-twitter.svg?react";
+import InstagramLogo from "../../assets/svg/instagram.svg?react";
+import TiktokLogo from "../../assets/svg/tiktok.svg?react";
+import YoutubeLogo from "../../assets/svg/youtube.svg?react";
+import Nix18Logo from "../../assets/svg/nix-18.svg?react";
 
 import "./Footer.scss";
 
@@ -20,7 +20,7 @@ const Footer = () => {
         headers: {
           "Content-Type": "application/json",
           Accept: "*/*",
-          Authorization: `Bearer ${process.env.REACT_APP_STRAPI_TOKEN}`,
+          Authorization: `Bearer ${import.meta.env.VITE_STRAPI_TOKEN}`,
         },
       }
     )

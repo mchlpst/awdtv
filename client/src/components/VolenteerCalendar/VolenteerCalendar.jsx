@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ReactComponent as Chevron } from "../../assets/svg/Chevron.svg";
+import Chevron from "../../assets/svg/Chevron.svg?react";
 import "./VolenteerCalendar.scss";
 
 function getAllEvents(monthData) {

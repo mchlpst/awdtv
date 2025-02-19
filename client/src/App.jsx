@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.scss";
+import "./scss/layout/_html.scss"
+import "./scss/typography/_index.scss"
 
 import MainNavigation from "./components/MainNavigation/MainNavigation";
 import TopMenu from "./components/TopMenu/Topmenu";
