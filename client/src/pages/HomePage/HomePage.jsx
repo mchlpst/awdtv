@@ -36,7 +36,6 @@ const HomePage = () => {
         console.log(error);
       });
   }, []);
-  console.log(import.meta.env.VITE_STRAPI_TOKEN)
 
   return (
     <main className="homepage">
