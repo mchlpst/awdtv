@@ -20,6 +20,7 @@ import { useViewport } from "./hooks/useViewport";
 import MobileNavigation from "./components/MobileNavigation/MobileNavigation";
 
 import CustomPage from "./pages/CustomPage/CustomPage";
+import RegisterKamp from "./pages/RegisterKamp/RegisterKamp";
 
 const App = () => {
   const { isMobile, isTablet } = useViewport({
@@ -51,6 +52,7 @@ const App = () => {
         <Route path="/nieuws/:slug" exact element={<SlugPage />} />
         <Route path="/schoolkorfbal-23" exact element={<CustomPage />} />
         <Route path="/schoolkorfbal-25" exact element={<CustomPage />} />
+        <Route path="/aanmelden-kamp" exact element={<RegisterKamp />} />
 
         <Route path="/:slug" element={<SlugPage />} />
       </Routes>
