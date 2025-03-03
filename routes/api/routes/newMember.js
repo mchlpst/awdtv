@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
 transporter.verify((err, succes) => {
   err
     ? console.log("validatie mislukt: " + err)
-    : console.log(`Send messages: ${succes}`);
+    : console.log(`Send new member: ${succes}`);
 });
 
 sendEmailRouter.post("/", async (req, res, next) => {
