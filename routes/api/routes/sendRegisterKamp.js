@@ -22,8 +22,8 @@ transporter.verify((err, succes) => {
 sendEmailRouter.post("/", async (req, res, next) => {
   const messageOwner = {
     from: "Website AWDTV <noreply@awdtv.nl>",
-    // to: "kamp@awdtv.nl",
-    to: "michael@weareonetribe.nl",
+    to: "kamp@awdtv.nl",
+    // to: "michael@weareonetribe.nl",
     subject: "Aanmelding AW.DTV kamp 2025",
     html: `
     <h1>Aanmelding Kamp</h1>
