@@ -5,6 +5,7 @@ const router = express.Router();
 router.use("/new-member", require("./routes/newMember"));
 router.use("/custom-form", require("./routes/sendCustomForm"));
 router.use("/send-contact-form", require("./routes/sendContactForm"));
+router.use("/send-register-kamp", require("./routes/sendRegisterKamp"));
 router.use("/webhook", require("./routes/webHook"));
 router.use("/instagram-posts", require("./routes/instagramPosts"));
 
