@@ -38,7 +38,7 @@ const ContactPage = () => {
 
   let map;
   const loader = new Loader({
-    apiKey: import.meta.env.VITE__MAPS_API,
+    apiKey: import.meta.env.VITE_MAPS_API,
     version: "weekly",
   });
   const position = { lat: 52.37250267528257, lng: 4.968654268456325 };

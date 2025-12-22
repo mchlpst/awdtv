@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.scss";
-import "./scss/layout/_html.scss"
-import "./scss/typography/_index.scss"
+import "./scss/layout/_html.scss";
+import "./scss/typography/_index.scss";
 
 import MainNavigation from "./components/MainNavigation/MainNavigation";
 import TopMenu from "./components/TopMenu/Topmenu";
@@ -50,8 +50,7 @@ const App = () => {
         <Route path="/nieuws" exact element={<AllNews />} />
         <Route path="/trainingsschema" exact element={<TrainingScheme />} />
         <Route path="/nieuws/:slug" exact element={<SlugPage />} />
-        <Route path="/schoolkorfbal-23" exact element={<CustomPage />} />
-        <Route path="/schoolkorfbal-25" exact element={<CustomPage />} />
+        <Route path="/schoolkorfbal-26" exact element={<CustomPage />} />
         <Route path="/aanmelden-kamp" exact element={<RegisterKamp />} />
 
         <Route path="/:slug" element={<SlugPage />} />

@@ -45,27 +45,19 @@ const CustomForm = () => {
               <label htmlFor="gender" className="custom-form__label">
                 Geslacht
               </label>
-              <div
-                className={`select custom-form__select ${
-                  errors.gender ? "custom-form__select--error" : ""
-                }`}>
+              <div className={`select custom-form__select ${errors.gender ? "custom-form__select--error" : ""}`}>
                 <select
-                  className={`custom-form__select ${
-                    errors.gender ? "custom-form__select--error" : ""
-                  }`}
+                  className={`custom-form__select ${errors.gender ? "custom-form__select--error" : ""}`}
                   {...register("gender", {
                     required: "Dit veld is verplicht",
-                  })}>
+                  })}
+                >
                   <option value="">Kies...</option>
                   <option value="Jongen">Jongen</option>
                   <option value="Meisje">Meisje</option>
                 </select>
               </div>
-              {errors.gender && (
-                <span className="custom-form__input-error">
-                  {errors.gender.message}
-                </span>
-              )}
+              {errors.gender && <span className="custom-form__input-error">{errors.gender.message}</span>}
             </fieldset>
           </div>
           <div className="custom-form__row">
@@ -74,9 +66,7 @@ const CustomForm = () => {
                 Voornaam
               </label>
               <input
-                className={`custom-form__input ${
-                  errors.firstName ? "custom-form__input--error" : ""
-                }`}
+                className={`custom-form__input ${errors.firstName ? "custom-form__input--error" : ""}`}
                 id="firstName"
                 placeholder="Robin"
                 type="text"
@@ -84,20 +74,14 @@ const CustomForm = () => {
                   required: "Je voornaam is verplicht",
                 })}
               />
-              {errors.firstName && (
-                <span className="custom-form__input-error">
-                  {errors.firstName.message}
-                </span>
-              )}
+              {errors.firstName && <span className="custom-form__input-error">{errors.firstName.message}</span>}
             </fieldset>
             <fieldset className="custom-form__fieldset col-6">
               <label className="custom-form__label" htmlFor="lastName">
                 Achternaam
               </label>
               <input
-                className={`custom-form__input ${
-                  errors.lastName ? "custom-form__input--error" : ""
-                }`}
+                className={`custom-form__input ${errors.lastName ? "custom-form__input--error" : ""}`}
                 id="lastName"
                 placeholder="van Dongen"
                 type="text"
@@ -105,11 +89,7 @@ const CustomForm = () => {
                   required: "Je achternaam is verplicht",
                 })}
               />
-              {errors.lastName && (
-                <span className="custom-form__input-error">
-                  {errors.lastName.message}
-                </span>
-              )}
+              {errors.lastName && <span className="custom-form__input-error">{errors.lastName.message}</span>}
             </fieldset>
           </div>
           <div className="custom-form__row">
@@ -119,9 +99,7 @@ const CustomForm = () => {
               </label>
               <input
                 id="birthdate"
-                className={`custom-form__input ${
-                  errors.birthdate ? "custom-form__input--error" : ""
-                }`}
+                className={`custom-form__input ${errors.birthdate ? "custom-form__input--error" : ""}`}
                 type="date"
                 {...register("birthdate", {
                   required: "Je moet je geboorte datum invullen",
@@ -131,11 +109,7 @@ const CustomForm = () => {
                   },
                 })}
               />
-              {errors.birthdate && (
-                <span className="custom-form__input-error">
-                  {errors.birthdate.message}
-                </span>
-              )}
+              {errors.birthdate && <span className="custom-form__input-error">{errors.birthdate.message}</span>}
             </fieldset>
           </div>
           <div className="custom-form__row">
@@ -147,18 +121,12 @@ const CustomForm = () => {
                 id="phone"
                 placeholder="0633564576"
                 type="tel"
-                className={`custom-form__input ${
-                  errors.phone ? "custom-form__input--error" : ""
-                }`}
+                className={`custom-form__input ${errors.phone ? "custom-form__input--error" : ""}`}
                 {...register("phone", {
                   required: "Je moet je telefoonnummer invullen",
                 })}
               />
-              {errors.phone && (
-                <span className="custom-form__input-error">
-                  {errors.phone.message}
-                </span>
-              )}
+              {errors.phone && <span className="custom-form__input-error">{errors.phone.message}</span>}
             </fieldset>
             <fieldset className="custom-form__fieldset col-6">
               <label className="custom-form__label" htmlFor="email">
@@ -168,18 +136,12 @@ const CustomForm = () => {
                 id="email"
                 placeholder="info@awdtv.nl"
                 type="email"
-                className={`custom-form__input ${
-                  errors.email ? "custom-form__input--error" : ""
-                }`}
+                className={`custom-form__input ${errors.email ? "custom-form__input--error" : ""}`}
                 {...register("email", {
                   required: "Je moet je email invullen",
                 })}
               />
-              {errors.email && (
-                <span className="custom-form__input-error">
-                  {errors.email.message}
-                </span>
-              )}
+              {errors.email && <span className="custom-form__input-error">{errors.email.message}</span>}
             </fieldset>
           </div>
           <div className="custom-form__row">
@@ -191,34 +153,24 @@ const CustomForm = () => {
                 id="school"
                 placeholder="Basisschool de school"
                 type="text"
-                className={`custom-form__input ${
-                  errors.school ? "custom-form__input--error" : ""
-                }`}
+                className={`custom-form__input ${errors.school ? "custom-form__input--error" : ""}`}
                 {...register("school", {
                   required: "Je moet je school invullen",
                 })}
               />
-              {errors.school && (
-                <span className="custom-form__input-error">
-                  {errors.school.message}
-                </span>
-              )}
+              {errors.school && <span className="custom-form__input-error">{errors.school.message}</span>}
             </fieldset>
             <fieldset className="custom-form__fieldset col-2">
               <label htmlFor="group" className="custom-form__label">
                 Groep
               </label>
-              <div
-                className={`select custom-form__select ${
-                  errors.group ? "custom-form__select--error" : ""
-                }`}>
+              <div className={`select custom-form__select ${errors.group ? "custom-form__select--error" : ""}`}>
                 <select
-                  className={`custom-form__select ${
-                    errors.group ? "custom-form__select--error" : ""
-                  }`}
+                  className={`custom-form__select ${errors.group ? "custom-form__select--error" : ""}`}
                   {...register("group", {
                     required: "Dit veld is verplicht",
-                  })}>
+                  })}
+                >
                   <option value="">Kies...</option>
                   <option value="groep-3">Groep 3</option>
                   <option value="groep-4">Groep 4</option>
@@ -228,35 +180,25 @@ const CustomForm = () => {
                   <option value="groep-8">Groep 8</option>
                 </select>
               </div>
-              {errors.group && (
-                <span className="custom-form__input-error">
-                  {errors.group.message}
-                </span>
-              )}
+              {errors.group && <span className="custom-form__input-error">{errors.group.message}</span>}
             </fieldset>
           </div>
           <div className="custom-form__row">
-            <fieldset className="custom-form__fieldset col-6">
-              <label className="custom-form__label" htmlFor="parent">
-                Naam ouder voor teamcoaching
+            <fieldset className="custom-form__fieldset col-12">
+              <label className="custom-form__label" htmlFor="preference">
+                Voorkeuren
               </label>
-              <input
-                id="parent"
-                placeholder="Naam ouder"
-                type="text"
-                className={`custom-form__input ${
-                  errors.parent ? "custom-form__input--error" : ""
-                }`}
-                {...register("parent")}
+              <textarea
+                id="preference"
+                placeholder="Voorkeuren"
+                rows={3}
+                className={`custom-form__textarea ${errors.preference ? "custom-form__input--error" : ""}`}
+                {...register("preference")}
               />
-              {errors.parent && (
-                <span className="custom-form__input-error">
-                  {errors.parent.message}
-                </span>
-              )}
+              {errors.preference && <span className="custom-form__input-error">{errors.preference.message}</span>}
               <span className="custom-form__helper-text">
-                Wil je ouder je team coachen? Vul dan de naam van ouder je ouder
-                hier in.
+                Heb je voorkeuren, zoals dat je samen met iemand in een groepje wil. Geef het dan hier aan. Dan houden
+                we daar zoveel mogelijk rekening mee.
               </span>
             </fieldset>
           </div>
@@ -269,9 +211,7 @@ const CustomForm = () => {
       ) : (
         <div className="custom-form__finished-container">
           <h2 className="custom-form__finished-title">Verzonden!</h2>
-          <p className="custom-form__finished-text">
-            Je aanmelding is succesvol verzonden.
-          </p>
+          <p className="custom-form__finished-text">Je aanmelding is succesvol verzonden.</p>
           <p className="custom-form__finished-text">
             Met vriendelijke groet, <br /> AW.DTV
           </p>

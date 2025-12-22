@@ -20,7 +20,8 @@ $component: "custom-form";
   &__btn {
     font-size: 16px;
   }
-  &__input {
+  &__input,
+  &__textarea {
     background: white;
     border: 2px solid black;
     font-size: 14px;
@@ -47,6 +48,9 @@ $component: "custom-form";
         transform: translateY(30px);
       }
     }
+  }
+  &__textarea {
+    height: 100px;
   }
   &__select {
     transition: all 0.3s ease-out;
