@@ -33,6 +33,16 @@ $component: "become-member";
     position: relative;
     z-index: 2;
   }
+  &__information {
+    max-width: calc(550px + 80px);
+    margin: 50px auto;
+    margin-bottom: 0;
+    padding: 40px;
+    background-color: white;
+    box-shadow: 0 0px 25px rgb(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 2;
+  }
   @include sm-md {
     margin-top: -25px;
   }

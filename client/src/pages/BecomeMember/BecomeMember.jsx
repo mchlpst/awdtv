@@ -10,7 +10,7 @@ const BecomeMember = () => {
 
   useEffect(() => {
     fetch(
-      `https://awdtv-cms-prod-9a1b80aeab80.herokuapp.com/api/lid-worden?populate[0]=Background`,
+      `https://awdtv-cms-prod-9a1b80aeab80.herokuapp.com/api/lid-worden?populate[0]=Background&populate[1]=information`,
       {
         method: "GET",
         headers: {
@@ -18,11 +18,12 @@ const BecomeMember = () => {
           Accept: "*/*",
           Authorization: `Bearer ${import.meta.env.VITE_STRAPI_TOKEN}`,
         },
-      }
+      },
     )
       .then((res) => res.json())
       .then((res) => {
         setData(res.data.attributes);
+        console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -33,14 +34,14 @@ const BecomeMember = () => {
       {data && (
         <>
           <section className="become-member__background">
-            <img
-              src={data.Background.data.attributes.url}
-              alt={data.Background.data.attributes.alternativeText}
-            />
+            <img src={data.Background.data.attributes.url} alt={data.Background.data.attributes.alternativeText} />
           </section>
           <section className="become-member__title-container">
             <h1 className="become-member__title">{data.Title}</h1>
           </section>
+          {data.information && (
+            <article className="become-member__information" dangerouslySetInnerHTML={{ __html: data.information }} />
+          )}
         </>
       )}
 
